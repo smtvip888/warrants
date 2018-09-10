@@ -1,0 +1,79 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->资源修改页</strong>
+        <form class="am-form" th:action="@{/admin/sys/resource/update}" method="post" th:object="${resource}">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>资源名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="name" placeholder="输入资源名称"  th:value="*{name}">
+                    <span th:errors="*{name}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>父资源：</div>
+                <div class="you">
+                    <select class="chosen-select" name="pid" th:field="*{pid}">
+                        <option value="">请选择</option>
+                        <option th:each="resource, stat : ${allResource}" th:value="${resource.id}" th:text="${resource.name}"></option>
+                    </select>
+                    <span th:errors="*{pid}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">uri：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入uri" th:name="uri" th:value="*{uri}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">资源图标：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入资源图标" th:name="icon" th:value="*{icon}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">资源描述：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入描述" name="description" th:value="*{description}"/>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">权限：</div>
+                <div class="you" style="margin-top: 5px;">
+                    <div th:each="auth, stat: ${allAuth}">
+                        <label class="am-checkbox-inline" >
+                            <input type="checkbox" name="authIds" th:value="${auth.id}" th:text="${auth.authName}" th:checked="${#sets.contains(ownedAuth, auth)}"/>
+                        </label>
+                        <label class="am-checkbox-inline" >
+                            <input type="checkbox" name="writes" th:value="${auth.id}" th:checked="${#sets.contains(writesAuth, auth)}"/>写权限
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">修改</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<script>
+    $(".chosen-select").chosen();
+</script>
+
+</html>

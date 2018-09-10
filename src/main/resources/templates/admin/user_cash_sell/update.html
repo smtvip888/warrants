@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->积分卖出更新页</strong>
+        <form class="am-form" th:action="@{/admin/userCashSell/update}" method="post" th:object="${sell}" enctype="multipart/form-data">
+            <input hidden name="sellId" th:value="*{sellId}"/>
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b></b>状态：</div>
+                <div class="you">
+                    <select name="status" class="am-input-sm">
+                        <option value="0" th:selected="*{status == 0}">已结束</option>
+                        <option value="1" th:selected="*{status == 1}">交易中</option>
+                        <option value="2" th:selected="*{status == 2}">待汇款</option>
+                        <option value="3" th:selected="*{status == 3}">待确认</option>
+                        <option value="4" th:selected="*{status == 4}">已完成</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b></b>备注：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="remark" th:value="${remark}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf" th:if="*{status < 4}">
+                <div class="you" style="margin-left: 11%;">
+                    <button class="am-btn am-btn-success am-radius">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->banners管理新增页</strong>
+        <form class="am-form" th:action="@{/admin/banners/add}" method="post" enctype="multipart/form-data" th:object="${banners}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>描述：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="desc" th:value="*{desc}">
+                    <span th:errors="*{desc}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>图片：</div>
+                <div class="you">
+                    <input type="file" class="am-input-sm" name="img">
+                    <span th:errors="*{imgurl}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>链接地址：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="url" th:value="${url}">
+                    <span th:errors="*{url}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">排序号：</div>
+                <div class="you">
+                    <input type="number" class="am-input-sm" name="sort" th:value="${sort}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

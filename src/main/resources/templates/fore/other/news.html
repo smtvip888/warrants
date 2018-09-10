@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                  <input type="hidden" id="_newtitle" th:value="${news.title}">
+                <h2><i class="icon iconfont icon-gears"></i><b id="newtitle"></b></h2>
+            </div>
+            <div class="reg-box form-box">
+                <input type="hidden" id="_body" th:value="${news.body}">
+                <div class="form-box-bd" id="body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${news_1}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<script>
+
+    $(function () {
+        $("#newtitle").html($filterHtml($("#_newtitle").val(), {badAttr:[ /^on/ ], whiteHrefScheme:[ "http", "https", "tel" ], whiteSrcScheme:[ "http", "https", "tel" ], badStyleName:[ "behavior" ], badStyleVal:[ "expression" ], badTag:[ "html", "body", "head", "meta", "title", "script", "iframe", "object", "embed", "applet", "video", "audio", "canvas" ], isClearCssImport:true }));
+        $("#body").html($("#_body").val());
+    })
+
+</script>
+</html>

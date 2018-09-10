@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${msg_list_1}"></span></h2>
+            </div>
+            <div >
+                <div class="tab-hd cf">
+                    <h2 th:class="${queryType == 0 ? 'on' : ''}"><a th:href="@{/fore/user/msgList(queryType=0)}" th:text="${msg_list_2}"></a></h2>
+                    <h2 th:class="${queryType == 1 ? 'on' : ''}"><a th:href="@{/fore/user/msgList(queryType=1)}" th:text="${msg_list_3}"></a></h2>
+                    <a class="primary-btn" th:href="@{/fore/user/toSendMsg}" th:text="${msg_list_4}"></a>
+                </div>
+                <form th:action="@{/fore/user/msgList}" method="post">
+                    <input type="hidden" name="queryType" th:value="${queryType}">
+                <div class="tab-bd">
+                    <div>
+                        <ul class="msg-list">
+                          <li class="on" th:each="msg, stat: ${list}">
+                            <h3><span th:text="${#dates.format(msg.cdate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                <a href="javascript:void (0);" onclick="showBody(this)" th:text="${msg.title}"></a>
+                            </h3>
+                              <div class="desc" style="display: none">
+                                  <ol>1</ol>
+                              </div>
+                              <!--<div style="display: none" class="editor" th:id="${'editor' + stat.index}"></div>-->
+                              <input type="hidden" th:value="${msg.body}">
+                          </li>
+                        </ul>
+                    </div>
+                </div>
+                    <div th:replace="fore/common :: page"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${msg_list_5}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<script>
+    var E = window.wangEditor;
+    $(".editor").each(function (i, v) {
+        var editor = new E('#editor' + i);
+        editor.create();
+        editor.txt.html($(v).next().val());
+    });
+
+    function showBody(obj) {
+        var e = $(obj).parent().next();
+        if (e.is(":hidden")){
+            e.show();
+        }else {
+            e.hide();
+        }
+    }
+
+    $(".desc").each(function () {
+        $(this).children().html($(this).next().val())
+    })
+</script>
+</html>

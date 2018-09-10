@@ -1,0 +1,121 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<script th:src="@{/js/DatePicker/WdatePicker.js}"></script>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->指导销售列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/guide/guideUser}" method="post">
+
+        <div class="am-form-group am-cf">
+
+            <input name="guide" type="hidden"/>
+
+            <div class="zuo" style="width: 6%;">注册时间:</div>
+            <div class="you" style="width: 160px;">
+                <input class="Wdate" type="text" name="start" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${start}"/>-
+                <input class="Wdate" type="text" name="end" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${end}"/>
+            </div>
+
+            <div class="zuo" style="width: 6%;">会员等级:</div>
+            <div class="you" style="width: 160px;">
+                <select name="productName">
+                    <option th:each="p: ${productList}" th:text="${p.name}" th:value="${p.name}" th:selected="${p.name == query.productName}"></option>
+                </select>
+            </div>
+
+            <div class="zuo" style="width: 6%;">持有股数:</div>
+            <div class="you" style="width: 160px;">
+                <input type="number" class="am-input-sm" name="num" placeholder="" th:value="${query.num}"/>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="button" onclick="_query()" class="am-btn am-btn-success am-radius">查询</button>
+                <button type="button" onclick="_guide()" class="am-btn am-btn-success am-radius">执行指导销售</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">会员名称</th>
+                <th class="table-author am-hide-sm-only">注册时间</th>
+                <th class="table-author am-hide-sm-only">会员等级</th>
+                <th class="table-author am-hide-sm-only">持有股数</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="guide, stat : ${list}">
+                <td th:text="${guide.userName}"></td>
+                <td th:text="${#dates.format(guide.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${guide.productName}"></td>
+                <td th:text="${guide.num}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="确认">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b>确定执行该指导销售，执行后无法撤销！</b>
+    </p>
+</div>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm1" title="提示">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+</html>
+
+<script>
+    function _query() {
+        $("form").attr("action", "/admin/guide/guideUser");
+        $("form").submit();
+    }
+
+    function _guide() {
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                确定: function() {
+                    $(".ui-dialog-buttonpane button:contains('确定')").button("disable");
+                    $(".ui-button:contains('确定')").text("操作进行中...");
+                    $("form").attr("action", "/admin/guide/updateOfGuide");
+                    $("form").submit();
+                },
+                Cancel: function () {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm1" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+    })
+</script>

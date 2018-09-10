@@ -1,0 +1,343 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<style>
+    .layui-layer-page .layui-layer-content{padding:10px;}
+    .quick-list li{height:114px;}
+</style>
+
+<body class="home">
+<div th:replace="fore/common :: header"></div>
+<section class="row r1">
+    <div class="wrapper">
+        <div class="mod mod1">
+            <!--<div class="mod-wrap">-->
+                <!--<div class="mod-hd">-->
+                    <!--<h2><a href="#">会员资料</a></h2>-->
+                <!--</div>-->
+                <!--<div class="mod-bd">-->
+                    <!--<table class="ui-table">-->
+                        <!--<colgroup>-->
+                            <!--<col width="40%">-->
+                            <!--<col width="60%">-->
+                        <!--</colgroup>-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td>会员账号</td>-->
+                            <!--<td th:text="${user.userName}"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>报单金额</td>-->
+                            <!--<td th:text="${'$' + netUser.price}"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>团队业绩</td>-->
+                            <!--<td th:text="${'$' + userAsset.teamTurnover}"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>左区业绩</td>-->
+                            <!--<td th:text="${'$' + userAsset.leftTotalTurnover}"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>右区业绩</td>-->
+                            <!--<td th:text="${'$' + userAsset.rightTotalTurnover}"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>团队人数</td>-->
+                            <!--<td th:text="${userAsset.teamNum}"></td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_1}">今日价格</a></h2>
+                </div>
+                <div class="mod-bd">
+                    <h4 class="today-price-title" th:text="${'$' + prePrice}"></h4>
+                    <div class="today-price-table">
+                        <table>
+                            <colgroup>
+                                <col width="50%">
+                                <col width="50%">
+                            </colgroup>
+                            <tbody>
+                            <tr th:each="price: ${todayPrice}">
+                                <td class="td1" th:text="${price.name}"></td>
+                                <td><span class="h" th:text="${'$' + price.price}"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod2">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_2}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="50%">
+                            <col width="50%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td th:text="${index_3}"></td>
+                            <td th:text="${'$' + userAsset.bonusSurplus}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${index_4}"></td>
+                            <td th:text="${'$' + userAsset.JTFTJJYE}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${index_5}"></td>
+                            <td th:text="${'$' + userAsset.DTFTJJYE}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${index_6}"></td>
+                            <td th:text="${jtSharesNum.canSellShares + '/' + jtSharesNum.totalShares + '（'+ index_7 +'）'}"></td>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<td>D权证数量</td>-->
+                            <!--<td th:text="${dtSharesNum.canSellShares + '/' + dtSharesNum.totalShares + '（可售数/总持有）'}"></td>-->
+                        <!--</tr>-->
+                        <tr>
+                            <td th:text="${index_8}"></td>
+                            <td th:text="${'$' + userAsset.ZCJFYYE}"></td>
+                        </tr>
+
+                        <tr>
+                            <td th:text="${index_9}"></td>
+                            <td th:text="${#dates.format(user.regDate, 'yyyy-MM-dd')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_10}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <ul class="quick-list cf">
+                        <li class="item1">
+                            <a th:href="@{/fore/trade/main}">
+                                <i class="icon"></i>
+                                <span class="txt" th:text="${index_11}"></span>
+                            </a>
+                        </li>
+                        <li class="item2"><a th:href="@{/fore/integral/hall}"><i class="icon"></i><span class="txt" th:text="${index_12}"></span></a></li>
+                        <li class="item3"><a th:href="@{/fore/assets/toConvert}"><i class="icon"></i><span class="txt" th:text="${index_13}"></span></a></li>
+                        <li class="item4"><a th:href="@{/fore/assets/toTransferZCJF}"><i class="icon"></i><span class="txt" th:text="${index_14}"></span></a></li>
+                        <li class="item5"><a th:href="@{/fore/toReg}"><i class="icon"></i><span class="txt" th:text="${index_15}"></span></a></li>
+                        <li class="item6"><a th:href="@{/fore/user/toChangeProfile}"><i class="icon"></i><span class="txt" th:text="${index_16}"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row r2">
+    <div class="wrapper">
+        <div class="mod mod1">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_17}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${index_18}"></th>
+                            <th th:text="${index_19}"></th>
+                            <th th:text="${index_20}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="buy: ${userBuyList}">
+                            <td th:text="${#dates.format(buy.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${buy.succesShares}"></td>
+                            <td th:text="${'$' + buy.price}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod2">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_21}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${index_22}"></th>
+                            <th th:text="${index_23}"></th>
+                            <th th:text="${index_24}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sell: ${userSellList}">
+                            <td th:text="${#dates.format(sell.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${sell.succesShares}"></td>
+                            <td th:text="${sell.shares}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_25}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <ul class="news-list">
+                        <li class="color-cyan" th:each="news, stat: ${newsList}" th:if="${stat.index < 5}">
+                            <i class="icon iconfont icon-bell"></i>
+                            <a th:href="@{/fore/other/news(newsId=${news.id})}" th:text="${news.title}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="mod-wrap">-->
+                <!--<div class="mod-hd">-->
+                    <!--<h2><a href="#">今日价格</a></h2>-->
+                <!--</div>-->
+                <!--<div class="mod-bd">-->
+                    <!--<h4 class="today-price-title" th:text="${'$' + prePrice}"></h4>-->
+                    <!--<div class="today-price-table">-->
+                        <!--<table>-->
+                            <!--<colgroup>-->
+                                <!--<col width="50%">-->
+                                <!--<col width="50%">-->
+                            <!--</colgroup>-->
+                            <!--<tbody>-->
+                            <!--<tr th:each="price: ${todayPrice}">-->
+                                <!--<td class="td1" th:text="${price.name}"></td>-->
+                                <!--<td><span class="h" th:text="${'$' + price.price}"></span></td>-->
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>
+<section class="row r3">
+    <div class="wrapper">
+        <!--<div class="mod mod1">-->
+            <div class="mod-wrap" s>
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${index_26}">价格走势</a></h2>
+                </div>
+                <div class="mod-bd">
+                    <div id="main" style="width: 100%;height:350px;"></div>
+                </div>
+            </div>
+        <!--</div>-->
+        <!--<div class="mod mod3">-->
+            <!--<div class="mod-wrap">-->
+                <!--<div class="mod-hd">-->
+                    <!--<h2><a href="#">通知公告</a></h2>-->
+                <!--</div>-->
+                <!--<div class="mod-bd">-->
+                    <!--<ul class="news-list">-->
+                        <!--<li class="color-cyan" th:each="news: ${newsList}">-->
+                          <!--<i class="icon iconfont icon-bell"></i>-->
+                          <!--<a th:href="@{/fore/other/news(newsId=${news.id})}" th:text="${news.title}"></a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${index_27}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+<script th:inline="javascript">
+
+    var trend = [[${trend}]];
+    var trendDate = [[${trendDate}]]
+
+    var title = [[${index_28}]]
+
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        tooltip: {},
+        legend: {
+            data: [title]
+        },
+        xAxis: {
+        		axisLabel: {  
+						   interval:0,  
+						   rotate:40  
+						},
+            data: trendDate
+        },
+        yAxis: {},
+        series: [{
+            name: title,
+            type: 'line',
+            itemStyle: {
+                normal: {
+                    color: "#4db3a4" //图标颜色
+                }
+            },
+            lineStyle: {
+                normal: {
+                    color: "#4db3a4" //连线颜色
+                }
+            },
+            data: trend,
+        },]
+    };
+    myChart.setOption(option);
+
+    $(document).ready(function() {
+        var newsList = [[${newsList}]]
+        if (newsList.length > 0){
+            var news = newsList[0];
+            var isPop = news.isPop == 0; // 是否弹出第一个通知
+            if (isPop) {
+                layer.open({
+                    type: 1,
+                    area: ['800px', '450px'],
+                    shadeClose: true, //点击遮罩关闭
+                    title: $filterHtml(news.title, {badAttr:[ /^on/ ], whiteHrefScheme:[ "http", "https", "tel" ], whiteSrcScheme:[ "http", "https", "tel" ], badStyleName:[ "behavior" ], badStyleVal:[ "expression" ], badTag:[ "html", "body", "head", "meta", "title", "script", "iframe", "object", "embed", "applet", "video", "audio", "canvas" ], isClearCssImport:true }),
+                    content: news.body
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

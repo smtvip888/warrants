@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->权限新增页</strong>
+        <form class="am-form" th:action="@{/admin/sys/auth/add}" method="post" th:object="${authority}">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>权限名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="authName" placeholder="输入权限名称"  th:value="*{authName}">
+                    <span th:errors="*{authName}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>权限代码：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入权限代码" th:name="authCode" th:value="*{authCode}">
+                    <span th:errors="*{authCode}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">权限描述：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入描述" name="description" th:value="*{description}"/>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+
+</div>
+
+</html>

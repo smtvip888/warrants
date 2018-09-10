@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->管理员新增页</strong>
+        <form class="am-form" th:action="@{/admin/sys/manager/add}" method="post" th:object="${manager}">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>管理员名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="name" placeholder="输入管理员名称"  th:value="*{name}">
+                    <span th:errors="*{name}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>password：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" placeholder="请输入密码" th:name="password" th:value="*{password}">
+                    <span th:errors="*{password}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">权限：</div>
+                <div class="you" style="margin-top: 5px;">
+                    <label class="am-checkbox-inline" th:each="auth, stat: ${allAuth}">
+                        <input type="checkbox" name="authIds" th:value="${auth.id}" th:text="${auth.authName}"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+
+</div>
+
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body class="home">
+<div th:replace="fore/common :: header"></div>
+<section class="row r1">
+    <div class="wrapper">
+        <div class="mod mod1">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#"><span th:text="${trade_1}"></span></a></h2>
+                </div>
+                <form id="buyForm" th:action="@{/fore/trade/buy}" method="post">
+                    <div class="mod-bd">
+                        <table class="ui-table">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="70%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td><span th:text="${trade_2}"></span></td>
+                                <td>
+                                    <label for="J_geo_l" class="except">
+                                        <input id="J_geo_l" type="radio" value="2" th:checked ="${shareBuy.fundType != 3}" onclick="changFundType(2)" name="fundType"><span th:text="${trade_3}"></span>
+                                    </label>
+                                    <!--<label for="J_geo_r" class="except">-->
+                                        <!--<input id="J_geo_r" type="radio" value="3" th:checked ="${shareBuy.fundType == 3}" onclick="changFundType(3)" name="fundType">D增值积分-->
+                                    <!--</label>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span th:text="${trade_4}"></span></td>
+                                <td id="balance" th:text="${'$' + userAsset.JTFTJJYE}"></td>
+                                <input id="JTFTJJYE" type="hidden" th:value="${userAsset.JTFTJJYE}">
+                                <input id="DTFTJJYE" type="hidden" th:value="${userAsset.DTFTJJYE}">
+                                <input id="sharesPrice" type="hidden" th:value="${sharesPrice.price}">
+                            </tr>
+                            <tr>
+                                <td><span th:text="${trade_5}"></span></td>
+                                <td>
+                                    <input name="price" th:value="${price}" type="number" min="0" class="ui-input" width="100" th:placeholder="${trade_5}" onblur="changePrice()"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span th:text="${trade_6}"></span></td>
+                                <td><span id="num">0</span> &nbsp; <span th:text="${trade_7}"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span th:text="${trade_8}"></span></td>
+                                <td><input type="password" name="password" class="ui-input" th:placeholder="${trade_8_1}" /></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div style="width:100%;padding-top:20px;text-align:center;"><button type="button" onclick="buy()" class="ui-btn primary-btn" th:text="${trade_9}"></button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="mod mod2">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#"><span th:text="${trade_10}"></span></a></h2>
+                </div>
+                <form id="sellForm" th:action="@{/fore/trade/sell}" method="post">
+                    <div class="mod-bd">
+                        <table class="ui-table">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="70%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td><span th:text="${trade_11}"></span></td>
+                                <td>
+                                    <label for="" class="except">
+                                        <input type="radio" value="1" checked onclick="changeSellType(1)" name="sellType"><span th:text="${trade_12}"></span>
+                                    </label>
+                                    <!--<label for="" class="except">-->
+                                        <!--<input id="" type="radio" value="2"  onclick="changeSellType(2)" name="sellType">D权证-->
+                                    <!--</label>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td th:text="${trade_13}"></td>
+                                <input type="hidden" id="dtSharesNum" th:value="${dtSharesNum.canSellShares}">
+                                <input type="hidden" id="jtSharesNum" th:value="${jtSharesNum.canSellShares}">
+                                <td id="canSellShares" th:text="${jtSharesNum.canSellShares}"></td>
+                            </tr>
+                            <tr>
+                                <td th:text="${trade_14}"></td>
+                                <td><input type="number" min="0" onblur="changeNum()" th:value="${shares}" name="shares" class="ui-input" width="100" th:placeholder="${trade_14}" /></td>
+                            </tr>
+                            <tr>
+                                <td th:text="${trade_15}"></td>
+                                <td id="aboutPrice1">0</td>
+                                <td style="display: none" id="aboutPrice2" th:text="${'$' + (dtSharesNum.canSellShares * sharesPrice.price)}"></td>
+                            </tr>
+                            <tr>
+                                <td th:text="${trade_16}"></td>
+                                <td><input type="password" name="password" class="ui-input" th:placeholder="${trade_16_1}" /></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div style="width:100%;padding-top:20px;text-align:center;"><button type="button" onclick="sell()" class="ui-btn primary-btn" th:text="${trade_17}"></button></div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_18}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <h4 class="today-price-title" th:text="${'$' + prePrice}"></h4>
+                    <div class="today-price-table">
+                        <table>
+                            <colgroup>
+                                <col width="50%">
+                                <col width="50%">
+                            </colgroup>
+                            <tbody>
+                            <tr th:each="price: ${todayPrice}">
+                                <td class="td1" th:text="${price.name}"></td>
+                                <td><span class="h" th:text="${'$' + price.price}"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row r2">
+    <div class="wrapper">
+        <div class="mod mod1">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_19}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${trade_20}"></th>
+                            <th th:text="${trade_21}"></th>
+                            <th th:text="${trade_22}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="buy: ${userBuyList}">
+                            <td th:text="${#dates.format(buy.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${buy.succesShares}">100</td>
+                            <td th:text="${'$' + buy.price}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod2">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_23}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${trade_24}"></th>
+                            <th th:text="${trade_25}"></th>
+                            <th th:text="${trade_26}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sell: ${userSellList}">
+                            <td th:text="${#dates.format(sell.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${sell.succesShares}"></td>
+                            <td th:text="${sell.shares}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_27}"></a></h2>
+                </div>
+                <div class="mod-bd">
+
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${trade_24}"></th>
+                            <th th:text="${trade_25}"></th>
+                            <th th:text="${trade_26}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sell: ${mySellList}">
+                            <td th:text="${#dates.format(sell.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${sell.succesShares}"></td>
+                            <td th:text="${sell.shares}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row r3">
+    <div class="wrapper">
+        <div class="mod mod1">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_28}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <div id="main" style="width: 647px;height:350px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${trade_29}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="35%">
+                            <col width="35%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th th:text="${trade_20}">时间</th>
+                            <th th:text="${trade_21}">数量</th>
+                            <th th:text="${trade_22}">金额</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="buy: ${myBuyList}">
+                            <td th:text="${#dates.format(buy.cdate, 'HH:mm:ss')}"></td>
+                            <td th:text="${buy.succesShares}"></td>
+                            <td th:text="${'$' + buy.price}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<input type="hidden" id="filed" th:value="${filed}">
+<div id="dialog-confirm" th:title="${trade_30}">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${filed}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${trade_31}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${trade_32}">?</b>
+    </p>
+</div>
+
+<div id="dialog-confirm2" th:title="${trade_31}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${trade_32}"></b>
+    </p>
+</div>
+
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${trade_33}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+<script th:inline="javascript">
+
+    var trend = [[${trend}]];
+    var trendDate = [[${trendDate}]];
+    var title = [[${trade_28}]];
+    var trade_34 = [[${trade_34}]];
+    var trade_35 = [[${trade_35}]];
+    var trade_36 = [[${trade_36}]];
+
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        tooltip: {},
+        legend: {
+            data: [title]
+        },
+        xAxis: {
+        		axisLabel: {  
+						   interval:0,  
+						   rotate:40  
+						},
+            data: trendDate
+        },
+        yAxis: {},
+        series: [{
+            name: title,
+            type: 'line',
+            itemStyle: {
+                normal: {
+                    color: "#4db3a4" //图标颜色
+                }
+            },
+            lineStyle: {
+                normal: {
+                    color: "#4db3a4" //连线颜色
+                }
+            },
+            data: trend,
+        },]
+    };
+    myChart.setOption(option);
+
+    $(function () {
+        if ($('#filed').val() != '' && $('#filed').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+
+        }
+    });
+
+    function changFundType(type) {
+        if(type == 2){
+            $("#balance").html($("#JTFTJJYE").val());
+        }else {
+            $("#balance").html($("#DTFTJJYE").val());
+        }
+    }
+    
+    function changePrice() {
+        $("#num").html(parseInt($("input[name='price']").val()/$("#sharesPrice").val()))
+    }
+
+    function changeNum() {
+        $("#aboutPrice1").html(parseInt($("input[name='shares']").val() * $("#sharesPrice").val()))
+    }
+
+    function changeSellType(type) {
+
+        if (type == 1){
+            $("#canSellShares").html($("#jtSharesNum").val())
+            $("#aboutPrice1").show();
+            $("#aboutPrice2").hide();
+
+        }else {
+            $("#canSellShares").html($("#dtSharesNum").val())
+            $("#aboutPrice1").hide();
+            $("#aboutPrice2").show();
+        }
+    }
+    
+    function buy() {
+        var buttons = `{
+            "${trade_34}": function(){
+                $(".ui-dialog-buttonpane button:contains('${trade_34}')").button("disable");
+                $(".ui-button:contains('${trade_34}')").text('${trade_35}');
+                $("#buyForm").submit();
+            },
+            "${trade_36}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+
+    function sell() {
+        var buttons = `{
+            "${trade_34}": function(){
+                $(".ui-dialog-buttonpane button:contains('${trade_34}')").button("disable");
+                $(".ui-button:contains('${trade_34}')").text('${trade_35}');
+                $("#sellForm").submit();
+            },
+            "${trade_36}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm2" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+
+</script>
+</body>
+</html>

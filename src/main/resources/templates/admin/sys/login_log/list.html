@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->登录日志列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/sys/loginLog/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 7%;">用户名:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userName" placeholder="" th:value="${userName}"/>
+            </div>
+
+            <div class="zuo" style="width: 7%;">登录类型:</div>
+            <div class="you" style="width: 160px;">
+                <select name="type">
+                    <option value="0" th:selected="${query.type == 0}">前台登录</option>
+                    <option value="1" th:selected="${query.type == 1}">后台登录</option>
+                </select>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">ID</th>
+                <th class="table-author am-hide-sm-only">登录用户名</th>
+                <th class="table-author am-hide-sm-only">登录类型</th>
+                <th class="table-author am-hide-sm-only">登录IP</th>
+                <th class="table-author am-hide-sm-only">登录时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="log, stat : ${list}">
+                <td th:text="${log.id}"></td>
+                <td th:text="${userNameList[stat.index]}"></td>
+                <td th:text="${log.type == 0 ? '前台登录' : '后台登录'}"></td>
+                <td th:text="${log.ip}"></td>
+                <td th:text="${#dates.format(log.loginTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="删除管理员">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要删除该管理员吗？
+    </p>
+</div>
+
+<script>
+    function confirmDel(id) {
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "删除": function() {
+                    window.location.href = "/admin/sys/manager/delete?id=" + id;
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+</html>

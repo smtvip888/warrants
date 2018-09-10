@@ -1,0 +1,142 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<body class="">
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+      <div class="content">
+        <div class="right-block">
+              <div class="breadcrumb-bar cf">
+                <h2><i  class="icon iconfont icon-gears"></i><span th:text="${msg_send_1}"></span></h2>
+              </div>
+            <form th:action="@{/fore/user/sendMsg}" method="post" th:object="${message}">
+              <div class="form-box-feedback">
+                <div class="field" style="width: 93%;">
+                  <label for="" class="ui-label"><span class="asterisk">*</span><span th:text="${msg_send_2}"></span>: </label>
+                    <input style="width: 90%" type="text" class="am-input-sm" name="title" th:value="*{title}">
+                    <!--<span th:errors="*{title}"></span>-->
+                </div>
+                <div class="field" style="width: 93%;">
+                  <p><label for="" class="ui-label"><span class="asterisk">*</span><span th:text="${msg_send_3}"></span>: </label></p>
+                    <div id="editor"></div>
+                    <input type="hidden" class="am-input-sm" name="body" th:value="*{body}">
+                    <!--<span th:errors="*{body}"></span>-->
+                </div>
+                <div class="field btn-field">
+                    <button type="button" onclick="add()" class="ui-btn primary-btn" th:text="${msg_send_4}"></button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${msg_send_5}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" th:title="${msg_send_6}">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${msg_send_7}" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${msg_send_8}"></b>
+    </p>
+</div>
+
+<script th:inline="javascript">
+	
+    var msg_send_9 = [[${msg_send_9}]];
+    var msg_send_10 = [[${msg_send_10}]];
+    var msg_send_11 = [[${msg_send_11}]];
+    var msg_send_12 = [[${msg_send_12}]];
+	
+	
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.uploadImgShowBase64 = true;
+    editor.customConfig.uploadImgHooks = {
+        before: function (xhr, editor, files) {
+            // 图片上传之前触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+        },
+        success: function (xhr, editor, result) {
+            // 图片上传并返回结果，图片插入成功之后触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        },
+        fail: function (xhr, editor, result) {
+            alert(msg_send_9);
+        },
+        error: function (xhr, editor) {
+
+        },
+        timeout: function (xhr, editor) {
+            // 图片上传超时时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        }
+    }
+    editor.create();
+    editor.txt.html($("input[name='body']").val())
+
+    function add() {
+        $("input[name='body']").val(editor.txt.html());
+        
+        var buttons = `{
+            "${msg_send_10}": function(){
+                $(".ui-dialog-buttonpane button:contains('${msg_send_10}')").button("disable");
+                $(".ui-button:contains('${msg_send_10}')").text('${msg_send_11}');
+                $("form").submit();
+            },
+            "${msg_send_12}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+        
+        
+        $(".ui-dialog").css("z-index","200000");
+    }
+
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+
+        }
+    });
+
+</script>
+
+</html>

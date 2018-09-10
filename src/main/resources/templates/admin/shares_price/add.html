@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->权证价格新增页</strong>
+        <form class="am-form" th:action="@{/admin/sharesPrice/add}" method="post" th:object="${sharesPrice}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>价格：</div>
+                <div class="you">
+                    <input type="number" step="0.01" class="am-input-sm" name="price" th:value="*{price}">
+                    <span th:errors="*{price}"></span>
+                </div>
+            </div>
+
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="button" onclick="dis(this)" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+
+<script>
+    function dis (obj) {
+        $(obj).attr("disabled", true);
+        $("form").submit();
+    }
+</script>
+
+</html>

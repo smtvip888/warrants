@@ -1,0 +1,108 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${convert_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+                <form name="reg-form" th:action="@{/fore/assets/convert}" method="post">
+                    <div class="form-box-bd">
+                        <div class="field"><label for="" class="ui-label"><span th:text="${convert_2}"></span>：</label><span th:text="${convert_3}"></span></div>
+                        <div class="field"><label for="" class="ui-label"><span th:text="${convert_4}"></span>：</label>
+                            <span style="color:#f00" th:text="${userAsset.bonusSurplus}"></span>
+                        </div>
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${convert_5}"></span>：</label>
+                            <input type="number" min="0" name="surplus" th:value="${surplus}" class="ui-input" th:placeholder="${convert_6}">
+                        </div>
+                        <div class="field"><label for="" class="ui-label"><span th:text="${convert_7}"></span>：</label><span th:text="${convert_8}"></span></div>
+
+                        <div class="field" th:text="${convert_9}">
+                            
+                        </div>
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${convert_10}"></span>：</label>
+                            <input type="password" name="password" th:value="${password}" th:placeholder="${convert_11}" class="ui-input"></div>
+                        <div class="field btn-field">
+                            <button type="button" onclick="convert()" class="ui-btn primary-btn" th:text="${convert_12}"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${convert_13}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="filed" th:value="${filed}">
+<div id="dialog-confirm" th:title="${convert_14}">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${filed}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${convert_15}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${convert_16}"></b>
+    </p>
+</div>
+
+<script th:inline="javascript">
+    var convert_17 = [[${convert_17}]];
+    var convert_18 = [[${convert_18}]];
+    var convert_19 = [[${convert_19}]];
+	
+    $(function () {
+        if ($('#filed').val() != '' && $('#filed').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+
+        }
+    });
+    
+    function convert() {
+        var buttons = `{
+            "${convert_17}": function(){
+                $(".ui-dialog-buttonpane button:contains('${convert_17}')").button("disable");
+                $(".ui-button:contains('${convert_17}')").text('${convert_18}');
+                $("form").submit();
+            },
+            "${convert_19}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+</script>
+</html>

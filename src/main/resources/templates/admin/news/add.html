@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->新闻管理新增页</strong>
+        <form class="am-form" th:action="@{/admin/news/add}" method="post" th:object="${news}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>标题：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="title" th:value="*{title}">
+                    <span th:errors="*{title}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>简介：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="summary" th:value="${summary}">
+                    <span th:errors="*{summary}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">是否弹出：</div>
+                <div class="you">
+                    <select class="chosen-select" name="isPop" th:field="*{isPop}">
+                        <option value="0">弹出</option>
+                        <option value="1">不弹出</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">语言：</div>
+                <div class="you">
+                    <select class="chosen-select" name="lang" th:field="*{lang}">
+                        <option value="cn_">中文</option>
+                        <option value="en_">英文</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>内容：</div>
+                <div class="you">
+                    <div id="editor" th:text="*{body}"></div>
+                    <input type="hidden" class="am-input-sm" name="body">
+                    <span th:errors="*{body}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="button" onclick="add()" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.uploadImgShowBase64 = true;
+    editor.customConfig.uploadImgHooks = {
+        before: function (xhr, editor, files) {
+            // 图片上传之前触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+        },
+        success: function (xhr, editor, result) {
+            // 图片上传并返回结果，图片插入成功之后触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        },
+        fail: function (xhr, editor, result) {
+            alert("图片上传失败")
+        },
+        error: function (xhr, editor) {
+
+        },
+        timeout: function (xhr, editor) {
+            // 图片上传超时时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        }
+    }
+    editor.create()
+
+    function add() {
+        $("input[name='body']").val(editor.txt.html())
+        $("form").submit();
+    }
+
+</script>
+
+</html>

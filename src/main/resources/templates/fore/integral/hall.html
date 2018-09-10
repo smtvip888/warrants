@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${integral_hall_1}"></span></h2>
+            </div>
+            <form th:action="@{/fore/integral/hall}" method="post">
+                <div class="filter-bar cf">
+
+                    <div class="filter-bar cf">
+
+                        <div class="form-item">
+                            <label for="" class="ui-label" th:text="${integral_hall_2}"></label>
+                            <div class="ui-form-control date-range-wrap" style="width: 400px;">
+                                <input type="number" name="start" class="trigger" style="width:130px;" th:value="${start}"/>-
+                                <input type="number" name="end" class="trigger" style="width:130px;" th:value="${end}"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="search-btn primary-btn" th:text="${integral_hall_3}"></button>
+                    </div>
+                </div>
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only" th:text="${integral_hall_4}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${integral_hall_5}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${integral_hall_6}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${integral_hall_7}"></th>
+                        <th class="table-author am-hide-sm-only"></th>
+                    </tr>
+                    <tr th:each="sell, stat : ${list}">
+                        <td th:text="${sell.amount}"></td>
+                        <td th:text="${(sell.amount * sell.exchangeRate) + sell.currencyName}"></td>
+                        <td th:text="${userNames[stat.index]}"></td>
+                        <td th:text="${#dates.format(sell.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td>
+                            <a th:href="@{/fore/integral/sellInfo(sellId=${sell.sellId})}" th:text="${integral_hall_8}"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${integral_hall_9}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

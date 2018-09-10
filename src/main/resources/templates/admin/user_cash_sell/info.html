@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->积分卖出详情页</strong>
+        <form class="am-form am-g">
+
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">认购人：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${buyUser.userName}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">汇款ip：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${buy.payIp}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">汇款时间：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${buy.payDate == null ? '' : #dates.format(buy.payDate, 'yyyy-MM-dd HH:mm:ss')}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">收款时间：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${#dates.format(sell.confirmDate, 'yyyy-MM-dd HH:mm:ss')}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">收款ip：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${sell.confirmIp}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+
+                <div class="zuo">汇款图片：</div>
+                <div>
+                    <!--<a target="_blank" th:href="${img.imgPath}" th:each="img: ${images}">-->
+                        <span style="width: 200px; height: 200px;" th:each="img: ${images}">
+                            <img  th:src="${'data:image/png;base64,' + img.imgPath}">
+                        </span>
+                    <!--</a>-->
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

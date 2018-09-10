@@ -1,0 +1,35 @@
+.ui-btn { display: inline-block; border: 0 none; cursor: pointer; text-align: center; vertical-align: top; *overflow: visible;
+	padding:0 56px;
+	margin-right: 25px;
+	line-height: 38px;
+	height: 40px;
+	font-family: microsfot yahei;
+	font-size: 15px;
+	-webkit-transition: background .3s;
+	transition: background .3s;
+
+
+}
+
+.ui-btn2 { background: #babcb8; color: #fff; }
+.ui-btn2:hover { background: #a8a8a8; color: #fff; }
+a.ui-btn { line-height: 40px; }
+.form-wrap {  padding: 0 0 40px; }
+.form-bd {  padding: 70px 0 0; }
+.form-ft { text-align: center; padding: 20px 0 0; line-height: 2; }
+.form-ft a:hover { text-decoration: underline; }
+.h { color: #128ac7 !important; }
+.form-box .tips { display: inline-block; vertical-align: top; color: #a0a0a0; }
+.field { padding-left: 286px; margin-bottom: 26px; line-height: 40px;}
+.ui-label { width: 270px; margin-left: -286px; float: left; font-size: 16px;  font-family: microsoft yahei; color: #000; text-align: right; }
+.ui-input { line-height: 20px; padding: 9px; border: 1px solid #eee; width: 306px; margin-right: 20px; }
+.field-user .ui-input,
+.field-pwd .ui-input { background-repeat: no-repeat; background-position: 0 0; padding-left: 53px; width: 262px; }
+.field-user .ui-input { background-image: url(../images/form-ico1.gif); }
+.field-pwd .ui-input { background-image: url(../images/form-ico2.gif); }
+/* clearfix */
+.field:before, .field:after { content: ""; display: table; }
+.field:after { clear: both; }
+.field { *zoom: 1
+}
+.checkcode img { vertical-align: top; }

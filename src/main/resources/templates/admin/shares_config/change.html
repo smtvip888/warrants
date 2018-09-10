@@ -1,0 +1,228 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->权证配置修改页</strong>
+        <form class="am-form" th:action="@{/admin/sharesConfig/change}" method="post" th:object="${sharesConfig}">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>动态复投比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="DTFTBL" th:value="*{DTFTBL}">
+                    <span th:errors="*{DTFTBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>动态奖金提现比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="DTTXBL" th:value="*{DTTXBL}">
+                    <span th:errors="*{DTTXBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>动态旅游积分：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="DTLYJFBL" th:value="*{DTLYJFBL}">
+                    <span th:errors="*{DTLYJFBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>静态卖出交易手续费：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JTSXFBL" th:value="*{JTSXFBL}">
+                    <span th:errors="*{JTSXFBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>静态提现比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JTTXBL" th:value="*{JTTXBL}">
+                    <span th:errors="*{JTTXBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>静态复投比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JTFTBL" th:value="*{JTFTBL}">
+                    <span th:errors="*{JTFTBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>静态商城积分比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JTSCJFBL" th:value="*{JTSCJFBL}">
+                    <span th:errors="*{JTSCJFBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>见点奖比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JDJBL" th:value="*{JDJBL}">
+                    <span th:errors="*{JDJBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>交易起始价位：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="initialPrice" th:value="*{initialPrice}">
+                    <span th:errors="*{initialPrice}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>拆分价位：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="splitPrice" th:value="*{splitPrice}">
+                    <span th:errors="*{splitPrice}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>单位价格涨幅：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="unitPrice" th:value="*{unitPrice}">
+                    <span th:errors="*{unitPrice}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>单位价格股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="unitShares" th:value="*{unitShares}">
+                    <span th:errors="*{unitShares}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>最大允许买入价格：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="maxBuyPrice" th:value="*{maxBuyPrice}">
+                    <span th:errors="*{maxBuyPrice}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>最小提现金额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="ZXTXJE" th:value="*{ZXTXJE}">
+                    <span th:errors="*{ZXTXJE}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>提现手续费：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="TXSXF" th:value="*{TXSXF}">
+                    <span th:errors="*{TXSXF}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>人民币买入价格：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="MRJG" th:value="*{MRJG}">
+                    <span th:errors="*{MRJG}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>卖出价格：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="MCJG" th:value="*{MCJG}">
+                    <span th:errors="*{MCJG}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>对碰奖周封顶倍数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="DPJZFDBS" th:value="*{DPJZFDBS}">
+                    <span th:errors="*{DPJZFDBS}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>subId起始位：</div>
+                <div class="you">
+                    <input type="number" min="0"  class="am-input-sm" name="enabledTrade" th:value="*{enabledTrade}">
+                    <span th:errors="*{enabledTrade}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">subId当前值：</div>
+                <div class="you">
+                    <input type="number" min="0"  class="am-input-sm" disabled th:value="${maxSubId}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b></b>汇款确认时间：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="HKQRSJ" th:value="*{HKQRSJ}">
+                    <span th:errors="*{HKQRSJ}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b></b>收款确认时间：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="SKQRSJ" th:value="*{SKQRSJ}">
+                    <span th:errors="*{SKQRSJ}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">允许登录：</div>
+                <div class="you" style="margin-top: 5px;">
+                    <label class="am-checkbox-inline">
+                        <input type="radio" name="enabledLogin" th:value="1" th:checked="*{enabledLogin == 1}"/> 允许
+                        <input type="radio" name="enabledLogin" th:value="0" th:checked="*{enabledLogin == 0}"/> 不允许
+                    </label>
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">
+                <div class="zuo">允许注册：</div>
+                <div class="you" style="margin-top: 5px;">
+                    <label class="am-checkbox-inline">
+                        <input type="radio" name="enabledReg" th:value="0" th:checked="*{enabledReg == 0}"/> 允许
+                        <input type="radio" name="enabledReg" th:value="1" th:checked="*{enabledReg == 1}"/> 不允许
+                    </label>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">允许提现：</div>
+                <div class="you" style="margin-top: 5px;">
+                    <label class="am-checkbox-inline">
+                        <input type="radio" name="enabledGetCash" th:value="0" th:checked="*{enabledGetCash == 0}"/> 允许
+                        <input type="radio" name="enabledGetCash" th:value="1" th:checked="*{enabledGetCash == 1}"/> 不允许
+                    </label>
+                </div>
+            </div>
+
+            -->
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+
+</div>
+
+</html>

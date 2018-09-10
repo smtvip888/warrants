@@ -1,0 +1,101 @@
+en_系统禁止登陆，请稍后再试或与管理员联系: Login restrictions , please try to again later or contract with admin
+en_验证码错误: Verification code is error
+en_用户名或密码不正确: The user name or password is not correct
+en_账号锁定中,请通过领导人反馈联系: your account is fully locked. please contact the Service Center
+en_格式不正确: Format is not correct
+en_上传图片失败: Upload failure
+en_交易密码不能为空: Transaction code is empty
+en_交易密码不正确: Transaction password is not correct
+en_转入账户用户名不能为空: Target user name is empty
+en_转入账户不存在: Target user is invalid
+en_余额不足: Insufficient balance
+en_转账成功: transfer successfully
+en_转出金额不能为空: The amount is empty
+en_转出金额不能为负: The amount must greater than 0
+en_交易密码不能为空: Transaction password is empty
+en_交易密码不正确: Transaction password is not correct
+en_银行信息不全: Please fill all bank information
+en_提取成功: Received
+en_已经有人认购: Someone would like to purchase
+en_每个账号最多只能同时认购3笔交易: Only execute 3 deal at the same time by every account
+en_路径配置不能为空: Url Path is empty
+en_数量必须是50的倍数: Must be Multiples of 50
+en_手机号码不能少于8位: The minimum phone number length is 8
+en_选择的等级不存在: The Lv is invalid
+en_身份证号不能为空: The ID is empty
+en_真实姓名不能为空: Full name is empty
+en_真实姓名长度不能超过30: The maximum full name length is 30
+en_手机号码不能为空: Cell phone number is empty
+en_注册积分不能为空: Register Point is empty
+en_注册积分不能小于0: The minimum Register Point is 0
+en_报单积分不能为空: Declaration Point is empty
+en_报单积分不能小于0: The minimum Declaration Point is 0
+en_注册积分加报单积分必须等于申请级别所需金额: Register Point and Declaration Point is equal Lv’s amount
+en_注册积分余额不足: Register Point is not enough
+en_报单积分余额不足: Declaration Point is not enough
+en_登陆密码和安全密码不能相同: Login Password can’t the same with Transaction password
+en_推荐人不能为空: Reference is empty
+en_推荐人不存在: Reference is invalid
+en_安置人不能为空: Placement user name is empty
+en_安置人不存在: Placement user name is invalid
+en_注册成功: Register successfully
+en_买入金额不能为空: Purchase amount is empty
+en_买入金额不能小于20: The minimum purchase amount is 20
+en_你的账户现在禁止交易: Your account can’t execute any transaction
+en_买入成功: Purchase successful
+en_挂出数量不能为空: Please fill number of sell
+en_挂卖数量不能小于20: can't less than 20
+en_挂卖成功: Set up success
+en_查询用户不在你的团队！: This user not from your team
+en_标题不能为空: Title is empty
+en_内容不能为空: Content is empty
+en_金额不能为空: Amount is empty
+en_email不能为空: Email is empty
+en_修改成功: Modify completed
+en_两次输入的密码不一致: Twice the password is not the same.
+en_旧密码不正确: Old password is not correct
+en_登录密码不能和交易密码一致: The Login Password can’t the same with Transaction Password
+en_密码长度必须在6-20之间: The password length between 6 and 20
+en_激活成功: Activation successful
+en_子用户不存在: Child user is invalid
+en_子用户登录密码不正确: Child login password is not correct
+en_安全密码不能为空: Transaction password is empty
+en_安全密码错误: Transaction password is invalid
+en_描述不能为空: The description is empty
+en_挂卖数量不能大于可卖出数: The number of sales cannot be greater than the number of sales
+en_权证数必须大于成交数: Number of warrant need greater than Volume
+en_该用户已经添加过了: This account is exist
+en_不能添加自己: Can't add your self
+en_你没有填写身份证信息: You haven’t fill ID
+en_子用户的身份证信息与你不一致: Child account ID is not the same with you
+en_金额不能为负: The amount must be greater than 0
+en_转入用户不在可允许的用户范围内: Can’t transfer to this target user
+en_推荐人和安置人不在同一团队: Reference and Placement People not from the same team
+en_你和安置人不在同一团队: You and Placement People not from the same team
+en_同一个身份证每月只能注册3个账号: Only accept register 3 accounts at the same people by every month
+en_申请等级过低: The Lv is too low
+en_用户名必须在6-20位字符之间: The username length between 6 and 20
+en_安全密码必须在6-20位字符之间: The Transaction password length between 6 and 20
+en_登录密码必须在6-20位字符之间: The login password length between 6 and 20
+en_文件大小超出限制: File size exceeds limit
+en_用户名必须包含字母: The username must contain the letter
+en_安排区域已存在会员，请重新选择: The arrangement area already exists member, please choose again
+en_该用户已存在: The user already exists
+en_配置文件为空: Configuration file does not exist
+en_新闻不存在: The news does not exist
+en_新闻为发布: News for release
+en_email格式不正确: Email format is not correct
+en_数量不能超过1500: The number can not exceed 1500
+en_数量不能小于50: The number can not be less than 50
+en_数量不能为空: The number can not be empty
+en_银行名称不能为空: The name of the bank can not be empty
+en_账户名称不能为空: Account name cannot be empty
+en_银行账号不能为空: The bank account can't be empty
+en_地址不能为空: The address can not be empty
+en_省不能为空: The province cannot be empty
+en_市不能为空: The city can't be empty
+en_账户名不能为空: Account name cannot be empty
+en_卡号不能为空: The bank account can't be empty
+en_product不合法: Product selection error
+en_注册积分不足: Lack of registered integral
+en_报单积分不足: Declaration of lack of integration

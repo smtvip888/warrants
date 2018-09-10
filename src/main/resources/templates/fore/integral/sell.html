@@ -1,0 +1,147 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${integral_sell_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+              <form name="reg-form" method="post" th:action="@{/fore/integral/sell}">
+                  <input type="hidden" id="TXSXF" th:value="${sharesConfig.TXSXF}">
+                  <input name="currencyName" type="hidden" th:value="${country.currencyName}"/>
+                  <input name="exchangeRate" type="hidden" th:value="${country.exchangeRate}"/>
+                <div class="form-box-bd">
+
+                  <div class="field">
+                      <label for="" class="ui-label"><span th:text="${integral_sell_2}"></span>:</label>
+                      <span><strong th:text="${userAsset.bonusSurplus}"></strong> </span>
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${integral_sell_3}"></span>：</label>
+                      <input type="number" class="ui-input" name="amount" th:value="${sell.amount}" th:placeholder="${integral_sell_3}" style="width:120px;" onchange="amountChange()">
+                      <span>&nbsp; <span th:text="${integral_sell_4}"></span></span>
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label"><span th:text="${integral_sell_5}"></span>：</label>
+                      <input type="number" name="brokerage" class="ui-input" disabled style="width:120px;">
+                      <span> &nbsp; <span th:text="${integral_sell_5_1}"></span><b th:text="${sharesConfig.TXSXF}"></b>%<span th:text="${integral_sell_5_2}"></span><b th:text="${sharesConfig.TXSXF + 100}"></b></span>
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label"><span th:text="${integral_sell_6}"></span>：</label>
+                      <input type="number" id="_num" disabled class="ui-input" style="width:120px;"><span> &nbsp; <b th:text="${country.currencyName}"></b></span></div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${integral_sell_7}"></span>：</label>
+                      <input type="text" name="bankName" maxlength="20" class="ui-input" th:value="${profile.bankName}" th:placeholder="${integral_sell_7}">
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label"><span th:text="${integral_sell_8}"></span>：</label>
+                      <input type="text" class="ui-input" maxlength="20" name="bankAddress" th:value="${profile.bankCode}" th:placeholder="${integral_sell_8}">
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${integral_sell_9}"></span>：</label>
+                      <input type="text" class="ui-input" maxlength="20" name="accountName" th:value="${profile.bankAccountName}" style="width:120px;" readonly="readonly" >
+                  </div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${integral_sell_10}"></span>：</label>
+                      <input type="text" maxlength="20" class="ui-input" name="accountNumber" th:value="${profile.bankAccountNumber}"  th:placeholder="${integral_sell_10}"></div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${integral_sell_11}"></span>：</label>
+                      <input type="text" minlength="8" maxlength="20" name="mobile" th:value="${sell.mobile}" class="ui-input" th:placeholder="${integral_sell_11}">
+                  </div>
+
+                  <div class="field field-send-code"><label for="" class="ui-label">*<span th:text="${integral_sell_12}"></span>：</label>
+                    <input type="password" name="password" class="ui-input" th:placeholder="${integral_sell_12}">
+                  </div>
+                  <div class="field btn-field">
+                    <button type="button" onclick="sell()" class="ui-btn primary-btn" th:text="${integral_sell_13}"></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${integral_sell_14}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm1" th:title="${integral_sell_15}" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm" th:title="${integral_sell_16}" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${integral_sell_17}"></b>
+    </p>
+</div>
+
+</html>
+
+<script th:inline="javascript">
+    var integral_sell_18 = [[${integral_sell_18}]];
+    var integral_sell_19 = [[${integral_sell_19}]];
+    var integral_sell_20 = [[${integral_sell_20}]];
+
+    $(function () {
+        amountChange();
+
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm1" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+    })
+
+    function amountChange() {
+        $("input[name='brokerage']").val($("input[name='amount']").val() * $("#TXSXF").val() / 100);
+        $("#_num").val($("input[name='amount']").val() * $("input[name='exchangeRate']").val());
+    }
+
+    function sell() {
+        var buttons = `{
+            "${integral_sell_18}": function(){
+                $(".ui-dialog-buttonpane button:contains('${integral_sell_18}')").button("disable");
+                $(".ui-button:contains('${integral_sell_18}')").text('${integral_sell_19}');
+                $("form").submit();
+            },
+            "${integral_sell_20}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+    
+</script>

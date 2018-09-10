@@ -1,0 +1,121 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+<style>
+	.content {min-height:150px;height:auto;}
+	.ui-table2 th{border:none;font-size:1.2em;line-height:2.5em;font-weight:normal;text-align:left;}
+	.ui-table2 .first{text-align:center;}
+	.ui-table2 th span{color:#f00;font-weight:bold;}
+	.desc { margin: 20px 0;font-size:1.2em; background: #f0f9f4; border-left: 5px solid #b3e0c9; padding: 20px 16px; color: #2c6c98; line-height: 2;}
+	.imgspan{margin-right:10px;position:relative}
+	.imgspan .del{padding:2px; position:absolute;right:0;  line-height:0;background:#fff;}
+</style>
+	
+    <div class="wrapper">
+            
+
+    	
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${sell_info_1}"></span></h2>
+            </div>
+
+            
+             <div class="reg-box form-box">
+              <form name="reg-form" method="post" th:action="@{/fore/integral/buy}" th:object="${sell}">
+                  <input type="hidden" name="sellId" th:value="*{sellId}">
+                <div class="form-box-bd">
+                  <div class="field"><label for="" class="ui-label"><span th:text="${sell_info_2}"></span>:</label><span><strong th:text="*{amount}"></strong> </span></div>
+                  <div class="field"><label for="" class="ui-label"><span th:text="${sell_info_3}"></span>：</label><span><strong th:text="*{(amount * exchangeRate) + currencyName}"></strong></span></div>
+                  <div class="field"><label for="" class="ui-label"><span th:text="${sell_info_4}"></span>：</label><span th:text="${userName}"></span></div>
+                  <div class="field"><label for="" class="ui-label"><span th:text="${sell_info_5}"></span>：</label><span th:text="*{mobile}"></span></div>
+                  
+                  <div class="field"><label for="" class="ui-label"><span th:text="${sell_info_6}"></span>：</label><span th:text="${#dates.format(sell.cdate, 'yyyy-MM-dd HH:mm:ss')}"></span></div>
+
+                  <div class="field field-send-code"><label for="" class="ui-label">*<span th:text="${sell_info_7}"></span>：</label>
+                    <input type="password" name="password" class="ui-input" th:placeholder="${sell_info_7}">
+                  </div>
+                  <div class="field btn-field">
+                    <button type="button" onclick="buy()" class="ui-btn primary-btn" th:text="${sell_info_8}"></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${sell_info_9}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+
+<div id="dialog-confirm" th:title="${sell_info_10}">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${sell_info_11}"></b>
+    </p>
+</div>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm1" th:title="${sell_info_12}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+
+</html>
+<script th:inline="javascript">
+    var sell_info_13 = [[${sell_info_13}]];
+    var sell_info_14 = [[${sell_info_14}]];
+    var sell_info_15 = [[${sell_info_15}]];
+	
+    function buy() {
+        var buttons = `{
+            "${sell_info_13}": function(){
+                $(".ui-dialog-buttonpane button:contains('${sell_info_13}')").button("disable");
+                $(".ui-button:contains('${sell_info_13}')").text('${sell_info_14}');
+                $("form").submit();
+            },
+            "${sell_info_15}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm1" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+    })
+</script>

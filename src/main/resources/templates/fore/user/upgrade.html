@@ -1,0 +1,119 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fore/common :: head"></head>
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i>账户升级</h2>
+            </div>
+            <form th:action="@{/fore/user/upgrade}" method="post">
+            <table class="ui-table ui-table2">
+                <colgroup>
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>账号</th>
+                    <th>注册时间</th>
+                    <th>会员等级</th>
+                    <th>投资金额</th>
+                    <th>配送比例</th>
+                    <th>是否出局</th>
+                </tr>
+                <tr>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${#dates.format(user.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${product.level + product.name}"></td>
+                    <td th:text="${'$' + product.invested}"></td>
+                    <td th:text="${product.PGBL + '%'}"></td>
+                    <td th:text="${netUser.isOut == 0 ? '否' : '是'}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="reg-box form-box">
+                <table class="ui-table ui-table2" style="margin-top:60px;">
+                    <colgroup>
+                        <col width="33%">
+                        <col width="33%">
+                        <col width="34%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>选择</th>
+                        <th>会员等级</th>
+                        <th>投资金额</th>
+                        <th>配送比例</th>
+                    </tr>
+                    <tr th:each="p: ${productList}" th:if="${p.invested > product.invested}">
+                        <td><input id="J_geo_l" type="radio" checked="checked" name="productId" th:value="${p.productId}"></td>
+                        <td th:text="${p.level + p.name}"></td>
+                        <td th:text="${p.invested}"></td>
+                        <td th:text="${p.PGBL + '%'}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <style>
+                    .form-box .field {
+                        padding-left: 90px;
+                    }
+                </style>
+                <div class="form-box-bd" style="margin-top:50px;">
+                    <div class="field"><label for="" class="ui-label">账户结余：</label>
+                        <span style="color:#f00" th:text="${userAsset.ZCJFYYE}"></span></div>
+                    <div th:if="${user.upgraded != 1}" class="field"><label for="" class="ui-label">交易密码：</label>
+                        <input type="password" name="password" placeholder="请输入交易密码" class="ui-input"></div>
+                    <div class="field btn-field">
+                        <button th:type="${user.upgraded == 1 ? 'button' : 'submit'}" class="ui-btn primary-btn" th:text="${user.upgraded == 1 ? '已升级' : '立即升级'}">立刻升级</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © 百腾国际. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="filed" th:value="${filed}">
+<div id="dialog-confirm" title="提示">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${filed}"></b>
+    </p>
+</div>
+<script>
+    $(function () {
+        if ($('#filed').val() != '' && $('#filed').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        if ($('#filed').val() == '升级成功'){
+                            window.location.href = "/"
+                        }else {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                }
+            });
+
+        }
+    });
+</script>
+</html>

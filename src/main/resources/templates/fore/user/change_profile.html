@@ -1,0 +1,228 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${change_profile_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+                <form name="reg-form" method="post" th:action="@{/fore/user/changeProfile}">
+                    <div class="form-box-bd">
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_2}"></span>：</label>
+                            <span th:text="${user.userName}"></span>
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_3}"></span>：</label>
+                            <span th:text="${#dates.format(user.regDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_4}"></span>：</label>
+                            <input type="number" max="10000000000000000" name="mobile" class="ui-input" th:value="${user.mobile}">
+                            <!--<span th:errors="${user.mobile}"></span>-->
+                        </div>
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_5}"></span>：</label>
+                            <input type="text" maxlength="40" name="email" class="ui-input" th:value="${user.email}">
+                            <!--<span th:errors="${user.email}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_6}"></span>：</label>
+                            <input name="idCard" type="hidden" th:value="${userProfile.idCard}">
+                            <span th:text="${userProfile.idCard}"></span>
+                            <!--<input type="text" disabled maxlength="20" name="" class="ui-input" th:value="${userProfile.idCard}">-->
+                            <!--<span th:errors="${userProfile.idCard}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_7}"></span>：</label>
+                            <input type="number" max="10000000000" name="postCode"  class="ui-input" th:value="${userProfile.postCode}">
+                            <!--<span th:errors="${userProfile.postCode}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_8}"></span>：</label>
+                            <span th:text="${country.countryName}"></span>
+                            <!--<input type="text" disabled maxlength="20" name="" class="ui-input" th:value="${country.countryName}">-->
+                            <!--<span th:errors="${userProfile.idCard}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_9}"></span>：</label>
+                            <input maxlength="50" type="text" class="ui-input" th:value="${userProfile.province}" name="province">
+                            <!--<span th:errors="${userProfile.province}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_10}"></span>：</label>
+                            <input type="text" maxlength="50" class="ui-input" th:value="${userProfile.city}" name="city">
+                            <!--<span th:errors="${userProfile.city}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_11}"></span>：</label>
+                            <input type="text" maxlength="200" name="address" class="ui-input" th:value="${userProfile.address}">
+                            <!--<span th:errors="${userProfile.address}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label"><span th:text="${change_profile_12}"></span>：</label>
+                            <input type="text" class="ui-input Wdate" th:value="${birthdayStr}" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" name="birthdayStr">
+                        </div>
+
+                        <!--<div class="field"><label for="" class="ui-label">银行国家：</label>-->
+                            <!--<input type="text" maxlength="20" class="ui-input" th:value="${userProfile.bankCountry}" name="bankCountry">-->
+                            <!--&lt;!&ndash;<span th:errors="${userProfile.bankCountry}"></span>&ndash;&gt;-->
+                        <!--</div>-->
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_13}"></span>：</label>
+                            <input type="text" maxlength="50" class="ui-input" th:value="${userProfile.bankName}" name="bankName">
+                            <!--<span th:errors="${userProfile.bankName}"></span>-->
+                        </div>
+
+                        <!--<div class="field"><label for="" class="ui-label">银行地址：</label>-->
+                            <!--<input type="text" maxlength="20" class="ui-input" th:value="${userProfile.bankCode}" name="bankCode">-->
+                            <!--&lt;!&ndash;<span th:errors="${userProfile.bankCode}"></span>&ndash;&gt;-->
+                        <!--</div>-->
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_14}"></span>：</label>
+                            <input type="hidden" maxlength="20" class="ui-input" th:value="${userProfile.bankAccountName}" name="bankAccountName">
+                            <span th:text="${userProfile.bankAccountName}"></span>
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_15}"></span>：</label>
+                            <input type="number" max="100000000000000000000" class="ui-input" th:value="${userProfile.bankAccountNumber}" name="bankAccountNumber">
+                            <!--<span th:errors="${userProfile.bankAccountNumber}"></span>-->
+                        </div>
+
+                        <div class="field"><label for="" class="ui-label">*<span th:text="${change_profile_16}"></span>：</label>
+                            <input type="password" class="ui-input"  name="password1" th:placeholder="${change_profile_16_1}">
+                        </div>
+
+                        <div class="field btn-field">
+                            <button type="button" onclick="toModfiy()" class="ui-btn primary-btn" th:text="${change_profile_17}"></button>
+                        </div>
+                    </div>
+                    <!--<input type="hidden" name="password1">-->
+                    <div id="confirmPassword" th:title="${change_profile_16_1}" style="display: none">
+                        <p>
+                            <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+                            <label th:for="password"  th:text="${change_profile_16}"></label>
+                            <input type="password" id="password" class="text ui-widget-content ui-corner-all">
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${change_profile_18}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" th:title="${change_profile_19}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${change_profile_20}" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${change_profile_21}"></b>
+    </p>
+</div>
+
+<script th:inline="javascript">
+	
+    var change_profile_22 = [[${change_profile_22}]];
+    var change_profile_23 = [[${change_profile_23}]];
+    var change_profile_24 = [[${change_profile_24}]];
+
+    $(function() {
+
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        if ($('#tip').val() == '修改成功'){
+                            window.location.href = "/"
+                        }else {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                }
+            });
+
+        }
+    });
+
+    function showTradePassword() {
+//        $( "#confirmPassword" ).dialog({
+//            resizable: false,
+//            height: "auto",
+//            width: 400,
+//            modal: true,
+//            buttons: {
+//                确定: function() {
+//                    $("input[name='password1']").val($("#password").val());
+//                    $("form").submit();
+//                }
+//            }
+//        });
+        
+        var buttons = `{
+            "${change_profile_22}": function(){
+                    $("input[name='password1']").val($("#password").val());
+                    $("form").submit();
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#confirmPassword" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+    
+
+    function toModfiy() {       
+        var buttons = `{
+            "${change_profile_22}": function(){
+                $(".ui-dialog-buttonpane button:contains('${change_profile_22}')").button("disable");
+                $(".ui-button:contains('${change_profile_22}')").text('${change_profile_23}');
+                $("form").submit();
+            },
+            "${change_profile_24}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+    
+</script>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin">
+
+    <div class="admin-index">
+        <dl data-am-scrollspy="{animation: 'slide-right', delay: 100}">
+            <dt class="qs"><i class="am-icon-users"></i></dt>
+            <dd th:text="${userNum}"></dd>
+            <dd class="f12">团队人数</dd>
+        </dl>
+        <dl data-am-scrollspy="{animation: 'slide-right', delay: 300}">
+            <dt class="cs"><i class="am-icon-area-chart"></i></dt>
+            <dd th:text="${todayUserNum}"></dd>
+            <dd class="f12">今日新增</dd>
+        </dl>
+        <dl data-am-scrollspy="{animation: 'slide-right', delay: 600}">
+            <dt class="hs"><i class="am-icon-shopping-cart"></i></dt>
+            <dd th:text="${#numbers.formatDecimal(performanceSum, 0, 0)}"></dd>
+            <dd class="f12">总业绩</dd>
+        </dl>
+        <dl data-am-scrollspy="{animation: 'slide-right', delay: 900}">
+            <dt class="ls"><i class="am-icon-cny"></i></dt>
+            <dd th:text="${#numbers.formatDecimal(todayPerformanceSum, 0, 0)}"></dd>
+            <dd class="f12">今日业绩</dd>
+        </dl>
+    </div>
+    <div class="admin-biaoge">
+        <div class="xinxitj">信息概况</div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>团队统计</th>
+                <th>总人数</th>
+                <th>今日注册</th>
+                <th>昨日注册</th>
+                <th>前日注册</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p, stat: ${products}">
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${regConunts[0][stat.index]}"></td>
+                    <td th:text="${regConunts[1][stat.index]}"></td>
+                    <td th:text="${regConunts[2][stat.index]}"></td>
+                    <td th:text="${regConunts[3][stat.index]}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>团队业绩</th>
+                <th>全部业绩</th>
+                <th>今日业绩</th>
+                <th>昨日业绩</th>
+                <th>前日业绩</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p, stat: ${products}">
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${performanceSums[0][stat.index]}"></td>
+                    <td th:text="${performanceSums[1][stat.index]}"></td>
+                    <td th:text="${performanceSums[2][stat.index]}"></td>
+                    <td th:text="${performanceSums[3][stat.index]}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="shuju">
+        <div class="shujuone">
+            <dl>
+                <dt th:text="${'今日报单' + todaySharesStatistics.totalProfit}"></dt>
+                <dt th:text="${'电子积分' + todaySharesStatistics.DTBonus}"></dt>
+                <dt th:text="${'报单积分' + todaySharesStatistics.DTFT}"></dt>
+                <dt th:text="${'动态旅游' + todaySharesStatistics.DTLY}"></dt>
+            </dl>
+            <ul>
+                <h2 th:if="${todaySharesStatistics.totalProfit != 0}" th:text="${(todaySharesStatistics.DTBonus + todaySharesStatistics.DTFT + todaySharesStatistics.DTLY)/todaySharesStatistics.totalProfit * 100 + '%'}"></h2>
+                <h2 th:if="${todaySharesStatistics.totalProfit == 0}">0</h2>
+                <li>今日拨比</li>
+            </ul>
+        </div>
+        <div class="shujutow">
+            <dl>
+                <dt th:text="${'总报单' + sumSharesStatistics.totalProfit}"></dt>
+                <dt th:text="${'电子积分' + sumSharesStatistics.DTBonus}"></dt>
+                <dt th:text="${'报单积分' + sumSharesStatistics.DTFT}"></dt>
+                <dt th:text="${'动态旅游' + sumSharesStatistics.DTLY}"></dt>
+            </dl>
+            <ul>
+                <h2 th:if="${sumSharesStatistics.totalProfit != 0}" th:text="${(sumSharesStatistics.DTBonus + sumSharesStatistics.DTFT + sumSharesStatistics.DTLY)/sumSharesStatistics.totalProfit * 100 + '%'}"></h2>
+                <h2 th:if="${sumSharesStatistics.totalProfit == 0}">0</h2>
+                <li>总拨出</li>
+            </ul>
+        </div>
+        <script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+
+</div>
+
+</html>

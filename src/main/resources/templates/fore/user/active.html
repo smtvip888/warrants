@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i>原点激活</h2>
+            </div>
+            <div class="reg-box form-box">
+              <form name="reg-form" method="post" th:action="@{/fore/user/active}">
+                <div class="form-box-bd">
+
+                  <div class="field"><label for="" class="ui-label">用户名:</label>
+                      <span sec:authentication="name"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">推荐人：</label>
+                      <span th:text="${recommendUser.userName}"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">安置人：</label>
+                      <span th:text="${parentUser.userName}"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">安置位置：</label>
+                      <span th:text="${placeArea}"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">申请级别：</label>
+                    <select name="productId" id="" class="ui-select">
+                      <option th:each="product: ${productList}" th:value="${product.productId}" th:text="${product.invested}" th:if="${product.invested >= netUser.price}"></option>
+                    </select>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">账户结余：</label><span th:text="${userAsset.ZCJFYYE}"></span></div>
+                  <div class="field"><label for="" class="ui-label">交易密码:</label>
+                      <input type="password" name="password" class="ui-input" placeholder="请输入交易密码">
+                  </div>
+                  <!--<div class="field field-send-code"><label for="" class="ui-label">操作人验证码：</label>-->
+                    <!--<input type="text" class="ui-input" placeholder="请输入操作人验证码：">-->
+                    <!--<button type="button" class="send-code">获取短信验证码</button>-->
+                  <!--</div>-->
+                  <div class="field btn-field">
+                    <button class="ui-btn primary-btn" th:type="${netUser.isOut != 0 ? 'submit' : 'button'}" th:text="${netUser.isOut != 0 ? '立即激活' : '未出局，无法激活'}" >立刻激活</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © 百腾国际. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" title="提示">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+<script>
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        if ($('#tip').val() == '激活成功'){
+                            window.location.href = "/"
+                        }else {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                }
+            });
+
+        }
+    });
+</script>
+</html>

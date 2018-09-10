@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->持有股管理列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/share/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 6%;">会员名称:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userName" placeholder="会员名" th:value="${userName}"/>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">ID</th>
+                <th class="table-author am-hide-sm-only">购买记录ID</th>
+                <th class="table-author am-hide-sm-only">会员名</th>
+                <!--<th class="table-author am-hide-sm-only">权证类型</th>-->
+                <!--<th class="table-author am-hide-sm-only">是否原始股</th>-->
+                <th class="table-author am-hide-sm-only">价钱</th>
+                <th class="table-author am-hide-sm-only">买入股数</th>
+                <th class="table-author am-hide-sm-only">已卖出</th>
+                <th class="table-author am-hide-sm-only">拆分次数</th>
+                <th class="table-author am-hide-sm-only">最后卖出时间</th>
+                <th class="table-author am-hide-sm-only">备注</th>
+                <th class="table-author am-hide-sm-only">创建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="share, stat : ${shareList}">
+                <td th:text="${share.shareId}"></td>
+                <td th:text="${share.buyId}"></td>
+                <td th:text="${userNameList[stat.index]}"></td>
+                <!--<td th:text="${share.shareType == 1 ? 'S权证' : 'D权证'}"></td>-->
+                <!--<td th:text="${share.isOriginalStake == 0 ? '否' : '是'}"></td>-->
+                <td th:text="${share.price}"></td>
+                <td th:text="${share.shares}"></td>
+                <td th:text="${share.outShares}"></td>
+                <td th:text="${share.splitCount}"></td>
+                <td th:text="${#dates.format(share.lastOutDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${share.remark}"></td>
+                <td th:text="${#dates.format(share.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

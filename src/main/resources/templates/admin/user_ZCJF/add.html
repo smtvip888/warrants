@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->注册积分新增页</strong>
+        <form class="am-form" th:action="@{/admin/userZCJF/add}" method="post" th:object="${userZCJF}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>用户名：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="userName" th:value="${userName}">
+                    <span th:errors="*{userId}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>充值金额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="amount" th:value="${amount}" placeholder="最大充值金额9999999">
+                    <span th:errors="*{amount}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

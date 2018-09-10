@@ -1,0 +1,78 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${user_ZCJF_list_1}"></span></h2>
+            </div>
+            <form th:action="@{/fore/assets/userZCJFList}" method="post">
+                <input type="hidden" name="userId" th:value="${session.userId}">
+                <div class="filter-bar cf">
+
+                    <div class="filter-bar cf">
+                        <div class="form-item">
+                            <label for="" class="ui-label"><span th:text="${user_ZCJF_list_2}"></span></label>
+                            <div class="ui-form-control">
+                                <select name="inOrOut">
+                                    <option value="" th:text="${user_ZCJF_list_3}"></option>
+                                    <option th:each="inOrOut: ${cashBonusInOrOutEnums}" th:value="${inOrOut.code}" th:text="${inOrOut.code == 1 ? ''+ user_bonus_list_3_1 +'' : ''+ user_bonus_list_3_2 +''}" th:selected="${inOrOut.code == query.inOrOut}"></option>
+                                    <!--<option th:each="inOrOut: ${cashBonusInOrOutEnums}" th:value="${inOrOut.code}" th:text="${inOrOut}" th:selected="${inOrOut.code == query.inOrOut}"></option>-->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <label for="" class="ui-label" th:text="${user_ZCJF_list_4}"></label>
+                            <div class="ui-form-control date-range-wrap" style="width: 400px;">
+                                <input class="Wdate" type="text" name="start" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${start}"/>-
+                                <input class="Wdate" type="text" name="end" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${end}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <button type="submit" class="search-btn primary-btn" th:text="${user_ZCJF_list_5}"></button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only" th:text="${user_ZCJF_list_6}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_ZCJF_list_7}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_ZCJF_list_8}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_ZCJF_list_9}"></th>
+                    </tr>
+                    <tr th:each="userCashBonus, stat : ${list}">
+                        <td th:text="${userCashBonus.amount}"></td>
+                        <!--<td th:text="${fromUserNameList[stat.index]}"></td>-->
+                        <td th:text="${fromUserNameList[stat.index] == '系统' ? ''+ user_ZCJF_list_10 +'' : fromUserNameList[stat.index]}"></td>
+                        <td>
+                            <b th:each="inOrOut: ${cashBonusInOrOutEnums}" th:if="${inOrOut.code == userCashBonus.inOrOut}"
+                               th:text="${inOrOut.code == 1 ? ''+ user_bonus_list_5_1 +'' : ''+ user_bonus_list_5_2 +''}"></b>
+                        </td>
+                        <td th:text="${#dates.format(userCashBonus.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${user_ZCJF_list_11}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>

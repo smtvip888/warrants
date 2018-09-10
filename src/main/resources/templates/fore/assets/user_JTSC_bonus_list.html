@@ -1,0 +1,154 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i>商城积分列表</h2>
+            </div>
+            <form th:action="@{/fore/assets/userJTSCBonusList}" method="post">
+                <input type="hidden" name="userId" th:value="${session.userId}">
+                <div class="filter-bar cf">
+                    <div class="form-item">
+                        <label for="" class="ui-label">交易类型</label>
+                        <div class="ui-form-control">
+                            <select name="tradeType">
+                                <option value="">全部</option>
+                                <option th:each="tradeType: ${tradeTypeEnums}" th:value="${tradeType.code}" th:text="${tradeType}" th:selected="${tradeType.code == query.tradeType}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-bar cf">
+                        <div class="form-item">
+                            <label for="" class="ui-label">积分类型</label>
+                            <div class="ui-form-control">
+                                <select name="bonusType">
+                                    <option value="">全部</option>
+                                    <option th:each="bonusType: ${bonusTypeList}" th:value="${bonusType.id}" th:text="${bonusType.name}" th:selected="${bonusType.id == query.bonusType}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-bar cf">
+                        <div class="form-item">
+                            <label for="" class="ui-label">进出类型</label>
+                            <div class="ui-form-control">
+                                <select name="inOrOut">
+                                    <option value="">全部</option>
+                                    <option th:each="inOrOut: ${cashBonusInOrOutEnums}" th:value="${inOrOut.code}" th:text="${inOrOut}" th:selected="${inOrOut.code == query.inOrOut}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-form-control form-item">
+                        <label for="" class="ui-label">交易时间</label>
+                        <div class="ui-form-control date-range-wrap">
+                            <input type="text" name="daterange" id="daterange" class="trigger" th:value="${daterange}"/>
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn primary-btn">搜 索</button>
+                </div>
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only">会员网体ID</th>
+                        <th class="table-author am-hide-sm-only">交易类型</th>
+                        <th class="table-author am-hide-sm-only">奖金类型</th>
+                        <th class="table-author am-hide-sm-only">总额</th>
+                        <th class="table-author am-hide-sm-only">来源用户编号</th>
+                        <th class="table-author am-hide-sm-only">资金进出</th>
+                        <th class="table-author am-hide-sm-only">备注</th>
+                        <th class="table-author am-hide-sm-only">创建时间</th>
+                    </tr>
+                    <tr th:each="userCashBonus, stat : ${list}">
+                        <td th:text="${userCashBonus.netUserId}"></td>
+                        <td>
+                            <b th:each="tradeType: ${tradeTypeEnums}" th:if="${tradeType.code == userCashBonus.tradeType}"
+                               th:text="${tradeType}"></b>
+                        </td>
+                        <td>
+                            <b th:each="bonusType: ${bonusTypeList}" th:if="${bonusType.id == userCashBonus.bonusType}"
+                               th:text="${bonusType.name}"></b>
+                        </td>
+                        <td th:text="${userCashBonus.amount}"></td>
+                        <td th:text="${fromUserSNList[stat.index]}"></td>
+                        <td>
+                            <b th:each="inOrOut: ${cashBonusInOrOutEnums}" th:if="${inOrOut.code == userCashBonus.inOrOut}"
+                               th:text="${inOrOut}"></b>
+                        </td>
+                        <td th:text="${userCashBonus.remark}"></td>
+                        <td th:text="${#dates.format(userCashBonus.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © 百腾国际. ALL Rights Reserved.
+    </div>
+</footer>
+
+<script th:inline="javascript">
+    $(function () {
+        var options = {
+            // startDate: moment().startOf('day'),
+            //endDate: moment(),
+            //minDate: '01/01/2012',    //最小时间
+            maxDate: moment(), //最大时间
+            dateLimit: {
+                days: 30
+            }, //起止时间的最大间隔
+            showDropdowns: true,
+            showWeekNumbers: false, //是否显示第几周
+            timePicker: true, //是否显示小时和分钟
+            timePickerIncrement: 60, //时间的增量，单位为分钟
+            timePicker12Hour: false, //是否使用12小时制来显示时间
+            ranges: {
+                //'最近1小时': [moment().subtract('hours',1), moment()],
+                '今日': [moment().startOf('day'), moment()],
+                '昨日': [moment().subtract('days', 1).startOf('day'), moment().subtract('days', 1).endOf('day')],
+                '最近7日': [moment().subtract('days', 6), moment()],
+                '最近30日': [moment().subtract('days', 29), moment()]
+            },
+            opens: 'right', //日期选择框的弹出位置
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary blue',
+            cancelClass: 'btn-small',
+            format: 'YYYY-MM-DD HH:mm:ss', //控件中from和to 显示的日期格式
+            separator: ' to ',
+            locale: {
+                applyLabel: '确定',
+                cancelLabel: '取消',
+                fromLabel: '起始时间',
+                toLabel: '结束时间',
+                customRangeLabel: '自定义',
+                daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                firstDay: 1
+            }
+        }
+        $('#daterange').daterangepicker(options, function (start, end, label) {
+            console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        });
+        $('.date-range-wrap i').click(function() {
+          $(this).parent().find('input').click();
+        });
+    });
+</script>
+</body>
+</html>

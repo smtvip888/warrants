@@ -1,0 +1,126 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+    <form class="am-form am-g" th:action="@{/admin/userCashBonusGet/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 6%;">会员名:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userName" placeholder="会员名" th:value="${userName}"/>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">ID</th>
+                <th class="table-author am-hide-sm-only">会员名</th>
+                <th class="table-author am-hide-sm-only">金额</th>
+                <th class="table-author am-hide-sm-only">银行名称</th>
+                <!--<th class="table-author am-hide-sm-only">银行代码</th>-->
+                <th class="table-author am-hide-sm-only">银行地址</th>
+                <th class="table-author am-hide-sm-only">账户名称</th>
+                <th class="table-author am-hide-sm-only">银行账号</th>
+                <th class="table-author am-hide-sm-only">状态</th>
+                <th class="table-author am-hide-sm-only">管理员ID</th>
+                <th class="table-author am-hide-sm-only">支付日期</th>
+                <th class="table-author am-hide-sm-only">备注</th>
+                <th class="table-author am-hide-sm-only">创建时间</th>
+                <th width="160px" class="table-set">
+                    操作
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="userCashBonusGet, stat : ${userCashBonusGetList}">
+                <td th:text="${userCashBonusGet.id}"></td>
+                <td th:text="${userNameList[stat.index]}"></td>
+                <td th:text="${userCashBonusGet.amount}"></td>
+                <td th:text="${userCashBonusGet.bankName}"></td>
+                <!--<td th:text="${userCashBonusGet.bankCode}"></td>-->
+                <td th:text="${userCashBonusGet.bankAddress}"></td>
+                <td th:text="${userCashBonusGet.accountName}"></td>
+                <td th:text="${userCashBonusGet.accountNumber}"></td>
+                <td>
+                    <b th:each="status: ${userCashBonusGetEnums}" th:text="${status}" th:if="${userCashBonusGet.status == status.code}"></b>
+                </td>
+                <td th:text="${userCashBonusGet.adminUserId}"></td>
+                <td th:text="${#dates.format(userCashBonusGet.payDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${userCashBonusGet.remark}"></td>
+                <td th:text="${#dates.format(userCashBonusGet.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-round"
+                            th:onclick="'changeStatus('+ ${userCashBonusGet.status == 1 ? 2 : 1} +', '+ ${userCashBonusGet.id} +')'"
+                            th:text="${userCashBonusGet.status == 1 ? '确认提现' : '退回提现'}"></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+    </p>
+</div>
+
+<script>
+    function changeStatus(status, id) {
+
+        if (status == 1){
+            $("#dialog-confirm").attr("title", '退回提现')
+            $("#dialog-confirm").children().html(
+                "<span class='ui-icon ui-icon-alert' style='float:left; margin:12px 12px 20px 0;'></span>你确定要退回提现吗"
+            );
+        }else {
+            $("#dialog-confirm").attr("title", '确认提现')
+            $("#dialog-confirm").children().html(
+                "<span class='ui-icon ui-icon-alert' style='float:left; margin:12px 12px 20px 0;'></span>你确定要确认提现吗"
+            );
+        }
+
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "确认": function() {
+                    $(".ui-dialog-buttonpane button:contains('确定')").button("disable");
+                    $(".ui-button:contains('确定')").text("操作进行中...");
+                    $.ajax({
+                        url: '/admin/userCashBonusGet/changeStatus',
+                        type: 'post',
+                        data: {'status': status, 'id': id, '_csrf': $("input[name='_csrf']").val()},
+                        async: false,
+                        success: function (data) {
+                            if (data == 'successful'){
+                                $('form').submit();
+                            }else {
+                                alert("更新失败")
+                            }
+                        }
+                    })
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+
+</html>

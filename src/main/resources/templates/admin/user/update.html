@@ -1,0 +1,96 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->会员修改页</strong>
+        <form class="am-form" th:action="@{/admin/user/update}" method="post" th:object="${user}">
+            <input type="hidden" th:value="*{userId}" name="userId">
+            <div class="am-form-group am-cf">
+                <div class="zuo">ID：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{userId}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">会员名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="userName" th:value="*{userName}" disabled="disabled">
+                    <span th:errors="*{userName}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">登陆密码：</div>
+                <div class="you">
+                    <input type="password" class="am-input-sm" placeholder="不输入密码则不修改" th:name="password">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">二级密码：</div>
+                <div class="you">
+                    <input type="password" class="am-input-sm" placeholder="不输入密码则不修改" th:name="password1">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">注册国家：</div>
+                <div class="you">
+                    <select class="chosen-select" name="regCountry" th:field="*{regCountry}">
+                        <option th:each="country, stat : ${countryList}" th:value="${country.countryId}" th:text="${country.countryName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">身份证：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${profile.idCard}" placeholder="不输入则不修改" th:name="idCard">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">姓名：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${profile.bankAccountName}" placeholder="不输入则不修改" th:name="bankAccountName">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">状态：</div>
+                <div class="you">
+                    <select class="chosen-select" name="status" th:field="*{status}">
+                        <option th:each="status, stat : ${statusList}" th:value="${status.code}" th:text="${status}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">是否服务站：</div>
+                <div class="you">
+                    <select class="chosen-select" name="isService">
+                        <option value="0" th:selected="*{isService != 1}">否</option>
+                        <option value="1" th:selected="*{isService == 1}">是</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">修改</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<script>
+    $(".chosen-select").chosen();
+</script>
+
+</html>

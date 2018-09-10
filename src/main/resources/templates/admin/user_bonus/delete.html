@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->积分扣除页</strong>
+        <form class="am-form" th:action="@{/admin/userBonus/delete}" method="post">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>用户名：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="userName" th:value="${userName}" onblur="getLYJFYE()">
+                    <!--<span th:errors="*{DTFTBL}"></span>-->
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">旅游积分余额：</div>
+                <div class="you">
+                    <input type="text" disabled class="am-input-sm" name="LYJFYE" th:value="${LYJFYE}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>扣除金额：</div>
+                <div class="you">
+                    <input type="number" min="0" class="am-input-sm" name="amount" th:value="${amount}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">备注：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="remark" th:value="${remark}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="button" onclick="confirm()" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+
+</div>
+
+<div id="dialog-confirm" title="提示" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b id="tip" th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" title="扣除积分" style="display:none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要扣除吗？
+    </p>
+</div>
+<input type="hidden" id="tipInput" th:value="${tip}">
+<script>
+    function getLYJFYE() {
+        var userName = $("input[name='userName']").val();
+        $.ajax({
+            url: "/admin/userBonus/getLYJFYE",
+            type: 'post',
+            data: {userName: userName, _csrf: $("input[name=_csrf]").val()},
+            success: function (data) {
+                if (data == null || data == ''){
+                    $("#tip").html("没有查询到数据");
+                    $( "#dialog-confirm" ).dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            'OK': function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                }else {
+                    $("input[name='LYJFYE']").val(data);
+                }
+            }
+        })
+    }
+    
+    function confirm() {
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "确定": function() {
+                    $(".ui-dialog-buttonpane button:contains('确定')").button("disable");
+                    $(".ui-button:contains('确定')").text("操作进行中...");
+                    $("form").submit();
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+
+    $(function () {
+        if ($("#tipInput").val() != ''){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+    })
+</script>
+
+</html>

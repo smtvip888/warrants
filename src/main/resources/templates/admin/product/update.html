@@ -1,0 +1,155 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->产品更新页</strong>
+        <form class="am-form" th:action="@{/admin/product/update}" method="post" th:object="${product}">
+            <input type="hidden" name="productId" th:value="*{productId}">
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>投资金额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="invested" th:value="*{invested}">
+                    <span th:errors="*{invested}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>推荐奖百分比：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="TJJ" th:value="*{TJJ}">
+                    <span th:errors="*{TJJ}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>对碰奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="DPJ" th:value="*{DPJ}">
+                    <span th:errors="*{DPJ}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>第1代辅导奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="FDJ1" th:value="*{FDJ1}">
+                    <span th:errors="*{FDJ1}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>第2代辅导奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="FDJ2" th:value="*{FDJ2}">
+                    <span th:errors="*{FDJ2}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>第3代辅导奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="FDJ3" th:value="*{FDJ3}">
+                    <span th:errors="*{FDJ3}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>第4代辅导奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="FDJ4" th:value="*{FDJ4}">
+                    <span th:errors="*{FDJ4}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>第5代辅导奖：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="FDJ5" th:value="*{FDJ5}">
+                    <span th:errors="*{FDJ5}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>见点奖层数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="JDJCS" th:value="*{JDJCS}">
+                    <span th:errors="*{JDJCS}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>出局倍数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="CJBS" th:value="*{CJBS}">
+                    <span th:errors="*{CJBS}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>账户可持有股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="KCGS" th:value="*{KCGS}">
+                    <span th:errors="*{KCGS}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>可卖股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="KMGS" th:value="*{KMGS}">
+                    <span th:errors="*{KMGS}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>配股比例：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="PGBL" th:value="*{PGBL}">
+                    <span th:errors="*{PGBL}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>等级：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="level" th:value="*{level}">
+                    <span th:errors="*{level}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="name" th:value="*{name}">
+                    <span th:errors="*{name}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>是否显示：</div>
+                <div class="you">
+                    <input type="radio" class="am-input-sm" name="isShow" value="0" th:checked="*{isShow != 1}">显示
+                    <input type="radio" class="am-input-sm" name="isShow" value="1" th:checked="*{isShow == 1}">不显示
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+
+
+</html>

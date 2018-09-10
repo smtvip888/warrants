@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${trade_buy_list_1}"></span></h2>
+            </div>
+            <form th:action="@{/fore/trade/buyList}" method="post">
+            <div class="filter-bar cf">
+                <div class="ui-form-control form-item">
+                    <label for="" class="ui-label" th:text="${trade_buy_list_2}"></label>
+                    <div class="ui-form-control date-range-wrap">
+                        <input type="text" name="tradeSN" th:value="${query.tradeSN}" id="daterange" class="trigger" />
+                    </div>
+                </div>
+                <button class="search-btn primary-btn" th:text="${trade_buy_list_3}"></button>
+            </div>
+            <table class="ui-table ui-table2">
+                <colgroup>
+                    <col width="25%">
+                    <col width="12%">
+                    <col width="12%">
+                    <col width="12%">
+                    <col width="12%">
+                    <col width="12%">
+                    <col width="12%">
+                    <col width="12%">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th th:text="${trade_buy_list_4}"></th>
+                    <th th:text="${trade_buy_list_5}"></th>
+                    <th th:text="${trade_buy_list_6}"></th>
+                    <th th:text="${trade_buy_list_7}"></th>
+                    <th th:text="${trade_buy_list_8}"></th>
+                    <th th:text="${trade_buy_list_9}"></th>
+                    <th th:text="${trade_buy_list_10}"></th>
+                </tr>
+                <tr th:each="buy: ${list}">
+                    <td th:text="${buy.tradeSN}"></td>
+                    <td th:text="${buy.buyPrice}"></td>
+                    <td th:text="${buy.price}"></td>
+                    <td th:text="${buy.succesPrice}"></td>
+                    <td th:text="${buy.succesShares}"></td>
+                    <td th:text="${buy.status == 1 ? ''+ trade_buy_list_11 +'' : ''+ trade_buy_list_12 +''}"></td>
+                    <td th:text="${#dates.format(buy.cdate, 'yyyy-MM-dd HH:mm:ss')}">3：15：22</td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${trade_buy_list_13}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>

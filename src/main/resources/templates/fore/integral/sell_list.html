@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${sell_list_1}"></span></h2>
+            </div>
+            <form th:action="@{/fore/integral/sellList}" method="post">
+                <div class="filter-bar cf" style="display:none;">
+
+                    <div class="filter-bar cf">
+                        <button type="submit" class="search-btn primary-btn" th:text="${sell_list_2}"></button>
+                    </div>
+                </div>
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only" th:text="${sell_list_3}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${sell_list_4}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${sell_list_5}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${sell_list_6}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${sell_list_7}"></th>
+                        <th class="table-author am-hide-sm-only"></th>
+                    </tr>
+                    <tr th:each="sell, stat : ${list}">
+                        <td th:text="${sell.amount}"></td>
+                        <td th:text="${(sell.amount * sell.exchangeRate) + sell.currencyName}"></td>
+                        <td th:text="${sell.brokerage}"></td>
+                        <td th:text="${sell.status == 0 ? ''+ sell_list_7_1 +'' : (sell.status == 1 ? ''+ sell_list_7_2 +'' : (sell.status == 2 ? ''+ sell_list_7_3 +'' : (sell.status == 3 ? ''+ sell_list_7_4 +'' : ''+ sell_list_7_5 +'')))}"></td>
+                        <td th:text="${#dates.format(sell.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td>
+                            <a th:href="@{/fore/integral/remitConfirm(sellId=${sell.sellId})}" th:text="${sell_list_8}"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${sell_list_9}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

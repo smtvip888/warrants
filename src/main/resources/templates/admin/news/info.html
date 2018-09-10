@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<script th:src="@{/js/wangEditor.min.js}"></script>
+<div class="admin-biaogelist">
+    <strong>首页->新闻管理详情页</strong>
+    <div class="fbneirong">
+        <form class="am-form am-g" th:object="${news}">
+            <div class="am-form-group am-cf">
+                <div class="zuo">ID：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{id}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">标题：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{title}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">简介：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{summary}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">操作人用户名：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${managerName}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">语言：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${news.lang == 'cn_' ? '中文' : '英文'}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">发布状态：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${news.isDelete == 0 ? '正常' : '已撤销'}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">内容：</div>
+                <input type="hidden" name="body" th:value="*{body}">
+                <div class="you">
+                    <div id="editor"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+    editor.txt.html($("input[name='body']").val());
+
+</script>
+
+</html>

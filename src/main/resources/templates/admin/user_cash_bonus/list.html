@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+    <form class="am-form am-g" th:action="@{/admin/userCashBonus/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 6%;">会员编号:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userSN" placeholder="会员编号" th:value="${userSN}"/>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">ID</th>
+                <th class="table-author am-hide-sm-only">会员编号</th>
+                <th class="table-author am-hide-sm-only">会员网体ID</th>
+                <th class="table-author am-hide-sm-only">交易类型</th>
+                <th class="table-author am-hide-sm-only">奖金类型</th>
+                <th class="table-author am-hide-sm-only">总额</th>
+                <th class="table-author am-hide-sm-only">来源用户编号</th>
+                <th class="table-author am-hide-sm-only">资金进出</th>
+                <th class="table-author am-hide-sm-only">备注</th>
+                <th class="table-author am-hide-sm-only">创建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="userCashBonus, stat : ${userCashBonusList}">
+                <td th:text="${userCashBonus.id}"></td>
+                <td th:text="${userSNList[stat.index]}"></td>
+                <td th:text="${userCashBonus.netUserId}"></td>
+                <td>
+                    <b th:each="tradeType: ${tradeTypeEnums}" th:if="${tradeType.code == userCashBonus.tradeType}"
+                       th:text="${tradeType}"></b>
+                </td>
+                <td>
+                    <b th:each="bonusType: ${bonusTypeList}" th:if="${bonusType.id == userCashBonus.bonusType}"
+                        th:text="${bonusType.name}"></b>
+                </td>
+                <td th:text="${userCashBonus.amount}"></td>
+                <td th:text="${fromUserSNList[stat.index]}"></td>
+                <td>
+                    <b th:each="inOrOut: ${cashBonusInOrOutEnums}" th:if="${inOrOut.code == userCashBonus.inOrOut}"
+                        th:text="${inOrOut}"></b>
+                </td>
+                <td th:text="${userCashBonus.remark}"></td>
+                <td th:text="${#dates.format(userCashBonus.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

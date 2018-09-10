@@ -1,0 +1,319 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${search_1}"></span></h2>
+            </div>
+            <div class="globalsearch">
+                <form id="J_SearchForm" th:action="@{/fore/user/search}" method="post">
+                    <input type="text" id="q" name="userName" th:value="${userName}" th:placeholder="${search_2}" class="search-ipt">
+                    <button type="submit" class="search-btn"><i class="icon iconfont icon-search"></i></button>
+                </form>
+            </div>
+            <div th:text="${tip}"></div>
+            <div th:if="${tree != null && tree.user == null}" th:text="${search_3}"></div>
+            <ul class="search-list" th:if="${tree != null && tree.user != null}">
+                <li class="cf">
+                    <div class="col col24">
+                        <div class="search-grid on">
+                            <div class="line1" th:text="${tree.user.userName}"></div>
+                            <div class="line2">
+                                <span th:text="${tree.userAsset.leftTurnoverSurplus}"></span>
+                                <span th:text="${tree.userAsset.rightTurnoverSurplus}"></span>
+                            </div>
+                            <div class="tooltip-wrap">
+                                <i class="arr"></i>
+                                <div class="tooltip">
+                                    <table>
+                                        <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                        <tr>
+                                            <td th:text="${tree.userAsset.leftTotalTurnover}"></td>
+                                            <td th:text="${tree.userAsset.rightTotalTurnover}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cf">
+                    <div class="col col12" th:if="${tree.left != null}" th:onclick="'search(\'' + ${tree.left.user.userName} + '\');'">
+                        <div class="search-grid">
+                            <div class="line1" th:text="${tree.left.user.userName}"></div>
+                            <div class="line2">
+                                <span th:text="${tree.left.userAsset.leftTurnoverSurplus}"></span>
+                                <span th:text="${tree.left.userAsset.rightTurnoverSurplus}"></span>
+                            </div>
+                            <div class="tooltip-wrap">
+                                <i class="arr"></i>
+                                <div class="tooltip">
+                                    <table>
+                                        <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                        <tr>
+                                            <td th:text="${tree.left.userAsset.leftTotalTurnover}"></td>
+                                            <td th:text="${tree.left.userAsset.rightTotalTurnover}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a th:href="@{/fore/toReg(parentUserId=${tree.user.userId},placeArea='0')}" th:if="${tree.left == null}">
+                        <div class="col col12">
+                            <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                
+                            </div>
+                        </div>
+                    </a>
+                    <div class="col col12" th:if="${tree.right != null}" th:onclick="'search(\'' + ${tree.right.user.userName} + '\');'">
+                        <div class="search-grid">
+                            <div class="line1" th:text="${tree.right.user.userName}"></div>
+                            <div class="line2">
+                                <span th:text="${tree.right.userAsset.leftTurnoverSurplus}"></span>
+                                <span th:text="${tree.right.userAsset.rightTurnoverSurplus}"></span>
+                            </div>
+                            <div class="tooltip-wrap">
+                                <i class="arr"></i>
+                                <div class="tooltip">
+                                    <table>
+                                        <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                        <tr>
+                                            <td th:text="${tree.right.userAsset.leftTotalTurnover}"></td>
+                                            <td th:text="${tree.right.userAsset.rightTotalTurnover}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a th:href="@{/fore/toReg(parentUserId=${tree.user.userId},placeArea='1')}" th:if="${tree.right == null}">
+                        <div class="col col12">
+                            <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                
+                            </div>
+                        </div>
+                    </a>
+
+                </li>
+                <li class="cf">
+
+                    <div th:if="${tree.left == null}">
+                        <div class="col col3">
+                            <div class="search-grid">
+                                <div class="line1">/</div>
+                                <div class="line2"><span>/</span><span>/</span></div>
+                                <!--<div class="tooltip-wrap">-->
+                                    <!--<i class="arr"></i>-->
+                                    <!--<div class="tooltip">-->
+                                        <!--<table>-->
+                                            <!--<tr><td>左</td><td>右</td></tr>-->
+                                            <!--<tr><td>1000.00</td><td>结余 0.00</td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="col col3">
+                            <div class="search-grid">
+                                <div class="line1">/</div>
+                                <div class="line2"><span>/</span><span>/</span></div>
+                                <!--<div class="tooltip-wrap">-->
+                                    <!--<i class="arr"></i>-->
+                                    <!--<div class="tooltip">-->
+                                        <!--<table>-->
+                                            <!--<tr><td>左</td><td>右</td></tr>-->
+                                            <!--<tr><td>1000.00</td><td>结余 0.00</td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:if="${tree.left != null}">
+
+                        <div class="col col3" th:if="${tree.left.left != null}" th:onclick="'search(\'' + ${tree.left.left.user.userName} + '\');'">
+                            <div class="search-grid">
+                                <div class="line1" th:text="${tree.left.left.user.userName}"></div>
+                                <div class="line2">
+                                    <span th:text="${tree.left.left.userAsset.leftTurnoverSurplus}"></span>
+                                    <span th:text="${tree.left.left.userAsset.rightTurnoverSurplus}"></span>
+                                </div>
+                                <div class="tooltip-wrap">
+                                    <i class="arr"></i>
+                                    <div class="tooltip">
+                                        <table>
+                                            <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                            <tr>
+                                                <td th:text="${tree.left.left.userAsset.leftTotalTurnover}"></td>
+                                                <td th:text="${tree.left.left.userAsset.rightTotalTurnover}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a th:href="@{/fore/toReg(parentUserId=${tree.left.user.userId},placeArea='0')}" th:if="${tree.left.left == null}">
+                            <div class="col col3">
+                                <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                    
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="col col3" th:if="${tree.left.right != null}" th:onclick="'search(\'' + ${tree.left.right.user.userName} + '\');'">
+                            <div class="search-grid">
+                                <div class="line1" th:text="${tree.left.right.user.userName}"></div>
+                                <div class="line2">
+                                    <span th:text="${tree.left.right.userAsset.leftTurnoverSurplus}"></span>
+                                    <span th:text="${tree.left.right.userAsset.rightTurnoverSurplus}"></span>
+                                </div>
+                                <div class="tooltip-wrap">
+                                    <i class="arr"></i>
+                                    <div class="tooltip">
+                                        <table>
+                                            <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                            <tr>
+                                                <td th:text="${tree.left.right.userAsset.leftTotalTurnover}"></td>
+                                                <td th:text="${tree.left.right.userAsset.rightTotalTurnover}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a th:href="@{/fore/toReg(parentUserId=${tree.left.user.userId},placeArea='1')}" th:if="${tree.left.right == null}">
+                            <div class="col col3">
+                                <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                    
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <div th:if="${tree.right == null}">
+                        <div class="col col3">
+                            <div class="search-grid">
+                                <div class="line1">/</div>
+                                <div class="line2"><span>/</span><span>/</span></div>
+                                <!--<div class="tooltip-wrap">-->
+                                    <!--<i class="arr"></i>-->
+                                    <!--<div class="tooltip">-->
+                                        <!--<table>-->
+                                            <!--<tr><td>左</td><td>右</td></tr>-->
+                                            <!--<tr><td>1000.00</td><td>结余 0.00</td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="col col3">
+                            <div class="search-grid">
+                                <div class="line1">/</div>
+                                <div class="line2"><span>/</span><span>/</span></div>
+                                <!--<div class="tooltip-wrap">-->
+                                    <!--<i class="arr"></i>-->
+                                    <!--<div class="tooltip">-->
+                                        <!--<table>-->
+                                            <!--<tr><td>左</td><td>右</td></tr>-->
+                                            <!--<tr><td>1000.00</td><td>结余 0.00</td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:if="${tree.right != null}">
+
+                        <div class="col col3" th:if="${tree.right.left != null}" th:onclick="'search(\'' + ${tree.right.left.user.userName} + '\');'">
+                            <div class="search-grid">
+                                <div class="line1" th:text="${tree.right.left.user.userName}"></div>
+                                <div class="line2">
+                                    <span th:text="${tree.right.left.userAsset.leftTurnoverSurplus}"></span>
+                                    <span th:text="${tree.right.left.userAsset.rightTurnoverSurplus}"></span>
+                                </div>
+                                <div class="tooltip-wrap">
+                                    <i class="arr"></i>
+                                    <div class="tooltip">
+                                        <table>
+                                            <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                            <tr>
+                                                <td th:text="${tree.right.left.userAsset.leftTotalTurnover}"></td>
+                                                <td th:text="${tree.right.left.userAsset.rightTotalTurnover}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a th:href="@{/fore/toReg(parentUserId=${tree.right.user.userId},placeArea='0')}" th:if="${tree.right.left == null}">
+                            <div class="col col3">
+                                <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                    
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="col col3" th:if="${tree.right.right != null}" th:onclick="'search(\'' + ${tree.right.right.user.userName} + '\');'">
+                            <div class="search-grid">
+                                <div class="line1" th:text="${tree.right.right.user.userName}"></div>
+                                <div class="line2">
+                                    <span th:text="${tree.right.right.userAsset.leftTurnoverSurplus}"></span>
+                                    <span th:text="${tree.right.right.userAsset.rightTurnoverSurplus}"></span>
+                                </div>
+                                <div class="tooltip-wrap">
+                                    <i class="arr"></i>
+                                    <div class="tooltip">
+                                        <table>
+                                            <tr><td th:text="${search_4}"></td><td th:text="${search_5}"></td></tr>
+                                            <tr>
+                                                <td th:text="${tree.right.right.userAsset.leftTotalTurnover}"></td>
+                                                <td th:text="${tree.right.right.userAsset.rightTotalTurnover}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a th:href="@{/fore/toReg(parentUserId=${tree.right.user.userId},placeArea='1')}" th:if="${tree.right.right == null}">
+                            <div class="col col3">
+                                <div class="search-grid search-grid-yellow" th:text="${search_6}">
+                                    
+                                </div>
+
+                            </div>
+                        </a>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${search_7}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<script>
+
+    function search(name) {
+        $("input[name='userName']").val(name);
+        $("form").submit();
+    }
+
+</script>
+</html>

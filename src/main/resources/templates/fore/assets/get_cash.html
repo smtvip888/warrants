@@ -1,0 +1,137 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i>电子积分提现</h2>
+            </div>
+            <div class="reg-box form-box">
+              <form name="reg-form" method="post" th:action="@{/fore/assets/getCash}" th:object="${userCashBonusGet}">
+                <div class="form-box-bd">
+                  <div class="field"><label for="" class="ui-label">*提取金额：</label>
+                      <input type="number" th:min="${sharesConfig.ZXTXJE}" th:max="${userAsset.bonusSurplus * 100 / (100 + sharesConfig.TXSXF)}" class="ui-input" name="amount" th:value="*{amount}" placeholder="请输入提取金额">
+                      <!--<span th:errors="*{amount}"></span>-->
+                  </div>
+                  <div class="field"><label for="" class="ui-label"></label>
+                      <span th:text="${'最小起提金额为' + sharesConfig.ZXTXJE + ';提现收取费为' + sharesConfig.TXSXF + '%'}"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">账户结余：</label>
+                      <span style="color:#f00" th:text="${userAsset.bonusSurplus}"></span>
+                  </div>
+                  <div class="field"><label for="" class="ui-label">*开户银行：</label>
+                      <input type="text" class="ui-input" placeholder="请输入开户银行" th:value="*{bankName}" name="bankName">
+                      <!--<span th:errors="*{bankName}"></span>-->
+                  </div>
+                  <div class="field"><label for="" class="ui-label">账户名称：</label>
+                      <input type="hidden" class="ui-input" placeholder="请输入收款账户名称姓名" th:value="*{accountName}" name="accountName">
+                      <span th:text="*{accountName}"></span>
+                      <!--<span th:errors="*{accountName}"></span>-->
+                  </div>
+                  <div class="field"><label for="" class="ui-label">*收款账号：</label>
+                      <input type="text" class="ui-input" placeholder="请输入收款账号" th:value="*{accountNumber}" name="accountNumber">
+                      <!--<span th:errors="*{accountNumber}"></span>-->
+                  </div>
+                  <div class="field"><label for="" class="ui-label">开户行地址：</label>
+                      <input type="text" class="ui-input" placeholder="请输入开户行地址" th:value="*{bankAddress}" name="bankAddress">
+                      <!--<span th:errors="*{bankAddress}"></span>-->
+                  </div>
+                  <div class="field"><label for="" class="ui-label">*交易密码：</label>
+                      <input type="password" placeholder="请输入交易密码" class="ui-input" th:value="${password}" name="password">
+                      <!--<span th:errors="*{remark}"></span>-->
+                  </div>
+                  <div class="field btn-field">
+                    <button class="ui-btn primary-btn">立刻转换</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i>申请提现列表</h2>
+            </div>
+            <form method="post">
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only">提现金额</th>
+                        <th class="table-author am-hide-sm-only">提现手续费</th>
+                        <th class="table-author am-hide-sm-only">开户行</th>
+                        <th class="table-author am-hide-sm-only">账号名</th>
+                        <th class="table-author am-hide-sm-only">状态</th>
+                        <th class="table-author am-hide-sm-only">申请时间</th>
+                        <th class="table-author am-hide-sm-only">支付时间</th>
+                    </tr>
+                    <tr th:each="get, stat : ${getList}">
+                        <td th:text="${get.amount}"></td>
+                        <td th:text="${get.amount * config.TXSXF / 100}"></td>
+                        <td th:text="${get.bankName}"></td>
+                        <td th:text="${get.accountName}"></td>
+                        <td th:text="${get.status == 1 ? '待确认' : '已支付'}"></td>
+                        <td th:text="${#dates.format(get.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${#dates.format(get.payDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<div th:replace="fore/common :: page"></div>-->
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © 百腾国际. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" title="提示">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+<script th:inline="javascript">
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            if ($('#tip').val() == '银行信息不全'){
+                $( "#dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        '去完善': function() {
+                            window.location.href = "/fore/user/toChangeProfile"
+                        }
+                    }
+                });
+            }else {
+
+                $( "#dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        'OK': function() {
+                            if ($('#tip').val() == '提取成功'){
+                                window.location.href = "/"
+                            }else {
+                                $( this ).dialog( "close" );
+                            }
+
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+</html>

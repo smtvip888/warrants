@@ -1,0 +1,333 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->会员详情页</strong>
+        <form class="am-form am-g">
+            <div class="am-form-group am-cf">
+                <div class="zuo">ID：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.userId}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">推荐人：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${recommendUser.userName}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">安排人：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${parentUser.userName}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">安置区域：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${placeArea}" disabled="disabled">
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">会员编号：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" th:value="${user.userSN}" disabled="disabled">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">会员姓名：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.userName}" disabled="disabled">
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">用户注册国家：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" th:value="${user.regCountry}" disabled="disabled">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">手机号码：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.mobile}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">电子邮箱：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.email}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">会员状态：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${status}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">是否服务站：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.isService == 1 ? '是' : '否'}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">注册日期：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${#dates.format(user.regDate, 'yyyy-MM-dd HH:mm :ss')}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">身份证或护照号：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.idCard}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">邮编：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.postCode}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">会员地址：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.address}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">省：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.province}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">市：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.city}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">出生年月：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${#dates.format(userProfile.birthday, 'yyyy-MM-dd')}" disabled="disabled">
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">银行国家：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" th:value="${userProfile.bankCountry}" disabled="disabled">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">银行名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.bankName}" disabled="disabled">
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">银行代码：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" th:value="${userProfile.bankCode}" disabled="disabled">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">账户名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.bankAccountName}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">银行账号：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userProfile.bankAccountNumber}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">团队人数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.teamNum}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">团队业绩：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.teamTurnover}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">左区业绩结余：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.leftTurnoverSurplus}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">右区业绩结余：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.rightTurnoverSurplus}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">左侧总业绩：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.leftTotalTurnover}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">右区总业绩：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.rightTotalTurnover}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">总现金币余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.totalBonus}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">现金币余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.bonusSurplus}" disabled="disabled">
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">权证积分：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" th:value="${userAsset.sharesIntegral}" disabled="disabled">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">报单积分总额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.DTFTJJ}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">报单积分余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.DTFTJJYE}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">交易积分总额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.JTFTJJ}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">交易积分余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.JTFTJJYE}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">旅游积分总额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.LYJF}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">旅游积分余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.LYJFYE}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">商城积分总额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.SCJF}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">商城积分余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.SCJFYE}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">注册积分总额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.ZCJF}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">注册积分余额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${userAsset.ZCJFYYE}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">是否升级：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${user.upgraded == 0 ? '未升级过' : '已升级过'}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">投资金额：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${netUser.price}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">总收益：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${netUser.totalProfit}" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">是否出局：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="${netUser.isOut == 0 ? '未出局' : '以出局'}" disabled="disabled">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

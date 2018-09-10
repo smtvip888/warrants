@@ -1,0 +1,136 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9">
+    <title th:text="${login_1}"></title>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.easing.1.3.js}"></script>
+    <script th:src="@{/js/layer/layer.js}"></script>
+    <script th:src="@{/js/filterHtml.js}"></script>
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5.js}"></script>
+    <![endif]-->
+    <script th:src="@{/js/jquery.SuperSlide.2.1.1.js}"></script>
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/iconfont.css}" rel="stylesheet">
+    <link th:href="@{/css/login2.css}" rel="stylesheet">
+    <script>
+        var li_id = "gn_00"
+    </script>
+</head>
+<body class="login-page">
+<style>
+.layui-layer-content{padding:10px;}
+#container {
+    color: #154BA0;
+    background: #000;
+    filter: Alpha(Opacity=10, Style=0);
+    opacity: 0.10;
+    position: absolute;
+    height: 40px;
+    width:100%;
+    z-index:20;
+}
+ 
+#text {
+    color:#fff;position: absolute;
+    line-height: 40px;
+    width:100%;
+    text-align:center;
+    z-index:30;
+}
+  #text a{color:#fff}
+</style>
+<div id="container" th:if="${notice.show}"></div>
+<div id="text" th:if="${notice.show}"><a href="javascript: void(0)" onclick="popInfo()" th:text="${notice.title}"></a></div>      
+      
+      
+    <div class="form-box login-form">
+       
+        <div class="login-form-hd" th:text="${login_2}"></div>
+        <div class="login-form-bd">
+          <!--登录的错误信息提示-->
+          <div class="login-msg-box">
+              <span style="display: none;" class="login-msg tips"><i class="fa fa-warning"></i><span th:text="${login_3}"></span></span>
+          </div>
+          <!--登录的错误信息结束-->
+          <form th:action="@{/fore/login}" method="post">
+            <div class="field" style="padding: 5px 0; background: #fff; border: 1px solid #0f5d8a; line-height: 20px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;">
+              <label for="" class="ui-label" th:text="${login_4}"></label>
+              <select name="lang" onchange="changeLang(this)" style="width:200px;margin-left: 90px;border:0;">
+                  <option value="en_" th:selected="${#request.session.getAttribute('lang') == 'en_'}">English</option>
+                  <option value="cn_" th:selected="${#request.session.getAttribute('lang') == 'cn_'}">中文</option>
+              </select>
+          	</div>
+            <div class="field">
+              <label for="" class="ui-label" th:text="${login_5}"></label>
+              <input type="text" class="ui-input" placeholder=""  name="username">
+              <i class="icon iconfont icon-user"></i>
+          </div>
+          <div class="field">
+              <label for="" class="ui-label" th:text="${login_6}"></label>
+              <input type="password" class="ui-input" placeholder="" name="password">
+              <i class="icon iconfont icon-lock"></i>
+          </div>
+           <div class="field field-check-code">
+              <label for="" class="ui-label" th:text="${login_7}"></label>
+              <input type="text" class="ui-input" placeholder="" name="kaptcha">
+              <div class="check-img-box">
+                <img id="kaptcha" src="/images/kaptcha.jpg" title="点击更换" onclick="javascript:refreshCaptcha();" width="100" height="32">
+              </div>
+          </div>
+
+              <div th:if="${param.error}" th:text="${session.filed}" style="width:305px;margin:0 auto 5px;margin-top:-10px;color:#fff;"></div>
+          <div class="field btn-field">
+              <button type="submit" class="ui-btn ui-btn1" th:text="${login_8}"></button>
+          </div>
+            </form>
+        </div>
+    </div>
+    <input th:value="${notice.show}" id="noticeShow" type="hidden">
+    <input th:value="${notice.title}" id="noticeTitle" type="hidden">
+    <input th:value="${notice.body}" id="noticeBody" type="hidden">
+
+    <input th:value="${enabledLogin}" id="enabledLogin" type="hidden">
+</body>
+
+<script>
+
+    function refreshCaptcha() {
+        $("#kaptcha").attr("src","/images/kaptcha.jpg?t=" + Math.random());
+    }
+
+    function changeLang(obj) {
+        let lang = $(obj).val();
+        $.ajax({
+            url: '/fore/other/lang',
+            type: 'get',
+            data: {lang: lang},
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    }
+
+    function popInfo() {
+        layer.open({
+            type: 1,
+            area: ['800px', '450px'],
+            title: $filterHtml($("#noticeTitle").val(), {badAttr:[ /^on/ ], whiteHrefScheme:[ "http", "https", "tel" ], whiteSrcScheme:[ "http", "https", "tel" ], badStyleName:[ "behavior" ], badStyleVal:[ "expression" ], badTag:[ "html", "body", "head", "meta", "title", "script", "iframe", "object", "embed", "applet", "video", "audio", "canvas" ], isClearCssImport:true }),
+            content: $("#noticeBody").val()
+        });
+    }
+      
+  $(document).ready(function () {
+      var isPop = $("#enabledLogin").val() == 0; // 是否弹出
+      if (isPop) {
+          popInfo();
+      }
+  });
+</script>
+</html>
+
+

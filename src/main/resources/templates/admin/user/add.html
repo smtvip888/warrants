@@ -1,0 +1,146 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->会员新增页</strong>
+        <form class="am-form" th:action="@{/admin/user/add}" method="post" th:object="${user}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>会员名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="userName" th:value="*{userName}">
+                    <span th:errors="*{userName}"></span>
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo"><b>*</b>推荐人会员编号：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" name="recommendUserSN" th:value="${recommendUserSN}">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo"><b>*</b>安排会员编号：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" name="parentUserSN" th:value="${parentUserSN}">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>登陆密码：</div>
+                <div class="you">
+                    <input type="password" class="am-input-sm" placeholder="输入登录密码" th:name="password" th:value="*{password}">
+                    <span th:errors="*{password}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>二级密码：</div>
+                <div class="you">
+                    <input type="password" class="am-input-sm" placeholder="输入二级密码" th:name="password1" th:value="*{password1}">
+                    <span th:errors="*{password}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">注册国家：</div>
+                <div class="you">
+                    <select name="regCountry">
+                        <option th:each="country: ${countryList}" th:value="${country.countryId}" th:text="${country.countryName}" th:selected="${user.regCountry == country.countryId}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">email：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" name="email" th:value="*{email}">-->
+                    <!--<span th:errors="*{email}"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">手机：</div>-->
+                <!--<div class="you">-->
+                    <!--<input type="text" class="am-input-sm" name="mobile" th:value="${user.mobile}">-->
+                    <!--<span th:errors="*{mobile}"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">安置区域：</div>
+                <div class="you">
+                    <select class="chosen-select" name="placeArea" th:field="*{placeArea}">
+                        <option th:each="placeArea, stat : ${placeAreaEnums}" th:value="${placeArea.code}" th:text="${placeArea}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <!--<div class="am-form-group am-cf">-->
+                <!--<div class="zuo">状态：</div>-->
+                <!--<div class="you">-->
+                    <!--<select class="chosen-select" name="status" th:field="*{status}">-->
+                        <!--<option th:each="status, stat : ${statusEnums}" th:value="${status.code}" th:text="${status}"></option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">产品选择：</div>
+                <div class="you">
+                    <select class="chosen-select" name="productId">
+                        <option th:each="product, stat : ${productList}" th:value="${product.productId}" th:text="${product.invested}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="button" onclick="dis(this)" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="提示">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${filed}"></b>
+    </p>
+</div>
+
+<script>
+    $(".chosen-select").chosen();
+
+    $(function () {
+
+        if ($('#filed').val() != '' && $('#filed').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+
+        }
+    });
+
+    function dis (obj) {
+        $(obj).attr("disabled", true);
+        $("form").submit();
+    }
+</script>
+
+</html>

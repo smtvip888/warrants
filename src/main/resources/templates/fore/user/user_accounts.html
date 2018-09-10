@@ -1,0 +1,191 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${user_accounts_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+              <form id="addForm" name="reg-form" method="post" th:action="@{/fore/user/addUserAccount}" th:object="${userAccount}">
+                <div class="form-box-bd">
+                  <div class="field"><label for="" class="ui-label">*<span th:text="${user_accounts_2}"></span>：</label>
+                      <input class="ui-input" name="userName" th:value="${userName}" th:placeholder="${user_accounts_2}">
+                  </div>
+                  <div class="field"><label for="" class="ui-label">*<span th:text="${user_accounts_3}"></span>：</label>
+                      <input type="password" class="ui-input" th:placeholder="${user_accounts_3}" th:value="${password}" name="password">
+                  </div>
+                  <div class="field btn-field">
+                    <button type="button" onclick="adduser()" class="ui-btn primary-btn" th:text="${user_accounts_4}"></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${user_accounts_5}"></span></h2>
+            </div>
+            <form method="post">
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_6}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_7}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_8}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_9}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_10}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_accounts_11}"></th>
+                    </tr>
+                    <tr th:each="user, stat : ${userList}">
+                        <td th:text="${user.userName}"></td>
+                        <td th:text="${user.mobile}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${userAccountList[stat.index].status == 0 ? ''+ user_accounts_12_1 +'' : ''+ user_accounts_12_2 +''}"></td>
+                        <td th:text="${#dates.format(userAccountList[stat.index].cdate, 'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a href="javascript:void(0);" th:onclick="'javascript:confirmDel('+ ${userAccountList[stat.index].id} +')'" th:text="${user_accounts_13}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<div th:replace="fore/common :: page"></div>-->
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${user_accounts_14}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" th:title="${user_accounts_15}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${user_accounts_16}" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${user_accounts_17}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm2" th:title="${user_accounts_18}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <form id="delForm" action="/fore/user/delUserAccount" method="post">
+        <input hidden name="id"/>
+
+        <input hidden id="csrf"/>
+        <div class="field"><label for="" class="ui-label">*<span th:text="${user_accounts_19}"></span>：</label>
+            <input type="password" class="ui-input" th:placeholder="${user_accounts_19}" name="password1">
+        </div>
+
+        </form>
+    </p>
+</div>
+<script th:inline="javascript">
+	
+
+    var user_accounts_21 = [[${user_accounts_21}]];
+    var user_accounts_22 = [[${user_accounts_22}]];
+    var user_accounts_23 = [[${user_accounts_23}]];
+	
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+    });
+
+    function confirmDel(id) {
+//        $( "#dialog-confirm2" ).dialog({
+//            resizable: false,
+//            height: "auto",
+//            width: 400,
+//            modal: true,
+//            buttons: {
+//                "删除": function() {
+//                    $("input[name='id']").val(id);
+//                    let csrf = $("input[name='_csrf']").val();
+//                    $("#csrf").attr('name', "_csrf");
+//                    $("#csrf").val(csrf);
+//                    $("#delForm").submit();
+//                },
+//                Cancel: function() {
+//                    $( this ).dialog( "close" );
+//                }
+//            }
+//        });
+        
+        
+        var buttons = `{
+            "${user_accounts_21}": function(){
+                    $("input[name='id']").val(id);
+                    let csrf = $("input[name='_csrf']").val();
+                    $("#csrf").attr('name', "_csrf");
+                    $("#csrf").val(csrf);
+                    $("#delForm").submit();
+            },
+            "${user_accounts_23}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm2" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+    
+
+    function adduser() {
+        
+        var buttons = `{
+            "${user_accounts_21}": function(){
+                $(".ui-dialog-buttonpane button:contains('${user_accounts_21}')").button("disable");
+                $(".ui-button:contains('${user_accounts_21}')").text('${user_accounts_22}');
+                $("#addForm").submit();
+            },
+            "${user_accounts_23}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+</script>
+</html>

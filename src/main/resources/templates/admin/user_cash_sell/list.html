@@ -1,0 +1,123 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->积分卖出列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/userCashSell/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 7%;">用户名:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userName" placeholder="" th:value="${userName}"/>
+            </div>
+
+            <div class="zuo" style="width: 7%;">交易编号:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="tradeSN" placeholder="" th:value="${query.tradeSN}"/>
+            </div>
+
+            <div class="zuo" style="width: 7%;">用户状态:</div>
+            <div class="you" style="width: 160px;">
+                <select name="status">
+                    <option value="">全部</option>
+                    <option value="0" th:selected="${query.status == 0}">已结束</option>
+                    <option value="1" th:selected="${query.status == 1}">交易中</option>
+                    <option value="2" th:selected="${query.status == 2}">待汇款</option>
+                    <option value="3" th:selected="${query.status == 3}">待确认</option>
+                    <option value="4" th:selected="${query.status == 4}">已完成</option>
+                </select>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" style="table-layout: fixed">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only" style="width: 180px;">交易编号</th>
+                <th class="table-author am-hide-sm-only">金额</th>
+                <!--<th class="table-author am-hide-sm-only">交易费</th>-->
+                <th class="table-author am-hide-sm-only">卖出价格</th>
+                <th class="table-author am-hide-sm-only">货币名称</th>
+                <th class="table-author am-hide-sm-only">卖出会员</th>
+                <!--<th class="table-author am-hide-sm-only">银行账户</th>-->
+                <th class="table-author am-hide-sm-only">收款人姓名</th>
+                <th class="table-author am-hide-sm-only">认购用户</th>
+                <th class="table-author am-hide-sm-only">状态</th>
+                <th class="table-author am-hide-sm-only" style="width: 100px;">卖出时间</th>
+                <th class="table-author am-hide-sm-only" style="width: 100px;">确认时间</th>
+                <th class="table-author am-hide-sm-only"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="sell, stat : ${list}">
+                <td th:text="${sell.tradeSN}"></td>
+                <td th:text="${sell.amount}"></td>
+                <!--<td th:text="${sell.brokerage}"></td>-->
+                <td th:text="${sell.amount * sell.exchangeRate}"></td>
+                <td th:text="${sell.currencyName}"></td>
+                <td th:text="${sellUsers[stat.index].userName}"></td>
+                <!--<td th:text="${sell.bankName}"></td>-->
+                <td th:text="${sell.accountName}"></td>
+                <td th:text="${buyUsers[stat.index].userName}"></td>
+                <td th:if="${sell.status == 0}">已结束</td>
+                <td th:if="${sell.status == 1}">交易中</td>
+                <td th:if="${sell.status == 2}">待汇款</td>
+                <td th:if="${sell.status == 3}">待确认</td>
+                <td th:if="${sell.status == 4}">已完成</td>
+                <td th:text="${#dates.format(sell.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(sell.confirmDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <a th:href="@{/admin/userCashSell/toUpdate(id=${sell.sellId})}">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="修改">
+                            <span class="am-icon-pencil-square-o"></span>
+                        </button>
+                    </a>
+
+                    <a th:href="@{/admin/userCashSell/info(sellId=${sell.sellId})}">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="详情">
+                            <span class="am-icon-info"></span>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="提示" style="display:none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要删除吗？
+    </p>
+</div>
+
+<script>
+    function confirmDel(id) {
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "删除": function() {
+                    window.location.href = "/admin/sys/manager/delete?id=" + id;
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+</html>

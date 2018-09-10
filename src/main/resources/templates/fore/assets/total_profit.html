@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${total_profit_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+                <div class="form-box-bd">
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_2}"></span>：</label><span class="ui-txt" sec:authentication="name"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_3}"></span>：</label><span class="ui-txt" th:text="${'$' + product.invested}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_4}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.bonusSurplus}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_5}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.DTFTJJYE}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_6}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.JTFTJJYE}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_7}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.LYJFYE}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_8}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.SCJFYE}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_9}"></span>：</label><span class="ui-txt" th:text="${'$' + userAsset.ZCJFYYE}"></span></div>
+                <!--<div class="field"><label for="" class="ui-label">D权证数量：</label><span class="ui-txt" th:text="${dtSharesNum.canSellShares + '/' + dtSharesNum.totalShares + '（可售数量/总持有数）'}"></span></div>-->
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_10}"></span>：</label><span class="ui-txt" th:text="${jtSharesNum.canSellShares + '/' + jtSharesNum.totalShares + '（'+ total_profit_11 +'）'}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_12}"></span>：</label><span class="ui-txt" th:text="${'$' + netUser.totalProfit + '/' + (product.invested * product.CJBS)}"></span></div>
+                <div class="field"><label for="" class="ui-label"><span th:text="${total_profit_13}"></span>：</label><span class="ui-txt" th:text="${netUser.isOut == 1 ? ''+ total_profit_14 +'' : ''+ total_profit_15 +''}"></span></div> 
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${total_profit_16}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+<style>
+	.content {min-height:150px;height:auto;padding-top:0;}
+	.ui-table2 th{border:none;font-size:1.2em;line-height:2.5em;font-weight:normal;text-align:left;}
+	.ui-table2 .first{text-align:center;}
+	.ui-table2 th span{color:#f00;font-weight:bold;}
+	.desc { margin: 20px 0;font-size:1.2em; background: #f0f9f4; border-left: 5px solid #b3e0c9; padding: 20px 16px; color: #2c6c98; line-height: 2;}
+	.imgspan{margin-right:10px;position:relative}
+	.imgspan .del{padding:2px; position:absolute;right:0;  line-height:0;background:#fff;}
+</style>
+	
+    <div class="wrapper">
+    	
+        <div class="content" style="padding-top:40px;">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${remit_confirm_1}"></span></h2>
+            </div>
+            
+            <div class="reg-box form-box">
+	            <table class="ui-table ui-table2">
+	                <colgroup>
+	                    <col width="30%">
+	                    <col width="35%">
+	                    <col width="35%">
+	                </colgroup>
+	                <tbody>
+	                <tr>
+                        <th class="first">
+                            <span th:text="${sell.amount}"></span> <span th:text="${remit_confirm_2}"></span>
+                            <br /><span th:text="${(sell.amount * sell.exchangeRate) +  sell.currencyName}"></span>
+                        </th>
+                        <th>
+                            <span th:text="${remit_confirm_3}"></span>：<b th:text="${sellUser.userName}"></b>
+                            <br /><span th:text="${remit_confirm_4}"></span>：<b th:text="${sell.mobile}"></b>
+                        </th>
+                        <th>
+                            <span th:text="${remit_confirm_5}"></span>：<b th:text="${#dates.format(sell.cdate, 'yyyy-MM-dd HH:mm:ss')}"></b>
+                            <br /><span th:text="${remit_confirm_6}"></span>：
+                            <span th:if="${sell.status == 0}" th:text="${remit_confirm_6_1}"></span>
+                            <span th:if="${sell.status == 1}" th:text="${remit_confirm_6_2}"></span>
+                            <span th:if="${sell.status == 2}" th:text="${remit_confirm_6_3}"></span>
+                            <span th:if="${sell.status == 3}" th:text="${remit_confirm_6_4}"></span>
+                            <span th:if="${sell.status == 4}" th:text="${remit_confirm_6_5}"></span>
+                        </th>
+	                </tr>
+	                </tbody>
+	            </table>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${remit_confirm_7}"></span></h2>
+            </div>
+
+            <div class="reg-box form-box">
+	            <div class="desc">
+                    <ol>
+                        <li><span th:text="${remit_confirm_8}"></span>：<b th:text="${sell.bankName}"></b></li>
+                        <li><span th:text="${remit_confirm_9}"></span>：<b th:text="${sell.bankAddress}"></b></li>
+                        <li><span th:text="${remit_confirm_10}"></span>：<b th:text="${sell.accountName}"></b></li>
+                        <li><span th:text="${remit_confirm_11}"></span>：<b th:text="${sell.accountNumber}"></b></li>
+                    </ol>
+	            </div>
+            </div>
+        </div>        
+        
+        
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${remit_confirm_12}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+                <div class="form-box-bd">
+                    <div class="field" th:each="image: ${images}">
+                        <input type="hidden" name="imgPaths" th:value="${image.imgPath}"/>
+                        <span class="imgspan">
+							<!--<a th:href="${image.imgPath}" target="_blank">-->
+                                <img onclick="checkImg(this)" th:src="${'data:image/png;base64,' + image.imgPath}" width="64" height="64" />
+                            <!--</a>-->
+						</span>
+                    </div>
+                    <div class="field"><label for="" class="ui-label"><span th:text="${remit_confirm_13}"></span>：</label>
+                        <span class="imgspan" th:if="${profile != null}" th:text="${profile.bankAccountName}"></span>
+                    </div>
+                    <div class="field"><label for="" class="ui-label"><span th:text="${remit_confirm_14}"></span>：</label>
+                        <span class="imgspan" th:if="${buyUser != null}" th:text="${buyUser.mobile}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${remit_confirm_15}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+                <form name="reg-form" method="post" th:action="@{/fore/integral/gathering}">
+                    <input type="hidden" th:value="${sell.sellId}" name="sellId"/>
+                <div class="form-box-bd">
+
+                  <div class="field field-send-code" th:if="${sell.status == 3}">
+                  	<label for="" class="ui-label"><span th:text="${remit_confirm_16}"></span>：</label>
+                    <input type="password" name="password" class="ui-input" th:placeholder="${remit_confirm_16}">
+                  </div>
+                  <div class="field btn-field" th:if="${sell.status == 3}">
+                    <button id="formButton" type="button" onclick="confirm()" class="ui-btn primary-btn" th:text="${remit_confirm_17}"></button>
+                      <input hidden id="begin_time" th:value="${#dates.format(dateSK, 'yyyy-MM-dd HH:mm:ss')}"/>
+                      <input hidden id="now" th:value="${#dates.format(now, 'yyyy-MM-dd HH:mm:ss')}"/>
+                    <span> &nbsp; <span th:text="${remit_confirm_18_1}"></span>“
+						  <strong style="color:#f00" id="hh"></strong><span th:text="${remit_confirm_18_2}"></span>
+						  <strong style="color:#f00" id="mm"></strong><span th:text="${remit_confirm_18_3}"></span>
+						  <strong style="color:#f00" id="ss"></strong><span th:text="${remit_confirm_18_4}"></span>
+                        ”<span th:text="${remit_confirm_18_5}"></span> </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>      
+        
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${remit_confirm_19}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+
+<div id="dialog-confirm" th:title="${remit_confirm_20}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${remit_confirm_21}"></b>
+    </p>
+</div>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm1" th:title="${remit_confirm_22}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+</html>
+
+<script th:inline="javascript">
+    var remit_confirm_23 = [[${remit_confirm_23}]];
+    var remit_confirm_24 = [[${remit_confirm_24}]];
+    var remit_confirm_25 = [[${remit_confirm_25}]];
+
+    function confirm() {
+        var buttons = `{
+            "${remit_confirm_23}": function(){
+                $(".ui-dialog-buttonpane button:contains('${remit_confirm_23}')").button("disable");
+                $(".ui-button:contains('${remit_confirm_23}')").text('${remit_confirm_24}');
+                $("form").submit();
+            },
+            "${remit_confirm_25}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+
+    function GetRTime(){
+
+        var t = new Date($("#begin_time").val()) - new Date(new Date().toUTCString().replace("GMT", ""));
+
+        if (t < 0) {
+            $("#formButton").css("display", "none");
+            return;
+        }
+
+        //显示天数
+        $("#dd").text(Math.floor(t/1000/60/60/24));
+        //显示小时
+        $("#hh").text(Math.floor(t/1000/60/60%24));
+        //显示分钟
+        $("#mm").text(Math.floor(t/1000/60%60));
+        //显示秒钟
+        $("#ss").text(Math.floor(t/1000%60));
+    }
+
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm1" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    'OK': function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+        var timer_rt = window.setInterval("GetRTime()", 1000);
+    })
+</script>

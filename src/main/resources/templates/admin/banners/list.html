@@ -1,0 +1,117 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->banners管理列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/banners/list}">
+
+        <div class="am-form-group am-cf">
+
+            <!--<div class="zuo" style="width: 6%;">图片地址:</div>-->
+            <!--<div class="you" style="width: 160px;">-->
+                <!--<input type="text" class="am-input-sm" name="imgurl" placeholder="图片地址" th:value="${query.imgurl}"/>-->
+            <!--</div>-->
+            <div class="zuo" style="width: 6%;">链接地址:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="url" placeholder="链接地址" th:value="${query.url}"/>
+            </div>
+
+            <!--<div class="zuo">操作人用户名:</div>-->
+            <!--<div class="you" style="width: 160px;">-->
+                <!--<input type="text" class="am-input-sm" name="managerName" placeholder="操作人用户名" th:value="${managerName}"/>-->
+            <!--</div>-->
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only" >ID</th>
+                <th class="table-author am-hide-sm-only">描述</th>
+                <th class="table-author am-hide-sm-only" style="width: 500px;">图片</th>
+                <th class="table-author am-hide-sm-only" style="width: 500px;">链接地址</th>
+                <th class="table-author am-hide-sm-only">排序号</th>
+                <th width="160px" class="table-set">
+                    操作
+                    <a th:href="@{/admin/banners/toAdd}">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="新建">
+                            <span class="am-icon-plus"></span>
+                        </button>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="banners, stat : ${list}">
+                <td th:text="${banners.id}"></td>
+                <td th:text="${banners.desc}"></td>
+                <td>
+                    <img style="max-width: 100%; width: 100px;" th:src="${'data:image/png;base64,' + banners.imgurl}">
+                    <!--<a th:href="${banners.imgurl}" target="_blank" th:text="${banners.imgurl}"></a>-->
+                </td>
+                <td th:text="${banners.url}"></td>
+                <td th:text="${banners.sort}"></td>
+                <td>
+                    <a th:href="@{/admin/banners/toUpdate(id=${banners.id})}">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="修改">
+                            <span class="am-icon-pencil-square-o"></span>
+                        </button>
+                    </a>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="删除"
+                            th:onclick="'javascript:confirmDel('+ ${banners.id} +')'">
+                        <span class="am-icon-trash-o"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="删除">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要删除吗？
+    </p>
+</div>
+
+<script>
+    function confirmDel(id) {
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "删除": function() {
+                    $.ajax({
+                        url: "/admin/banners/delete",
+                        type: "post",
+                        data: {id: id, _csrf: $("input[name=_csrf]").val()},
+                        success: function (data) {
+                            if (data.indexOf("You do not have write permission for the resource.") != -1){
+                                alert("You do not have write permission for the resource.");
+                                return
+                            }
+                            window.location.href = data;
+                        }
+                    })
+                    //window.location.href = "/admin/banners/delete?id=" + id;
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+</html>

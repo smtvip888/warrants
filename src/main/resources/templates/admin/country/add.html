@@ -1,0 +1,74 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+
+<script th:src="@{/js/wangEditor.min.js}"></script>
+
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <strong>首页->国家新增页</strong>
+        <form class="am-form" th:action="@{/admin/country/add}" method="post" th:object="${country}">
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>国家名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="countryName" th:value="*{countryName}">
+                    <span th:errors="*{countryName}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>国家代码：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="countryCode" th:value="*{countryCode}">
+                    <span th:errors="*{countryCode}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>币种：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="currencyName" th:value="*{currencyName}">
+                    <span th:errors="*{currencyName}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>汇率：</div>
+                <div class="you">
+                    <input type="number" step="0.001" class="am-input-sm" name="exchangeRate" th:value="*{exchangeRate}">
+                    <span th:errors="*{exchangeRate}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>是否启用：</div>
+                <div class="you">
+                    <input type="radio" class="am-input-sm" name="isEnable" value="1" checked>启用
+                    <input type="radio" class="am-input-sm" name="isEnable" value="0">不启用
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo"><b>*</b>排序号：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="sort" th:value="*{sort}">
+                    <span th:errors="*{sort}"></span>
+                </div>
+            </div>
+
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<script th:src="@{/js/wangEditor.min.js}"></script>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->消息阅读页</strong>
+        <form class="am-form am-g">
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="width: 4%">标题：</div>
+                <div class="you" th:text="${messageList[0].title}" style="width: 20%"></div>
+
+                <div class="you" style="width: 8%" th:text="${messageList[0].sendUserId == 0 ? '收件人' : '发件人：'}"></div>
+                <div class="you" th:text="${user.userName}" style="width: 20%"></div>
+            </div>
+
+            <div th:each="message, stat: ${messageList}" class="am-form-group am-cf">
+                <div class="you" th:style="${message.adminUserId != null ? 'float: right;' : ''}">
+                    =================================================
+                    <br>
+                    <div class="" th:if="${message.adminUserId == null}"
+                         th:text="'用户于 ' + ${#dates.format(message.cdate, 'yyyy-MM-dd HH:mm:ss') + (messageList[0].sendUserId == 0 ? '回复' : '发送') + '了消息：'}"></div>
+                    <div class="you" style="width: 100%" th:if="${message.adminUserId != null}"
+                         th:text="${managerList[stat.index].name} + '于 ' + ${#dates.format(message.cdate, 'yyyy-MM-dd HH:mm:ss') + (messageList[0].sendUserId == 0 ? '发送' : '回复') + '了消息：'}"></div>
+                    <div class="editor" th:id="${'editor' + stat.index}"></div>
+                    <input type="hidden" th:value="${message.body}">
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you">
+                    <a th:href="@{/admin/message/toReply(id=${messageList[0].id})}">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs am-round" title="回复消息">
+                            回复消息
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+
+<script>
+    var E = window.wangEditor;
+    $(".editor").each(function (i, v) {
+        var editor = new E('#editor' + i);
+        editor.create();
+        editor.txt.html($(v).next().val());
+    });
+
+</script>
+
+</html>

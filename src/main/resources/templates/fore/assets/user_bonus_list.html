@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+                <h2><i class="icon iconfont icon-gears"></i><span th:text="${user_bonus_list_1}"></span></h2>
+            </div>
+            <form th:action="@{/fore/assets/userBonusList}" method="post">
+                <div class="filter-bar cf">
+
+                    <div class="filter-bar cf">
+                        <div class="form-item">
+                            <label for="" class="ui-label"><span th:text="${user_bonus_list_2}"></span></label>
+                            <div class="ui-form-control">
+                                <select name="bonusType">
+                                    <option value="" th:text="${user_bonus_list_3}"></option>
+                                    <option value="1" th:selected="${1== query.bonusType}" th:text="${user_bonus_list_3_1}"></option>
+                                    <option value="2" th:selected="${2== query.bonusType}" th:text="${user_bonus_list_3_2}"></option>
+                                    <option value="3" th:selected="${3== query.bonusType}" th:text="${user_bonus_list_3_3}"></option>
+                                    <option value="4" th:selected="${4== query.bonusType}" th:text="${user_bonus_list_3_4}"></option>
+                                    <option value="5" th:selected="${5== query.bonusType}" th:text="${user_bonus_list_3_5}"></option>
+                                    <option value="6" th:selected="${6== query.bonusType}" th:text="${user_bonus_list_3_6}"></option>
+                                    <option value="7" th:selected="${7== query.bonusType}" th:text="${user_bonus_list_3_7}"></option>
+                                    <option value="8" th:selected="${8== query.bonusType}" th:text="${user_bonus_list_3_8}"></option>
+                                    <option value="0" th:selected="${0== query.bonusType}" th:text="${user_bonus_list_3_0}"></option>
+                                    <!--<option th:each="bonusType: ${bonusTypeList}" th:value="${bonusType.id}" th:text="${bonusType.name}" th:selected="${bonusType.id == query.bonusType}"></option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label for="" class="ui-label"><span th:text="${user_bonus_list_4}"></span></label>
+                            <div class="ui-form-control">
+                                <select name="inOrOut">
+                                    <option value="" th:text="${user_bonus_list_5}"></option>
+                                    <option th:each="inOrOut: ${cashBonusInOrOutEnums}" th:value="${inOrOut.code}" th:text="${inOrOut.code == 1 ? ''+ user_bonus_list_5_1 +'' : ''+ user_bonus_list_5_2 +''}" th:selected="${inOrOut.code == query.inOrOut}"></option>
+                                    <!--<option th:each="inOrOut: ${cashBonusInOrOutEnums}" th:value="${inOrOut.code}" th:text="${inOrOut}" th:selected="${inOrOut.code == query.inOrOut}"></option>-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-form-control form-item">
+                        <label for="" class="ui-label" th:text="${user_bonus_list_6}"></label>
+                        <div class="ui-form-control date-range-wrap" style="width: 400px;">
+                            <input class="Wdate" type="text" name="start" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${start}"/>-
+                            <input class="Wdate" type="text" name="end" onFocus="WdatePicker({startDate:'%y-%M-%d  %h:%m:%s ',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" th:value="${end}"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn primary-btn" th:text="${user_bonus_list_7}"></button>
+                </div>
+                <table class="ui-table ui-table2">
+                    <tbody>
+                    <tr>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_8}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_9}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_10}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_11}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_12}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_13}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_14}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_15}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_16}"></th>
+                        <th class="table-author am-hide-sm-only" th:text="${user_bonus_list_17}"></th>
+                    </tr>
+                    <tr th:each="userCashBonus, stat : ${list}">
+                        <td th:text="${fromUserNameList[stat.index]}"></td>
+                        <td>
+                            <b th:each="inOrOut: ${cashBonusInOrOutEnums}" th:if="${inOrOut.code == userCashBonus.inOrOut}"
+                               th:text="${inOrOut.code == 1 ? ''+ user_bonus_list_5_1 +'' : ''+ user_bonus_list_5_2 +''}"></b>
+                        </td>
+                        <td th:text="${userCashBonus.amount}"></td>
+                        <td th:text="${userCashBonus.cashBonus}"></td>
+                        <td th:text="${userCashBonus.DTFTBonus}"></td>
+                        <td th:text="${userCashBonus.JTFTBonus}"></td>
+                        <td th:text="${userCashBonus.LYJFBonus}"></td>
+                        <td th:text="${userCashBonus.SCJFBonus}"></td>
+                        <td th:text="${userCashBonus.JYFBonus}"></td>
+                        <td th:text="${#dates.format(userCashBonus.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:replace="fore/common :: page"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${user_bonus_list_18}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+
+</body>
+</html>

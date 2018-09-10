@@ -1,0 +1,95 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <strong>首页->日志列表页</strong>
+    <form class="am-form am-g" th:action="@{/admin/sys/log/list}">
+
+        <div class="am-form-group am-cf">
+
+            <div class="zuo" style="width: 7%;">用户名:</div>
+            <div class="you" style="width: 160px;">
+                <input type="text" class="am-input-sm" name="userName" placeholder="" th:value="${query.userName}"/>
+            </div>
+
+            <div class="zuo" style="width: 7%;">用户类型:</div>
+            <div class="you" style="width: 160px;">
+                <select name="userType">
+                    <option value="">全部</option>
+                    <option value="1" th:selected="${query.userType == 1}">前台用户</option>
+                    <option value="2" th:selected="${query.userType == 2}">后台用户</option>
+                </select>
+            </div>
+
+            <div class="zuo" style="width: 7%;">日志类型:</div>
+            <div class="you" style="width: 160px;">
+                <select name="logType">
+                    <option value="">全部</option>
+                    <option th:each="type: ${types}" th:selected="${query.logType == type.id}" th:value="${type.id}" th:text="${type.name}"></option>
+                </select>
+            </div>
+
+            <div class="zuo" style="width: 80px;">
+                <button type="submit" class="am-btn am-btn-success am-radius">查询</button>
+            </div>
+        </div>
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" style="table-layout: fixed">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only" width="110px;">日志类型</th>
+                <th class="table-author am-hide-sm-only" width="90px;">用户类型</th>
+                <th class="table-author am-hide-sm-only" width="90px;">操作人</th>
+                <th class="table-author am-hide-sm-only">操作内容</th>
+                <th class="table-author am-hide-sm-only">ip</th>
+                <th class="table-author am-hide-sm-only" width="180px;">操作时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="log, stat : ${list}">
+                <td>
+                    <b th:each="type: ${types}" th:if="${type.id == log.logType}" th:text="${type.name}"></b>
+                </td>
+                <td th:text="${log.userType == 1 ? '前台用户' : '后台用户'}"></td>
+                <td th:text="${log.userName}"></td>
+                <td style="width: 40%;"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" th:title="${log.remark}" th:text="${log.remark}"></div></td>
+                <td th:text="${log.ip}"></td>
+                <td th:text="${#dates.format(log.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm" title="删除管理员">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要删除该管理员吗？
+    </p>
+</div>
+
+<script>
+    function confirmDel(id) {
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "删除": function() {
+                    window.location.href = "/admin/sys/manager/delete?id=" + id;
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+</html>

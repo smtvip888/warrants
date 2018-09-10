@@ -1,0 +1,1159 @@
+cn_common_1: 百腾国际
+cn_common_2: 您好
+cn_common_3: 退出
+cn_common_4: 中文简体
+cn_common_5: 首页
+cn_common_6: 交易管理
+cn_common_7: 权证交易
+cn_common_8: 买入明细
+cn_common_9: 挂卖明细
+cn_common_10: 交易明细
+cn_common_11: 我的权证
+cn_common_12: 业务管理
+cn_common_13: 会员注册
+cn_common_14: 团队管理
+cn_common_15: 我的推荐
+cn_common_16: 账户管理
+cn_common_17: 积分交易
+cn_common_18: 交易大厅
+cn_common_19: 我的买入
+cn_common_20: 我要卖出
+cn_common_21: 我的卖出
+cn_common_22: 资产中心
+cn_common_23: 账户总收入
+cn_common_24: 积分明细
+cn_common_25: 积分转换
+cn_common_26: 注册积分
+cn_common_27: 注册积分转账
+cn_common_28: 个人中心
+cn_common_29: 我的消息
+cn_common_30: 修改资料
+cn_common_31: 修改登录密码
+cn_common_32: 修改交易密码
+cn_common_33: 您的会员等级现在是
+cn_common_34: 并且是服务站
+cn_common_35: 您的ID是
+cn_common_36: 总页数
+
+en_common_1: BAITEN
+en_common_2: Hello
+en_common_3: Logout
+en_common_4: Simplified Chinese
+en_common_5: Home
+en_common_6: Stocks Management
+en_common_7: Stocks Trading 
+en_common_8: Buying History
+en_common_9: Selling History
+en_common_10: Trading History
+en_common_11: My Stocks
+en_common_12: Business Management
+en_common_13: New Registration
+en_common_14: Team Management
+en_common_15: My Sponsor
+en_common_16: User Management
+en_common_17: Points Trading
+en_common_18: Trading Center
+en_common_19: Buying History
+en_common_20: Points To Sell
+en_common_21: Selling History
+en_common_22: Asset Profile
+en_common_23: Total Revenue
+en_common_24: Points Detail
+en_common_25: Convert Points
+en_common_26: AP History
+en_common_27: Transfer AP
+en_common_28: Personal Data
+en_common_29: My Inbox
+en_common_30: Member Profile
+en_common_31: Change Login Password
+en_common_32: Change Trading Password
+en_common_33: Your account level is
+en_common_34: and you're a Services Station
+en_common_35: ID is
+en_common_36: Total Page
+
+cn_index_1: 今日价格
+cn_index_2: 财富信息
+cn_index_3: 电子积分
+cn_index_4: 交易积分
+cn_index_5: 报单积分
+cn_index_6: 权证数量
+cn_index_7: 可售数/总持有
+cn_index_8: 注册积分
+cn_index_9: 注册日期
+cn_index_10: 常用操作
+cn_index_11: 权证交易
+cn_index_12: 积分交易
+cn_index_13: 积分转换
+cn_index_14: 积分转出
+cn_index_15: 会员注册
+cn_index_16: 会员资料
+cn_index_17: 买入信息
+cn_index_18: 时间
+cn_index_19: 数量
+cn_index_20: 金额
+cn_index_21: 卖出信息
+cn_index_22: 时间
+cn_index_23: 成交
+cn_index_24: 挂卖
+cn_index_25: 通知公告
+cn_index_26: 价格走势
+cn_index_27: 百腾国际
+cn_index_28: 价格走势
+
+en_index_1: Current Price
+en_index_2: Finance
+en_index_3: Electronic  Point (EP)
+en_index_4: Stock  Point (SP)
+en_index_5: Activation  Point (AP)
+en_index_6: Stocks Volume
+en_index_7: Available for sale / Total Stocks
+en_index_8: Registration  Point (RP)
+en_index_9: Registration Date
+en_index_10: Operation
+en_index_11: Stocks Trading
+en_index_12: Points Trading
+en_index_13: Convert Points
+en_index_14: Transfer Points
+en_index_15: New Registration
+en_index_16: Member Profile
+en_index_17: Buying Info
+en_index_18: Time
+en_index_19: No. of Stocks
+en_index_20: Amount
+en_index_21: Selling Info
+en_index_22: Time
+en_index_23: No. of Stocks
+en_index_24: Amount
+en_index_25: News
+en_index_26: Price Index
+en_index_27: BAITEN
+en_index_28: Price Index
+
+cn_login_1: 百腾国际
+cn_login_2: 会员登陆
+cn_login_3: 请输入密码
+cn_login_4: 语言
+cn_login_5: 用户名
+cn_login_6: 密码
+cn_login_7: 验证码
+cn_login_8: 登录
+
+en_login_1: BAITEN
+en_login_2: Login
+en_login_3: Please input the Password
+en_login_4: Language
+en_login_5: User Name
+en_login_6: Password
+en_login_7: Verification
+en_login_8: Login
+
+cn_reg_1: 会员注册
+cn_reg_2: 用户名
+cn_reg_3: 请输入用户名
+cn_reg_4: 真实姓名
+cn_reg_5: 请输入真实姓名
+cn_reg_6: 身份证号
+cn_reg_7: 请输入身份证号
+cn_reg_8: 手机号
+cn_reg_9: 请输入手机号
+cn_reg_10: 登录密码
+cn_reg_11: 安全密码
+cn_reg_12: 推荐人
+cn_reg_13: 请输入推荐人
+cn_reg_14: 安置人
+cn_reg_15: 请输入安置人
+cn_reg_16: 安置位置：
+cn_reg_17: 申请级别：
+cn_reg_18: 注册国家：
+cn_reg_19: 报单积分
+cn_reg_20: 余额
+cn_reg_21: 注册积分
+cn_reg_22: 余额
+cn_reg_23: 交易密码：
+cn_reg_24: 立即注册
+cn_reg_25: 百腾国际
+
+cn_reg_26: 提示
+cn_reg_27: 注册确认
+cn_reg_28: 确定要注册吗
+cn_reg_29: 注册成功
+cn_reg_30: 确定
+cn_reg_31: 确定
+cn_reg_32: 操作进行中...
+cn_reg_33: 取消
+
+en_reg_1: New Registration
+en_reg_2: User Name
+en_reg_3: please key-in alphabetical + number 
+en_reg_4: Full Name
+en_reg_5: key-in
+en_reg_6: Indentity No
+en_reg_7: key-in
+en_reg_8: Mobile Number
+en_reg_9: please key-in without “+”
+en_reg_10: Login Password
+en_reg_11: Trading Password
+en_reg_12: Sponsor
+en_reg_13: key-in
+en_reg_14: Placement
+en_reg_15: key-in
+en_reg_16: Placement Position：
+en_reg_17: Application Level：
+en_reg_18: Register Country：
+en_reg_19: Activation Point
+en_reg_20: Account Balance
+en_reg_21: Register Points
+en_reg_22: Account Balance
+en_reg_23: Trading Password：
+en_reg_24: Register Now
+en_reg_25: BAITEN
+en_reg_26: Tips
+en_reg_27: Register Confrim
+en_reg_28: Are you sure you want to do this
+en_reg_29: Register successfully
+en_reg_30: Confirm
+en_reg_31: Confirm
+en_reg_32: Confirm...
+en_reg_33: Cancel
+
+
+cn_convert_1: 积分转换
+cn_convert_2: 转出账户
+cn_convert_3: 电子积分
+cn_convert_4: 账户结余
+cn_convert_5: 转出金额
+cn_convert_6: 请输入转出金额
+cn_convert_7: 转入账户
+cn_convert_8: 注册积分
+cn_convert_9: 电子积分转入到注册积分后无法撤销，请确认后再转换
+cn_convert_10: 交易密码
+cn_convert_11: 请输入交易密码
+cn_convert_12: 立刻转换
+cn_convert_13: 百腾国际
+cn_convert_14: 提示
+cn_convert_15: 确定
+cn_convert_16: 确定要执行该操作吗
+cn_convert_17: 确定
+cn_convert_18: 操作进行中...
+cn_convert_19: 取消
+
+en_convert_1: Convert Points
+en_convert_2: Convert from
+en_convert_3: Electronic Point (EP)
+en_convert_4: Account Balance
+en_convert_5: Convert Amount
+en_convert_6: key-in
+en_convert_7: Convert to
+en_convert_8: Registration Point (RP)
+en_convert_9: Warning! Once converted from EP to RP, you are not able to reconvert back.
+en_convert_10: Trading Password
+en_convert_11: key-in
+en_convert_12: Convert Now
+en_convert_13: BAITEN
+en_convert_14: Tips
+en_convert_15: Confrim
+en_convert_16: Are you sure you want to do this
+en_convert_17: Confrim
+en_convert_18: Confirm...
+en_convert_19: Cancel
+
+cn_total_profit_1: 总收入查询
+cn_total_profit_2: 会员账号
+cn_total_profit_3: 投资金额
+cn_total_profit_4: 电子积分
+cn_total_profit_5: 报单积分
+cn_total_profit_6: 交易积分
+cn_total_profit_7: 旅游积分
+cn_total_profit_8: 商城积分
+cn_total_profit_9: 注册积分
+cn_total_profit_10: 权证数量
+cn_total_profit_11: 可售数量/总持有数
+cn_total_profit_12: 总量封顶
+cn_total_profit_13: 出局
+cn_total_profit_14: 是
+cn_total_profit_15: 否
+cn_total_profit_16: 百腾国际
+
+en_total_profit_1: Total Revenue
+en_total_profit_2: User Name
+en_total_profit_3: Investment Amount
+en_total_profit_4: Electronic Point (EP)
+en_total_profit_5: Activation Point (AP)
+en_total_profit_6: Stock Point (SP)
+en_total_profit_7: Travel Point (TP)
+en_total_profit_8:  Mall Point (MP)
+en_total_profit_9: Registration Point (RP)
+en_total_profit_10: Stocks Volume
+en_total_profit_11: Available for sale / Total Stocks
+en_total_profit_12: Total Cap
+en_total_profit_13: Out from System
+en_total_profit_14: YES
+en_total_profit_15: NO
+en_total_profit_16: BAITEN
+
+cn_transfer_ZCJF_1: 注册积分转账
+cn_transfer_ZCJF_2: 转出金额
+cn_transfer_ZCJF_3: 转入用户
+cn_transfer_ZCJF_4: 转入用户手机
+cn_transfer_ZCJF_5: 注册积分余额
+cn_transfer_ZCJF_6: 交易密码
+cn_transfer_ZCJF_7: 提交
+cn_transfer_ZCJF_8: 百腾国际
+cn_transfer_ZCJF_9: 提示
+cn_transfer_ZCJF_10: 确定
+cn_transfer_ZCJF_11: 确定要执行该操作吗
+cn_transfer_ZCJF_12: 转账成功
+cn_transfer_ZCJF_13: 确定
+cn_transfer_ZCJF_14: 操作进行中...
+cn_transfer_ZCJF_15: 取消
+
+en_transfer_ZCJF_1: Transfer Activation Point
+en_transfer_ZCJF_2: Amount
+en_transfer_ZCJF_3: Transfer to
+en_transfer_ZCJF_4: Mobile Number
+en_transfer_ZCJF_5: Balance of Activation Point
+en_transfer_ZCJF_6: Trading Password
+en_transfer_ZCJF_7: Submit
+en_transfer_ZCJF_8: BAITEN
+en_transfer_ZCJF_9: Tips
+en_transfer_ZCJF_10: Confirm
+en_transfer_ZCJF_11: Are you sure you want to do this
+en_transfer_ZCJF_12: Transfer Successful
+en_transfer_ZCJF_13: Confirm
+en_transfer_ZCJF_14: Confirm...
+en_transfer_ZCJF_15: Cancel
+
+
+cn_user_bonus_list_1: 积分明细
+cn_user_bonus_list_2: 积分类型
+cn_user_bonus_list_3: 全部
+cn_user_bonus_list_3_1: 推荐奖
+cn_user_bonus_list_3_2: 平衡奖
+cn_user_bonus_list_3_3: 辅导奖
+cn_user_bonus_list_3_4: 见点奖
+cn_user_bonus_list_3_5: 权证买卖
+cn_user_bonus_list_3_6: 积分转换
+cn_user_bonus_list_3_7: 积分交易
+cn_user_bonus_list_3_8: 会员注册
+cn_user_bonus_list_3_0: 其他
+cn_user_bonus_list_4: 进出类型
+cn_user_bonus_list_5: 全部
+cn_user_bonus_list_5_1: 进
+cn_user_bonus_list_5_2: 出
+cn_user_bonus_list_6: 交易时间
+cn_user_bonus_list_7: 搜 索
+cn_user_bonus_list_8: 相关用户
+cn_user_bonus_list_9: 资金进出
+cn_user_bonus_list_10: 总额
+cn_user_bonus_list_11: 电子积分
+cn_user_bonus_list_12: 报单积分
+cn_user_bonus_list_13: 交易积分
+cn_user_bonus_list_14: 旅游积分
+cn_user_bonus_list_15: 商城积分
+cn_user_bonus_list_16: 交易费
+cn_user_bonus_list_17: 创建时间
+cn_user_bonus_list_18: 百腾国际
+
+en_user_bonus_list_1: Points Detail
+en_user_bonus_list_2: Point Type
+en_user_bonus_list_3: All
+en_user_bonus_list_3_1: Referral bonus
+en_user_bonus_list_3_2: Balance bonus
+en_user_bonus_list_3_3: Tutorial bonus
+en_user_bonus_list_3_4: Child bonus
+en_user_bonus_list_3_5: Warrant transaction
+en_user_bonus_list_3_6: Point convert
+en_user_bonus_list_3_7: Point transaction
+en_user_bonus_list_3_8: Register account
+en_user_bonus_list_3_0: Others
+en_user_bonus_list_4: Trading Mode
+en_user_bonus_list_5: All
+en_user_bonus_list_5_1: IN
+en_user_bonus_list_5_2: OUT
+en_user_bonus_list_6: Transaction  Date
+en_user_bonus_list_7: Search
+en_user_bonus_list_8: Source User Name
+en_user_bonus_list_9: Trading Mode
+en_user_bonus_list_10: Total Amount
+en_user_bonus_list_11: Electronic Point
+en_user_bonus_list_12: Registration Point
+en_user_bonus_list_13: Stocks Point
+en_user_bonus_list_14: Travel Point
+en_user_bonus_list_15: Mall Point
+en_user_bonus_list_16: Trading Fee
+en_user_bonus_list_17: Created On
+en_user_bonus_list_18: BAITEN
+
+
+cn_user_ZCJF_list_1: 注册积分
+cn_user_ZCJF_list_2: 进出类型
+cn_user_ZCJF_list_3: 全部
+cn_user_ZCJF_list_3_1: 进
+cn_user_ZCJF_list_3_2: 出
+cn_user_ZCJF_list_4: 交易时间
+cn_user_ZCJF_list_5: 搜 索
+cn_user_ZCJF_list_6: 金额
+cn_user_ZCJF_list_7: 相关用户
+cn_user_ZCJF_list_8: 资金进出
+cn_user_ZCJF_list_9: 创建时间
+cn_user_ZCJF_list_10: 系统
+cn_user_ZCJF_list_11: 百腾国际
+
+en_user_ZCJF_list_1: Activation Point History
+en_user_ZCJF_list_2: Point Type
+en_user_ZCJF_list_3: All
+en_user_ZCJF_list_3_1: IN
+en_user_ZCJF_list_3_2: OUT
+en_user_ZCJF_list_4: Trading Date
+en_user_ZCJF_list_5: Search
+en_user_ZCJF_list_6: Amount
+en_user_ZCJF_list_7: Relate Account
+en_user_ZCJF_list_8: Trading Mode
+en_user_ZCJF_list_9: Created On
+en_user_ZCJF_list_10: System
+en_user_ZCJF_list_11: BAITEN
+
+
+
+cn_buy_list_1: 我的买入
+cn_buy_list_2: 搜 索
+cn_buy_list_3: 买入积分
+cn_buy_list_4: 买入价格
+cn_buy_list_5: 状态
+cn_buy_list_6: 买入日期
+cn_buy_list_7_1: 已结束
+cn_buy_list_7_2: 交易中
+cn_buy_list_7_3: 已完成
+cn_buy_list_8: 详细
+cn_buy_list_9: 百腾国际
+
+en_buy_list_1: Buying History
+en_buy_list_2: Search
+en_buy_list_3: Buying Points
+en_buy_list_4: Buying Price
+en_buy_list_5: Status
+en_buy_list_6: Date
+en_buy_list_7_1: End
+en_buy_list_7_2: Transaction in progress
+en_buy_list_7_3: Done
+en_buy_list_8: More Details
+en_buy_list_9: BAITEN
+
+
+
+cn_sell_list_1: 我的卖出
+cn_sell_list_2: 搜 索
+cn_sell_list_3: 卖出积分
+cn_sell_list_4: 卖出价格
+cn_sell_list_5: 交易费
+cn_sell_list_6: 状态
+cn_sell_list_7: 卖出日期
+cn_sell_list_7_1: 已结束
+cn_sell_list_7_2: 交易中
+cn_sell_list_7_3: 待汇款
+cn_sell_list_7_4: 待确认
+cn_sell_list_7_5: 已完成
+cn_sell_list_8: 详细
+cn_sell_list_9: 百腾国际
+
+en_sell_list_1: Selling History
+en_sell_list_2: Search
+en_sell_list_3: Selling Points
+en_sell_list_4: Selling Price
+en_sell_list_5: Trading Fee
+en_sell_list_6: Status
+en_sell_list_7: Date
+en_sell_list_7_1: Close
+en_sell_list_7_2: Transaction in progress
+en_sell_list_7_3: Receivable
+en_sell_list_7_4: Verifing
+en_sell_list_7_5: Done
+en_sell_list_8: More Details
+en_sell_list_9: BAITEN
+
+
+
+cn_integral_hall_1: 交易大厅
+cn_integral_hall_2: 金额范围
+cn_integral_hall_3: 搜 索
+cn_integral_hall_4: 交易积分
+cn_integral_hall_5: 价值
+cn_integral_hall_6: 卖出用户
+cn_integral_hall_7: 挂卖时间
+cn_integral_hall_8: 详细
+cn_integral_hall_9: 百腾国际
+
+en_integral_hall_1: Trading Center
+en_integral_hall_2: Amount range
+en_integral_hall_3: Search
+en_integral_hall_4: Trading Points
+en_integral_hall_5: Amount
+en_integral_hall_6: Selling from
+en_integral_hall_7: Date
+en_integral_hall_8: More Details
+en_integral_hall_9: BAITEN
+
+
+cn_remit_confirm_1: 卖出信息
+cn_remit_confirm_2: 电子积分
+cn_remit_confirm_3: 卖出用户
+cn_remit_confirm_4: 联系电话
+cn_remit_confirm_5: 卖出时间
+cn_remit_confirm_6: 状态
+cn_remit_confirm_6_1: 已结束
+cn_remit_confirm_6_2: 交易中
+cn_remit_confirm_6_3: 待汇款
+cn_remit_confirm_6_4: 待确认
+cn_remit_confirm_6_5: 已完成
+cn_remit_confirm_7: 汇款信息
+cn_remit_confirm_8: 银行账户
+cn_remit_confirm_9: 开户银行
+cn_remit_confirm_10: 账户姓名
+cn_remit_confirm_11: 收款账号
+cn_remit_confirm_12: 买家汇款证明
+cn_remit_confirm_13: 买家姓名
+cn_remit_confirm_14: 买家电话
+cn_remit_confirm_15: 确认已收款
+cn_remit_confirm_16: 交易密码
+cn_remit_confirm_17: 确认已收款
+cn_remit_confirm_18_1: 请于
+cn_remit_confirm_18_2: 时
+cn_remit_confirm_18_3: 分
+cn_remit_confirm_18_4: 秒
+cn_remit_confirm_18_5: 之前确认收款
+cn_remit_confirm_19: 百腾国际
+cn_remit_confirm_20: 提交确认
+cn_remit_confirm_21: 确定要提交吗
+cn_remit_confirm_22: 提示
+cn_remit_confirm_23: 确定
+cn_remit_confirm_24: 操作进行中...
+cn_remit_confirm_25: 取消
+
+en_remit_confirm_1: Sell-out Information
+en_remit_confirm_2: E-Points
+en_remit_confirm_3: Sell-out from
+en_remit_confirm_4: Cell Phone Number
+en_remit_confirm_5: Sell-out Date
+en_remit_confirm_6: Status
+en_remit_confirm_6_1: Close
+en_remit_confirm_6_2: Transaction in progress
+en_remit_confirm_6_3: Receivable
+en_remit_confirm_6_4: Verifing
+en_remit_confirm_6_5: Done
+en_remit_confirm_7: Remittance Information
+en_remit_confirm_8: Bank Name
+en_remit_confirm_9: Bank Address
+en_remit_confirm_10: Account Name
+en_remit_confirm_11: Account Number
+en_remit_confirm_12: Remittance Receipt
+en_remit_confirm_13: Bank Account Name
+en_remit_confirm_14: Cell Phone Number
+en_remit_confirm_15: Confirm Payment
+en_remit_confirm_16: Trading Password
+en_remit_confirm_17: Confrim Now
+en_remit_confirm_18_1: Please upload your remittance receipt and submit this form before
+en_remit_confirm_18_2: H
+en_remit_confirm_18_3: M
+en_remit_confirm_18_4: S
+en_remit_confirm_18_5: .
+en_remit_confirm_19: BAITEN
+en_remit_confirm_20: Confirm
+en_remit_confirm_21: Are you sure you want to do this
+en_remit_confirm_22: Tips
+en_remit_confirm_23: Confirm
+en_remit_confirm_24: Confirm...
+en_remit_confirm_25: Cancel
+
+
+cn_remit_detail_1: 卖出信息
+cn_remit_detail_2: 电子积分
+cn_remit_detail_3: 卖出用户
+cn_remit_detail_4: 联系电话
+cn_remit_detail_4_1: 卖出时间
+cn_remit_detail_5: 状态
+cn_remit_detail_5_1: 已结束
+cn_remit_detail_5_2: 交易中
+cn_remit_detail_5_3: 待汇款
+cn_remit_detail_5_4: 待确认
+cn_remit_detail_5_5: 已完成
+cn_remit_detail_6: 汇款信息
+cn_remit_detail_7: 银行账户
+cn_remit_detail_8: 开户银行
+cn_remit_detail_9: 账户姓名
+cn_remit_detail_10: 收款账号
+cn_remit_detail_11: 确认已汇款
+cn_remit_detail_12: 请上传2MB以内图片
+cn_remit_detail_13: 交易密码
+cn_remit_detail_14: 提交保存
+cn_remit_detail_15: 请于
+cn_remit_detail_16: 时
+cn_remit_detail_17: 分
+cn_remit_detail_18: 秒
+cn_remit_detail_19: 之前上传汇款证明并提交保存
+cn_remit_detail_20: 百腾国际
+cn_remit_detail_21: 提交确认
+cn_remit_detail_22: 确定要提交吗
+cn_remit_detail_23: 提示
+cn_remit_detail_24: 请上传2MB以内图片
+cn_remit_detail_25: 删除
+cn_remit_detail_26: 确定
+cn_remit_detail_27: 操作进行中...
+cn_remit_detail_28: 取消
+
+en_remit_detail_1: Sell-out information
+en_remit_detail_2: E-Points
+en_remit_detail_3: Sell-out from
+en_remit_detail_4: Cell Phone Number
+en_remit_detail_4_1: Sell-out Date
+en_remit_detail_5: Status
+en_remit_detail_5_1: Close
+en_remit_detail_5_2: Transaction in progress
+en_remit_detail_5_3: Receivable
+en_remit_detail_5_4: Verifing
+en_remit_detail_5_5: Done
+en_remit_detail_6: Remittance Information
+en_remit_detail_7: Bank Name
+en_remit_detail_8: Bank Address
+en_remit_detail_9: Account Name
+en_remit_detail_10: Account Number
+en_remit_detail_11: Confirm Payment
+en_remit_detail_12: Please upload pictures within 2MB
+en_remit_detail_13: Trading Password
+en_remit_detail_14: Submit
+en_remit_detail_15: Please upload your remittance receipt and submit this form before
+en_remit_detail_16: H
+en_remit_detail_17: M
+en_remit_detail_18: S
+en_remit_detail_19: .
+en_remit_detail_20: BAITEN
+en_remit_detail_21: Confirm
+en_remit_detail_22: Are you sure you want to do this
+en_remit_detail_23: Tips
+en_remit_detail_24: Please upload pictures within 2MB
+en_remit_detail_25: Delete
+en_remit_detail_26: Confrim
+en_remit_detail_27: Confrim...
+en_remit_detail_28: Cancel
+
+
+cn_integral_sell_1: 我要卖出
+cn_integral_sell_2: 积分余额
+cn_integral_sell_3: 卖出数量
+cn_integral_sell_4: 必须大于等于50并小于等于1500，并且是50的倍数
+cn_integral_sell_5: 手续费
+cn_integral_sell_5_1: 卖出收
+cn_integral_sell_5_2: 手续费。如卖出100，实际扣除
+cn_integral_sell_6: 卖出价格
+cn_integral_sell_7: 收款银行
+cn_integral_sell_8: 开户行地址
+cn_integral_sell_9: 收款人姓名
+cn_integral_sell_10: 收款账号
+cn_integral_sell_11: 联系电话
+cn_integral_sell_12: 交易密码
+cn_integral_sell_13: 提交保存
+cn_integral_sell_14: 百腾国际
+cn_integral_sell_15: 提示
+cn_integral_sell_16: 卖出确认
+cn_integral_sell_17: 确定要卖出吗
+cn_integral_sell_18: 确定
+cn_integral_sell_19: 操作进行中...
+cn_integral_sell_20: 取消
+
+en_integral_sell_1: Points to Sell
+en_integral_sell_2: Balance Points
+en_integral_sell_3: Numner of sell
+en_integral_sell_4: Minimum 50 to Maximum 1500 and by multiple of 50
+en_integral_sell_5: Transaction Fee
+en_integral_sell_5_1: Service charge at 
+#en_integral_sell_5_2: &nbsp;
+en_integral_sell_6: Price
+en_integral_sell_7: Bank Name
+en_integral_sell_8: Bank Address
+en_integral_sell_9: Account Name
+en_integral_sell_10: Account Number
+en_integral_sell_11: Mobile Number
+en_integral_sell_12: Trading Password
+en_integral_sell_13: Submit
+en_integral_sell_14: BAITEN
+en_integral_sell_15: Tips
+en_integral_sell_16: Confrim
+en_integral_sell_17: Are you sure to sell
+en_integral_sell_18: Confirm
+en_integral_sell_19: Confirm...
+en_integral_sell_20: Cancel
+
+
+cn_sell_info_1: 卖出信息
+cn_sell_info_2: 卖出数量
+cn_sell_info_3: 卖出价格
+cn_sell_info_4: 卖出会员
+cn_sell_info_5: 联系电话
+cn_sell_info_6: 卖出时间
+cn_sell_info_7: 交易密码
+cn_sell_info_8: 我要认购
+cn_sell_info_9: 百腾国际
+cn_sell_info_10: 认购确认
+cn_sell_info_11: 确定要认购吗
+cn_sell_info_12: 提示
+cn_sell_info_13: 确定
+cn_sell_info_14: 操作进行中...
+cn_sell_info_15: 取消
+
+en_sell_info_1: Sell-out information
+en_sell_info_2: Sell-out Volume
+en_sell_info_3: Sell-out Price
+en_sell_info_4: Sell-out from
+en_sell_info_5: Cell Phone Number
+en_sell_info_6: Sell-out Date
+en_sell_info_7: Trading Password
+en_sell_info_8: Purchase Now
+en_sell_info_9: BAITEN
+en_sell_info_10: Purchase Confirm
+en_sell_info_11: Are you sure want to purchase
+en_sell_info_12: Tips
+en_sell_info_13: Confirm
+en_sell_info_14: Confirm...
+en_sell_info_15: Cancel
+
+
+cn_news_1: 百腾国际
+en_news_1: BAITEN
+
+
+cn_trade_buy_list_1: 买入明细
+cn_trade_buy_list_2: 交易编号
+cn_trade_buy_list_3: 搜 索
+cn_trade_buy_list_4: 交易编号
+cn_trade_buy_list_5: 买入价格
+cn_trade_buy_list_6: 买入金额
+cn_trade_buy_list_7: 成交金额
+cn_trade_buy_list_8: 成交数量
+cn_trade_buy_list_9: 状态
+cn_trade_buy_list_10: 时间
+cn_trade_buy_list_11: 买入中
+cn_trade_buy_list_12: 已完成
+cn_trade_buy_list_13: 百腾国际
+
+en_trade_buy_list_1: Buying History
+en_trade_buy_list_2: Trading ID
+en_trade_buy_list_3: Search
+en_trade_buy_list_4: Trading ID
+en_trade_buy_list_5: Buying Price
+en_trade_buy_list_6: Buying Amount
+en_trade_buy_list_7: Total Amount
+en_trade_buy_list_8: Total Stocks
+en_trade_buy_list_9: Status
+en_trade_buy_list_10: Time
+en_trade_buy_list_11: Purchasing
+en_trade_buy_list_12: Done
+en_trade_buy_list_13: BAITEN
+
+
+
+cn_trade_sell_list_1: 挂卖明细
+cn_trade_sell_list_2: 交易编号
+cn_trade_sell_list_3: 搜 索
+cn_trade_sell_list_4: 交易编号
+cn_trade_sell_list_5: 挂卖金额
+cn_trade_sell_list_6: 成交数量
+cn_trade_sell_list_7: 挂卖数量
+cn_trade_sell_list_8: 状态
+cn_trade_sell_list_9: 时间
+cn_trade_sell_list_10: 卖出中
+cn_trade_sell_list_11: 已完成
+cn_trade_sell_list_12: 百腾国际
+
+en_trade_sell_list_1: Selling History
+en_trade_sell_list_2: Trading ID
+en_trade_sell_list_3: Search
+en_trade_sell_list_4: Trading ID
+en_trade_sell_list_5: Sold Amount
+en_trade_sell_list_6: Sold Stocks
+en_trade_sell_list_7: Selling Stocks
+en_trade_sell_list_8: Status
+en_trade_sell_list_9: Time
+en_trade_sell_list_10: For sell
+en_trade_sell_list_11: Done
+en_trade_sell_list_12: BAITEN
+
+
+cn_shares_list_1: 我的权证
+cn_shares_list_2: 价格
+cn_shares_list_3: 买入股数
+cn_shares_list_4: 已转出股数
+cn_shares_list_5: 拆分次数
+cn_shares_list_6: 最后卖股价格
+cn_shares_list_7: 最后转出时间
+cn_shares_list_8: 时间
+cn_shares_list_9: 百腾国际
+
+en_shares_list_1: My Stocks
+en_shares_list_2: Price
+en_shares_list_3: No. of Purchased Stocks 
+en_shares_list_4: No. of transferred Stocks 
+en_shares_list_5: No. of Split 
+en_shares_list_6: Sold  Price
+en_shares_list_7: Transaction Date
+en_shares_list_8: Date
+en_shares_list_9: BAITEN
+
+
+cn_trade_1: 权证买入
+cn_trade_2: 支出账户
+cn_trade_3: 交易积分
+cn_trade_4: 账户结余
+cn_trade_5: 买入金额
+cn_trade_6: 约买数量
+cn_trade_7: 以成交价为准
+cn_trade_8: 交易密码
+cn_trade_8_1: 交易密码
+cn_trade_9: 立即购买
+cn_trade_10: 权证卖出
+cn_trade_11: 卖出账户
+cn_trade_12: 权证
+cn_trade_13: 可挂卖数
+cn_trade_14: 挂卖数量
+cn_trade_15: 挂卖约值
+cn_trade_16: 交易密码
+cn_trade_16_1: 交易密码
+cn_trade_17: 立即卖出
+cn_trade_18: 今日价格
+cn_trade_19: 买入信息
+cn_trade_20: 时间
+cn_trade_21: 数量
+cn_trade_22: 金额
+cn_trade_23: 卖出信息
+cn_trade_24: 时间
+cn_trade_25: 成交
+cn_trade_26: 挂卖
+cn_trade_27: 我的卖出
+cn_trade_28: 价格走势
+cn_trade_29: 我的买入
+cn_trade_30: 提示
+cn_trade_31: 确认
+cn_trade_32: 确定要执行此操作
+cn_trade_33: 百腾国际
+cn_trade_34: 确定
+cn_trade_35: 操作进行中...
+cn_trade_36: 取消
+
+en_trade_1: Buy Stocks
+en_trade_2: From
+en_trade_3: SP
+en_trade_4: Surplus
+en_trade_5: Price
+en_trade_6: Number
+en_trade_7: by current price
+en_trade_8: Password
+en_trade_8_1: Trading Password
+en_trade_9: Buy Now
+en_trade_10: Sell Stocks
+en_trade_11: From
+en_trade_12: Stocks
+en_trade_13: Total Stocks
+en_trade_14: Number
+en_trade_15: Amount
+en_trade_16: Password
+en_trade_16_1: Trading Password
+en_trade_17: Sell Now
+en_trade_18: Current Price
+en_trade_19: Buying Info
+en_trade_20: Time
+en_trade_21: Units
+en_trade_22: Amount
+en_trade_23: Selling Info
+en_trade_24: Time
+en_trade_25: Deal
+en_trade_26: For Sale
+en_trade_27: My Selling History
+en_trade_28: Price Index
+en_trade_29: My Buying History
+en_trade_30: Tips
+en_trade_31: Confirm
+en_trade_32: Are you sure you want to do this
+en_trade_33: BAITEN
+en_trade_34: Confirm
+en_trade_35: Confirm...
+en_trade_36: Cancel
+
+
+cn_trade_list_1: 交易明细
+cn_trade_list_2: 时间范围
+cn_trade_list_3: 搜 索
+cn_trade_list_4: 相关用户
+cn_trade_list_5: 资金进出
+cn_trade_list_6: 总额
+cn_trade_list_7: 电子积分
+cn_trade_list_8: 报单积分
+cn_trade_list_9: 交易积分
+cn_trade_list_10: 旅游积分
+cn_trade_list_11: 商城积分
+cn_trade_list_12: 交易费
+cn_trade_list_13: 创建时间
+cn_trade_list_14: 百腾国际
+cn_trade_list_15: 进
+cn_trade_list_16: 出
+
+en_trade_list_1: Trading History
+en_trade_list_2: Trading Date
+en_trade_list_3: Search
+en_trade_list_4: Relate Account
+en_trade_list_5: Trading Mode
+en_trade_list_6: Total Amount
+en_trade_list_7: Electronic Point
+en_trade_list_8: Registration Point
+en_trade_list_9: Stocks Point
+en_trade_list_10: Travel Point
+en_trade_list_11: Mall Point
+en_trade_list_12: Trading fee
+en_trade_list_13: Created On
+en_trade_list_14: BAITEN
+en_trade_list_15: IN
+en_trade_list_16: OUT
+
+cn_change_login_pwd_1: 登录密码修改
+cn_change_login_pwd_2: 旧登录密码
+cn_change_login_pwd_3: 新登录密码
+cn_change_login_pwd_4: 确认新密码
+cn_change_login_pwd_5: 立刻修改
+cn_change_login_pwd_6: 百腾国际
+cn_change_login_pwd_7: 提示
+cn_change_login_pwd_8: 确定
+cn_change_login_pwd_9: 确定要修改吗
+cn_change_login_pwd_10: 确定
+cn_change_login_pwd_11: 操作进行中...
+cn_change_login_pwd_12: 取消
+
+en_change_login_pwd_1: Change Login Password
+en_change_login_pwd_2: Old Password
+en_change_login_pwd_3: New Password
+en_change_login_pwd_4: Confirm New Password
+en_change_login_pwd_5: Submit
+en_change_login_pwd_6: BAITEN
+en_change_login_pwd_7: Tips
+en_change_login_pwd_8: Submit Confrim
+en_change_login_pwd_9: Are you sure you want to do this
+en_change_login_pwd_10: Confrim
+en_change_login_pwd_11: Confrim...
+en_change_login_pwd_12: Cancel
+
+
+cn_change_trade_pwd_1: 登录交易修改
+cn_change_trade_pwd_2: 旧交易密码
+cn_change_trade_pwd_3: 新交易密码
+cn_change_trade_pwd_4: 确认新密码
+cn_change_trade_pwd_5: 立刻修改
+cn_change_trade_pwd_6: 百腾国际
+cn_change_trade_pwd_7: 提示
+cn_change_trade_pwd_8: 确定
+cn_change_trade_pwd_9: 确定要修改吗
+cn_change_trade_pwd_10: 确定
+cn_change_trade_pwd_11: 操作进行中...
+cn_change_trade_pwd_12: 取消
+
+en_change_trade_pwd_1: Change Trading Password
+en_change_trade_pwd_2: Old Password
+en_change_trade_pwd_3: New Password
+en_change_trade_pwd_4: Confirm New Password
+en_change_trade_pwd_5: Submit
+en_change_trade_pwd_6: BAITEN
+en_change_trade_pwd_7: Tips
+en_change_trade_pwd_8: Submit Confrim
+en_change_trade_pwd_9: Are you sure you want to do this
+en_change_trade_pwd_10: Confrim
+en_change_trade_pwd_11: Confrim...
+en_change_trade_pwd_12: Cancel
+
+
+cn_change_profile_1: 修改资料
+cn_change_profile_2: 会员名
+cn_change_profile_3: 注册时间
+cn_change_profile_4: 手机号
+cn_change_profile_5: 电子邮箱
+cn_change_profile_6: 身份证号码
+cn_change_profile_7: 邮编
+cn_change_profile_8: 国家
+cn_change_profile_9: 省
+cn_change_profile_10: 市
+cn_change_profile_11: 地址
+cn_change_profile_12: 出生年月
+cn_change_profile_13: 银行名称
+cn_change_profile_14: 银行账户名
+cn_change_profile_15: 银行卡号
+cn_change_profile_16: 交易密码
+cn_change_profile_16_1: 请输入交易密码
+cn_change_profile_17: 立刻修改
+cn_change_profile_18: 百腾国际
+cn_change_profile_19: 提示
+cn_change_profile_20: 修改确认
+cn_change_profile_21: 确定要修改吗
+cn_change_profile_22: 确定
+cn_change_profile_23: 操作进行中...
+cn_change_profile_24: 取消
+
+en_change_profile_1: Edit Profile
+en_change_profile_2: User Name
+en_change_profile_3: Created On
+en_change_profile_4: Mobile Number
+en_change_profile_5: E-mail
+en_change_profile_6: ID
+en_change_profile_7: Postal Code
+en_change_profile_8: Country
+en_change_profile_9: Province
+en_change_profile_10: City
+en_change_profile_11: Address
+en_change_profile_12: Birthday
+en_change_profile_13: Bank Name
+en_change_profile_14: Account Name
+en_change_profile_15: Account Number
+en_change_profile_16: Trading Password
+en_change_profile_16_1: Please input Trading Password
+en_change_profile_17: Submit
+en_change_profile_18: BAITEN
+en_change_profile_19: Tips
+en_change_profile_20: Submit Confrim
+en_change_profile_21: Are you sure to Submit Now?
+en_change_profile_22: Confrim
+en_change_profile_23: Confrim...
+en_change_profile_24: Cancel
+
+
+cn_msg_list_1: 消息
+cn_msg_list_2: 收件箱
+cn_msg_list_3: 发件箱
+cn_msg_list_4: 给客服发送消息
+cn_msg_list_5: 百腾国际
+
+en_msg_list_1: Message
+en_msg_list_2: Inbox
+en_msg_list_3: Outbox
+en_msg_list_4: Send a message to Customer Service
+en_msg_list_5: BAITEN
+
+
+cn_my_remmend_1: 我的推荐
+cn_my_remmend_2: 会员信息
+cn_my_remmend_3: 会员姓名
+cn_my_remmend_4: 等级
+cn_my_remmend_5: 金额
+cn_my_remmend_6: 状态
+cn_my_remmend_7: 注册日期
+cn_my_remmend_8: 百腾国际
+cn_my_remmend_9: 锁定
+cn_my_remmend_10: 正常
+
+en_my_remmend_1: My Sponsor
+en_my_remmend_2: Members Profile
+en_my_remmend_3: User Name
+en_my_remmend_4: Level
+en_my_remmend_5: Amount
+en_my_remmend_6: Status
+en_my_remmend_7: Registration Date
+en_my_remmend_8: BAITEN
+en_my_remmend_9: Expired
+en_my_remmend_10: Normal
+
+
+cn_search_1: 团队管理
+cn_search_2: 请输入会员账号
+cn_search_3: 用户不存在
+cn_search_4: 左
+cn_search_5: 右
+cn_search_6: 注册会员
+cn_search_7: 百腾国际
+
+en_search_1: Team Management
+en_search_2: Please key-in member username 
+en_search_3: User does not exist
+en_search_4: Left
+en_search_5: Right
+en_search_6: New Registration
+en_search_7: BAITEN
+
+
+cn_msg_send_1: 给客服发消息
+cn_msg_send_2: 标题
+cn_msg_send_3: 主要内容
+cn_msg_send_4: 提交
+cn_msg_send_5: 百腾国际
+cn_msg_send_6: 提示
+cn_msg_send_7: 发送确认
+cn_msg_send_8: 确定要发送吗
+cn_msg_send_9: 图片上传失败
+cn_msg_send_10: 确定
+cn_msg_send_11: 操作进行中...
+cn_msg_send_12: 取消
+
+en_msg_send_1: Send a message to Customer Service
+en_msg_send_2: Title
+en_msg_send_3: Content
+en_msg_send_4: Submit
+en_msg_send_5: BAITEN
+en_msg_send_6: Tips
+en_msg_send_7: Submit Confrim
+en_msg_send_8: Are you sure to Submit Now?
+en_msg_send_9: Pictrue upload error
+en_msg_send_10: Confrim
+en_msg_send_11: Confrim...
+en_msg_send_12: Cancel
+
+
+cn_user_accounts_1: 用户管理
+cn_user_accounts_2: 子用户名
+cn_user_accounts_3: 子用户登录密码
+cn_user_accounts_4: 添加
+cn_user_accounts_5: 子用户列表
+cn_user_accounts_6: 用户名称
+cn_user_accounts_7: 手机号
+cn_user_accounts_8: Email
+cn_user_accounts_9: 状态
+cn_user_accounts_10: 关联日期
+cn_user_accounts_11: 操作
+cn_user_accounts_12_1: 正常
+cn_user_accounts_12_2: 过期
+cn_user_accounts_13: 删除
+cn_user_accounts_14: 百腾国际
+cn_user_accounts_15: 提示
+cn_user_accounts_16: 添加确认
+cn_user_accounts_17: 确定要确认吗
+cn_user_accounts_18: 删除
+cn_user_accounts_19: 交易密码
+cn_user_accounts_21: 确定
+cn_user_accounts_22: 操作进行中...
+cn_user_accounts_23: 取消
+
+en_user_accounts_1: User Management
+en_user_accounts_2: Sub-Account User Name
+en_user_accounts_3: Sub-Account Login Password
+en_user_accounts_4: Add
+en_user_accounts_5: Sub-account List
+en_user_accounts_6: Account Name
+en_user_accounts_7: Mobile Number
+en_user_accounts_8: Email
+en_user_accounts_9: Status
+en_user_accounts_10: Created on
+en_user_accounts_11: Action
+en_user_accounts_12_1: Normal
+en_user_accounts_12_2: Expired
+en_user_accounts_13: Delete
+en_user_accounts_14: BAITEN
+en_user_accounts_15: Tips
+en_user_accounts_16: Add User
+en_user_accounts_17: Are you sure to Add Now?
+en_user_accounts_18: Delete
+en_user_accounts_19: Trading Password
+en_user_accounts_21: Confrim
+en_user_accounts_22: Confrim...
+en_user_accounts_23: Cancel
+
+
+
+
+#需特殊处理的
+en_今日最低: Lowest Price
+en_今日最高: Highest Price
+en_当前时价: Current Price
+en_今日涨幅: Today's Gains
+en_左: left
+en_右: right

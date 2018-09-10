@@ -1,0 +1,141 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<body>
+<div th:replace="fore/common :: header"></div>
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb-bar cf">
+              <h2><i class="icon iconfont icon-gears"></i><span th:text="${transfer_ZCJF_1}"></span></h2>
+            </div>
+            <div class="reg-box form-box">
+              <form name="reg-form" th:action="@{/fore/assets/transferZCJF}" method="post" th:object="${userZCJF}">
+                <div class="form-box-bd">
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${transfer_ZCJF_2}"></span>:</label>
+                      <input type="number" min="0" class="ui-input" name="amount" th:value="*{amount}" th:placeholder="${transfer_ZCJF_2}">
+                      <!--<span th:errors="*{amount}"></span>-->
+                  </div>
+                    <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${transfer_ZCJF_3}"></span>:</label>
+                      <input type="text" onblur="getPhone()" class="ui-input" name="inUserName" th:value="${inUserName}" th:placeholder="${transfer_ZCJF_3}">
+                      <!--<span th:errors="*{fromUserId}"></span>-->
+                  </div>
+
+                    <div class="field">
+                        <label for="" class="ui-label"><span th:text="${transfer_ZCJF_4}"></span>:</label>
+                        <input type="text" class="ui-input" id="phone" disabled>
+                    </div>
+
+                    <div class="field">
+                      <label for="" class="ui-label"><span th:text="${transfer_ZCJF_5}"></span>:</label>
+                      <input type="text" class="ui-input"  th:value="${userAsset.ZCJFYYE}" disabled>
+                  </div>
+                </div>
+                  <div class="field">
+                      <label for="" class="ui-label">*<span th:text="${transfer_ZCJF_6}"></span>:</label>
+                      <input type="password" class="ui-input" name="password"  th:placeholder="${transfer_ZCJF_6}">
+                  </div>
+                  <div class="field btn-field">
+                    <button type="button" onclick="transfer()" class="ui-btn primary-btn" th:text="${transfer_ZCJF_7}"></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${transfer_ZCJF_8}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+</body>
+
+<input type="hidden" id="tip" th:value="${tip}">
+<div id="dialog-confirm" th:title="${transfer_ZCJF_9}">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${tip}"></b>
+    </p>
+</div>
+
+<div id="dialog-confirm1" th:title="${transfer_ZCJF_10}" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <b th:text="${transfer_ZCJF_11}"></b>
+    </p>
+</div>
+<script th:inline="javascript">
+    var transfer_ZCJF_12 = [[${reg_29}]];
+    var transfer_ZCJF_13 = [[${reg_30}]];
+    var transfer_ZCJF_14 = [[${reg_32}]];
+    var transfer_ZCJF_15 = [[${reg_33}]];
+	
+    $(function () {
+        if ($('#tip').val() != '' && $('#tip').val() != null){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    OK: function() {
+                        if ($('#tip').val() == transfer_ZCJF_12){
+                            window.location.href = "/fore/assets/userZCJFList"
+                        }else {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                }
+            });
+
+        }
+
+        getPhone();
+    });
+
+    function getPhone() {
+        var userName = $("input[name='inUserName']").val();
+        $.ajax({
+            url: '/fore/user/getPhone',
+            type: 'post',
+            data: {'userName': userName, '_csrf': $("input[name='_csrf']").val()},
+            success: function (data) {
+                if (data != "" && data.length > 7)
+                    data = data.substring(0, 3) + "****" + data.substring(7, data.length);
+                $("#phone").val(data);
+            }
+        })
+
+    }
+
+    function transfer() {
+        var buttons = `{
+            "${transfer_ZCJF_13}": function(){
+                $(".ui-dialog-buttonpane button:contains('${transfer_ZCJF_13}')").button("disable");
+                $(".ui-button:contains('${transfer_ZCJF_13}')").text('${transfer_ZCJF_14}');
+                $("form").submit();
+            },
+            "${transfer_ZCJF_15}": function () {
+                $( this ).dialog( "close" );
+            }
+        }`
+
+
+         buttons = eval('(' + buttons + ')');
+
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: buttons
+        });
+    }
+</script>
+</html>

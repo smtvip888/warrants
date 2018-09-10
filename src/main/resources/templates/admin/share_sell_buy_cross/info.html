@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong" th:object="${shareSellBuyCross}">
+        <form class="am-form am-g">
+
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+                <thead>
+                <tr class="am-success">
+                    <!--<th class="table-author am-hide-sm-only">ID</th>-->
+                    <th class="table-author am-hide-sm-only">购买记录ID</th>
+                    <!--<th class="table-author am-hide-sm-only">销售记录ID</th>-->
+                    <th class="table-author am-hide-sm-only">购买交易编号</th>
+                    <th class="table-author am-hide-sm-only">股数</th>
+                    <th class="table-author am-hide-sm-only">价格</th>
+                    <th class="table-author am-hide-sm-only">总额</th>
+                    <th class="table-author am-hide-sm-only">创建日期</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="cross, stat : ${crosses}">
+                    <!--<td th:text="${cross.id}"></td>-->
+                    <td th:text="${cross.buyId}"></td>
+                    <!--<td th:text="${cross.sellId}"></td>-->
+                    <td th:text="${buys[stat.index].tradeSN}"></td>
+                    <td th:text="${cross.shares}"></td>
+                    <td th:text="${cross.price}"></td>
+                    <td th:text="${cross.amount}"></td>
+                    <td th:text="${#dates.format(cross.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>结余退回明细</h2>
+
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+                <thead>
+                <tr class="am-success">
+                    <th class="table-author am-hide-sm-only">价格</th>
+                    <th class="table-author am-hide-sm-only">总额</th>
+                    <th class="table-author am-hide-sm-only">数量</th>
+                    <th class="table-author am-hide-sm-only">创建时间</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="log, stat : ${logs}">
+                    <td th:text="${log.price}"></td>
+                    <td th:text="${log.amount}"></td>
+                    <td th:text="${log.shares}"></td>
+                    <td th:text="${#dates.format(log.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>

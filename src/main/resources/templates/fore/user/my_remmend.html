@@ -1,0 +1,207 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fore/common :: head"></head>
+<link th:href="@{/css/tree.css}" rel="stylesheet">
+
+<style>
+    /* mod */
+    .mod {
+        float: left;
+    }
+
+    .mod-wrap {
+        background: #fff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        padding: 0 12px 30px;
+    }
+
+    .mod-hd {
+        height: 63px;
+        line-height: 63px;
+        border-bottom: 1px solid #dee3e9;
+        overflow: hidden;
+    }
+
+    .mod-hd h2 {
+        float: left;
+        color: #4db3a4;
+    }
+
+    .mod-hd h2 a {
+        color: #4db3a4;
+        font: 300 18px microsoft yahei;
+    }
+
+    .mod-hd .more {
+        float: right;
+    }
+
+    .mod-bd {
+        overflow: hidden;
+    }
+
+    .mod3 {
+        width: 350px;
+    }
+
+    .r4 .mod1 {
+        width: 650px;
+    }
+
+    .r4 .mod1 .mod-wrap {
+        margin-right: 29px;
+        padding-bottom: 0;
+        height: auto;
+    }
+
+    .r4 .mod1 .mod-wrap .mod-bd {
+        padding: 20px 0 40px 0;
+    }
+
+    .r4 .mod3 .mod-wrap {
+        height: auto;
+    }
+</style>
+
+<body class="home">
+<div th:replace="fore/common :: header"></div>
+
+<section class="row r4">
+    <div class="wrapper">
+
+        <div class="mod mod3">
+            <div class="mod-wrap">
+                <div class="mod-hd">
+                    <h2><a href="#"><span th:text="${my_remmend_1}"></span></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <div class="tree well" style='overflow-x:auto;'>
+                        <ul>
+                            <li class="parent_li">
+                                <span style="width: 120px;" id="userRoot" onclick="getRecommendUsers(this)" userId="" title="">
+                                    <i class="icon-folder-close" ></i><b sec:authentication="name"></b>
+                                </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mod mod1">
+            <div class="mod-wrap" style="margin:0 0 0 29px;">
+                <div class="mod-hd">
+                    <h2><a href="#" th:text="${my_remmend_2}"></a></h2>
+                </div>
+                <div class="mod-bd">
+                    <table class="ui-table ui-table2">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="18%">
+                            <col width="17%">
+                            <col width="15%">
+                            <col width="25%">
+                        </colgroup>
+                        <tbody id="_data">
+                        <tr>
+                            <th th:text="${my_remmend_3}"></th>
+                            <th th:text="${my_remmend_4}"></th>
+                            <th th:text="${my_remmend_5}"></th>
+                            <th th:text="${my_remmend_6}"></th>
+                            <th th:text="${my_remmend_7}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="wrapper">
+        2017 © <span th:text="${my_remmend_8}"></span>. ALL Rights Reserved.
+    </div>
+</footer>
+
+<!--<input th:value="${_csrf.token}" name="_csrf" type="hidden">-->
+</body>
+
+<script  th:inline="javascript">
+		var my_remmend_3 = [[${my_remmend_3}]];
+		var my_remmend_4 = [[${my_remmend_4}]];
+		var my_remmend_5 = [[${my_remmend_5}]];
+		var my_remmend_6 = [[${my_remmend_6}]];
+		var my_remmend_7 = [[${my_remmend_7}]];
+		var my_remmend_9 = [[${my_remmend_9}]];
+		var my_remmend_10 = [[${my_remmend_10}]];
+	
+	
+    $(function () {
+        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Root');
+
+        $("#userRoot").click();
+
+    });
+
+    function getRecommendUsers(obj) {
+
+        var i = $(obj).children().first();
+
+        if (i.hasClass("icon-folder-close")){
+            var userId = $(obj).attr("userId")
+            $.ajax({
+                url: '/fore/user/getRecommendUsers',
+                type: 'get',
+                data: {'userId': userId, '_csrf': $("input[name='_csrf']").val()},
+                success: function (data) {
+                    var html = "<ul>";
+                    var trs = "<tr><th>"+ my_remmend_3 +"</th><th>"+ my_remmend_4 +"</th><th>"+ my_remmend_5 +"</th><th>"+ my_remmend_6 +"</th><th>"+ my_remmend_7 +"</th></tr>";
+                    data.forEach(function (user, p2, p3) {
+                        html += "<li class='parent_li'>";
+                        html += "<span  userId='"+ user.userId +"' onclick='getRecommendUsers(this)' title=''><i class='icon-folder-close'></i>";
+                        html += user.userName;
+                        html += "</span>";
+                        html += "</li>";
+
+                        trs += "<tr>";
+                        trs += "<td>";
+                        trs += user.userName;
+                        trs += "</td>";
+                        trs += "<td>";
+                        trs += user.level;
+                        trs += "</td>";
+                        trs += "<td>";
+                        trs += "$" + user.netPrice;
+                        trs += "</td>";
+                        trs += "<td>";
+                        trs += user.status == '0' ? my_remmend_9 : my_remmend_10;
+                        trs += "</td>";
+                        trs += "<td>";
+                        trs += user.regTime;
+                        trs += "</td>";
+                        trs += "</tr>";
+                    })
+                    html += "</ul>";
+                    $(obj).nextAll().remove();
+                    $(obj).after(html);
+                    $("#_data").html(trs);
+                }
+            })
+        }else if (i.hasClass("icon-folder-open")){
+            $(obj).next().remove();
+        }
+
+        i.toggleClass("icon-folder-close");
+        i.toggleClass("icon-folder-open");
+    }
+</script>
+
+</html>

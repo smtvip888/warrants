@@ -1,0 +1,98 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <div class="fbneirong">
+        <div>
+            <strong>首页->价格拆分列表页</strong>
+        </div>
+        <div class="zuo" style="width: 80px;margin-left: 25px;">
+            <button onclick="confirm1()" class="am-btn am-btn-success am-radius">立即拆分</button>
+        </div>
+    <form class="am-form am-g" th:action="@{/admin/sharesSplit/list}">
+
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr class="am-success">
+                <th class="table-author am-hide-sm-only">拆分价格</th>
+                <th class="table-author am-hide-sm-only">拆后价格</th>
+                <th class="table-author am-hide-sm-only">拆分用户数</th>
+                <th class="table-author am-hide-sm-only">配送权证</th>
+                <!--<th class="table-author am-hide-sm-only">配送D权证</th>-->
+                <th class="table-author am-hide-sm-only">创建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="split, stat : ${list}">
+                <td th:text="${split.splitPrice}"></td>
+                <td th:text="${split.afterSplitPrice}"></td>
+                <td th:text="${split.userCount}"></td>
+                <td th:text="${split.largessSShares}"></td>
+                <!--<td th:text="${split.largessDShares}"></td>-->
+                <td th:text="${#dates.format(split.cdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:replace="admin/common :: page"></div>
+    </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+
+<div id="dialog-confirm1" title="拆分" style="display:none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        确定要拆分吗？
+    </p>
+</div>
+
+<div id="dialog-confirm2" title="拆分" style="display:none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        再次确认？
+    </p>
+</div>
+
+<script>
+    function confirm1() {
+        $( "#dialog-confirm1" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "确定": function() {
+                    $(".ui-dialog-buttonpane button:contains('确定')").button("disable");
+                    $(".ui-button:contains('确定')").text("操作进行中...");
+                    confirm2();
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+
+    function confirm2() {
+        $( "#dialog-confirm2" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "确定": function() {
+                    $(".ui-dialog-buttonpane button:contains('确定')").button("disable");
+                    $(".ui-button:contains('确定')").text("操作进行中...");
+                    window.location.href = '/admin/sharesSplit/split'
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    }
+</script>
+
+</html>
+

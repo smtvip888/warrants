@@ -1,0 +1,47 @@
+server:
+  port: 8088
+  compression:
+    enabled: true
+    mime-types:
+      -
+        application-json
+      -
+        application/xml
+      -
+        application/javascript
+      -
+        text/html
+      -
+        text/xml
+      -
+        text/plain
+      -
+        text/css
+  max-http-header-size: 655360
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: 123abc!@#
+#    key-store-type: PKCS12
+#    key-alias: warrents-key
+  tomcat:
+    accesslog:
+      directory: /data/www/
+      enabled: true
+
+http:
+  port: 8088
+
+file:
+  path: /data/www/file
+
+config:
+  dir:
+    path: /data/www/config
+
+spring:
+  http:
+    multipart:
+      max-file-size: 2MB
+
+
+

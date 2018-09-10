@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head th:replace="admin/common :: head"></head>
+<div class="admin-biaogelist">
+    <input type="hidden" id="filed" th:value="${filed}">
+    <div class="fbneirong">
+        <form class="am-form" th:action="@{/admin/sharesPrice/update}" method="post" th:object="${sharesPrice}">
+            <input type="hidden" name="id" th:value="*{id}">
+            <input type="hidden" name="price" th:value="*{price}">
+            <input type="hidden" name="succesShares" th:value="*{succesShares}">
+            <input type="hidden" name="userShares" th:value="*{userShares}">
+            <input type="hidden" name="cdate" th:value="*{cdate}">
+            <div class="am-form-group am-cf">
+                <div class="zuo">价格：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{price}" disabled>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">可售股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" name="shares" th:value="*{shares}">
+                    <span th:errors="*{shares}"></span>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">已成交股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{succesShares}" disabled>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">用户成交股数：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{userShares}" disabled>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="zuo">创建时间：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" th:value="*{#dates.format(cdate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
+                </div>
+            </div>
+
+            <div class="am-form-group am-cf">
+                <div class="you" style="margin-left: 11%;">
+                    <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="admin/common :: foot"></div>
+</div>
+</html>
